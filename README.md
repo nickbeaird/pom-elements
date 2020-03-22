@@ -3,11 +3,9 @@ The Selenium Xpath library is an easy wrapper that utilizes a class based struct
 
 # Setup/Tools
 
-## Pyenv
-This project is designed to run in the most recent version of Python (3.8.2). One useful tool to do this is to use Pyenv. This is set using [Pyenv](https://github.com/pyenv/pyenv). Please also see the Python versoin as set in the `.python-version` file.
+## Things you'll need
+* [Pyenv](https://github.com/pyenv/pyenv) or Python 3.8.2
+* [Poetry](https://python-poetry.org/)
 
-## Poetry
-This project is utilizing Python Poetry to manage the project dependencies. Please refer to the [Poetry](https://python-poetry.org/) website for more information. 
-
-## Make
-Make allows for easily organizing commonly used commands and build dependencies. Please refer to the `Makefile` and/or the [Make documentation](https://www.gnu.org/software/make/manual/make.html#Reading) for more information.
+## Quickstart
+1. Run `make build`
