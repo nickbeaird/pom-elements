@@ -140,7 +140,7 @@ python-versions = ">=3.5"
 version = "8.2.0"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Optional static typing for Python"
 name = "mypy"
 optional = false
@@ -156,7 +156,7 @@ typing-extensions = ">=3.7.4"
 dmypy = ["psutil (>=4.0)"]
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Experimental type system extensions for programs checked with the mypy typechecker."
 name = "mypy-extensions"
 optional = false
@@ -335,7 +335,7 @@ python-versions = "*"
 version = "1.4.1"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Backported and Experimental Type Hints for Python 3.5+"
 name = "typing-extensions"
 optional = false
@@ -369,7 +369,7 @@ python-versions = "*"
 version = "0.1.8"
 
 [metadata]
-content-hash = "233f1371a852ea37f029001ad7641cfc1e169b59607b36934af1c86e3de7acb1"
+content-hash = "b8634a771ebc94d4fa2a06dce0b51e7b9e7f4b14291d084022409a459e6d5873"
 python-versions = "^3.8"
 
 [metadata.files]

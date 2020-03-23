@@ -11,7 +11,7 @@ class BaseTag:
         return self._xpath
 
     @xpath.setter
-    def xpath(self, xpath: str) -> str:
+    def xpath(self, xpath: str) -> None:
         """
         Set the xpath value of the string as value
         """
