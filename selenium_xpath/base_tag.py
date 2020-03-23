@@ -6,7 +6,7 @@ class BaseTag:
     def __init__(self, xpath: str = '//*', **kwargs):
         self.user_input = kwargs
         self.xpath = xpath
-    
+
     @property
     def xpath(self) -> str:
         """
@@ -43,5 +43,5 @@ if __name__ == '__main__':
         print('a: ', a)
         b = BaseTag()
         print(b)
-            
+
     get_tags()

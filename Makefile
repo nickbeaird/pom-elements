@@ -6,3 +6,7 @@ build:
 
 test:
 	@poetry run pytest
+
+# Run all pre-commit hooks
+commit-hooks:
+	@poetry run pre-commit run --all-files

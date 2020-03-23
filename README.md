@@ -1,6 +1,6 @@
 # Selenium XPath
-The Selenium Xpath library is an easy wrapper that utilizes a class based structure to 
-interact with elements on the page using xpath. The xpath elements are first class 
+The Selenium Xpath library is an easy wrapper that utilizes a class based structure to
+interact with elements on the page using xpath. The xpath elements are first class
 citizens in this project.
 
 # Setup/Tools
