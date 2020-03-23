@@ -9,6 +9,7 @@ python = "^3.8"
 black = "^19.10b0"
 tox = "^3.14.5"
 pre-commit = "^2.2.0"
+flake8 = "^3.7.9"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
