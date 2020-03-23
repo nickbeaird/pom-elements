@@ -2,4 +2,7 @@
 
 build:
 	@poetry shell
-	@poetry install 
+	@poetry install
+
+test:
+	@poetry run pytest

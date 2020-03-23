@@ -58,13 +58,29 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 version = "7.1.1"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Cross-platform colored terminal text."
-marker = "sys_platform == \"win32\""
+marker = "platform_system == \"Windows\" or sys_platform == \"win32\""
 name = "colorama"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 version = "0.4.3"
+
+[[package]]
+category = "main"
+description = "Distribution utilities"
+name = "distlib"
+optional = false
+python-versions = "*"
+version = "0.3.0"
+
+[[package]]
+category = "main"
+description = "A platform independent file lock."
+name = "filelock"
+optional = false
+python-versions = "*"
+version = "3.0.12"
 
 [[package]]
 category = "dev"
@@ -75,7 +91,7 @@ python-versions = ">=3.5"
 version = "8.2.0"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Core utilities for Python packages"
 name = "packaging"
 optional = false
@@ -95,7 +111,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 version = "0.7.0"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "plugin and hook calling mechanisms for python"
 name = "pluggy"
 optional = false
@@ -106,7 +122,7 @@ version = "0.13.1"
 dev = ["pre-commit", "tox"]
 
 [[package]]
-category = "dev"
+category = "main"
 description = "library with cross-python path, ini-parsing, io, code, log facilities"
 name = "py"
 optional = false
@@ -114,7 +130,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "1.8.1"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Python parsing module"
 name = "pyparsing"
 optional = false
@@ -152,7 +168,7 @@ python-versions = "*"
 version = "2020.2.20"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Python 2 and 3 compatibility utilities"
 name = "six"
 optional = false
@@ -169,11 +185,51 @@ version = "0.10.0"
 
 [[package]]
 category = "main"
+description = "tox is a generic virtualenv management and test command line tool"
+name = "tox"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
+version = "3.14.5"
+
+[package.dependencies]
+colorama = ">=0.4.1"
+filelock = ">=3.0.0,<4"
+packaging = ">=14"
+pluggy = ">=0.12.0,<1"
+py = ">=1.4.17,<2"
+six = ">=1.14.0,<2"
+toml = ">=0.9.4"
+virtualenv = ">=16.0.0"
+
+[package.extras]
+docs = ["sphinx (>=2.0.0,<3)", "towncrier (>=18.5.0)", "pygments-github-lexers (>=0.0.5)", "sphinxcontrib-autoprogram (>=0.1.5)"]
+testing = ["freezegun (>=0.3.11,<1)", "pathlib2 (>=2.3.3,<3)", "pytest (>=4.0.0,<6)", "pytest-cov (>=2.5.1,<3)", "pytest-mock (>=1.10.0,<2)", "pytest-xdist (>=1.22.2,<2)", "pytest-randomly (>=1.0.0,<4)", "flaky (>=3.4.0,<4)", "psutil (>=5.6.1,<6)"]
+
+[[package]]
+category = "main"
 description = "a fork of Python 2 and 3 ast modules with type comment support"
 name = "typed-ast"
 optional = false
 python-versions = "*"
 version = "1.4.1"
+
+[[package]]
+category = "main"
+description = "Virtual Python Environment builder"
+name = "virtualenv"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,>=2.7"
+version = "20.0.13"
+
+[package.dependencies]
+appdirs = ">=1.4.3,<2"
+distlib = ">=0.3.0,<1"
+filelock = ">=3.0.0,<4"
+six = ">=1.9.0,<2"
+
+[package.extras]
+docs = ["sphinx (>=2.0.0,<3)", "sphinx-argparse (>=0.2.5,<1)", "sphinx-rtd-theme (>=0.4.3,<1)", "towncrier (>=19.9.0rc1)", "proselint (>=0.10.2,<1)"]
+testing = ["pytest (>=4.0.0,<6)", "coverage (>=4.5.1,<6)", "pytest-mock (>=2.0.0,<3)", "pytest-env (>=0.6.2,<1)", "pytest-timeout (>=1.3.4,<2)", "packaging (>=20.0)", "xonsh (>=0.9.13,<1)"]
 
 [[package]]
 category = "dev"
@@ -184,7 +240,7 @@ python-versions = "*"
 version = "0.1.8"
 
 [metadata]
-content-hash = "22b118a7b55ad73a2e7efc60746372b3778663ee5656256d6b25aa72f4f42907"
+content-hash = "65cf4a8b471fb23771bbd99c277cb53c492e56493d2921a0c2ac2f5aa9f5877a"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -211,6 +267,13 @@ click = [
 colorama = [
     {file = "colorama-0.4.3-py2.py3-none-any.whl", hash = "sha256:7d73d2a99753107a36ac6b455ee49046802e59d9d076ef8e47b61499fa29afff"},
     {file = "colorama-0.4.3.tar.gz", hash = "sha256:e96da0d330793e2cb9485e9ddfd918d456036c7149416295932478192f4436a1"},
+]
+distlib = [
+    {file = "distlib-0.3.0.zip", hash = "sha256:2e166e231a26b36d6dfe35a48c4464346620f8645ed0ace01ee31822b288de21"},
+]
+filelock = [
+    {file = "filelock-3.0.12-py3-none-any.whl", hash = "sha256:929b7d63ec5b7d6b71b0fa5ac14e030b3f70b75747cef1b10da9b879fef15836"},
+    {file = "filelock-3.0.12.tar.gz", hash = "sha256:18d82244ee114f543149c66a6e0c14e9c4f8a1044b5cdaadd0f82159d6a6ff59"},
 ]
 more-itertools = [
     {file = "more-itertools-8.2.0.tar.gz", hash = "sha256:b1ddb932186d8a6ac451e1d95844b382f55e12686d51ca0c68b6f61f2ab7a507"},
@@ -272,6 +335,10 @@ toml = [
     {file = "toml-0.10.0-py2.py3-none-any.whl", hash = "sha256:235682dd292d5899d361a811df37e04a8828a5b1da3115886b73cf81ebc9100e"},
     {file = "toml-0.10.0.tar.gz", hash = "sha256:229f81c57791a41d65e399fc06bf0848bab550a9dfd5ed66df18ce5f05e73d5c"},
 ]
+tox = [
+    {file = "tox-3.14.5-py2.py3-none-any.whl", hash = "sha256:0cbe98369081fa16bd6f1163d3d0b2a62afa29d402ccfad2bd09fb2668be0956"},
+    {file = "tox-3.14.5.tar.gz", hash = "sha256:676f1e3e7de245ad870f956436b84ea226210587d1f72c8dfb8cd5ac7b6f0e70"},
+]
 typed-ast = [
     {file = "typed_ast-1.4.1-cp35-cp35m-manylinux1_i686.whl", hash = "sha256:73d785a950fc82dd2a25897d525d003f6378d1cb23ab305578394694202a58c3"},
     {file = "typed_ast-1.4.1-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:aaee9905aee35ba5905cfb3c62f3e83b3bec7b39413f0a7f19be4e547ea01ebb"},
@@ -294,6 +361,10 @@ typed-ast = [
     {file = "typed_ast-1.4.1-cp38-cp38-win_amd64.whl", hash = "sha256:fc0fea399acb12edbf8a628ba8d2312f583bdbdb3335635db062fa98cf71fca4"},
     {file = "typed_ast-1.4.1-cp39-cp39-macosx_10_15_x86_64.whl", hash = "sha256:d43943ef777f9a1c42bf4e552ba23ac77a6351de620aa9acf64ad54933ad4d34"},
     {file = "typed_ast-1.4.1.tar.gz", hash = "sha256:8c8aaad94455178e3187ab22c8b01a3837f8ee50e09cf31f1ba129eb293ec30b"},
+]
+virtualenv = [
+    {file = "virtualenv-20.0.13-py2.py3-none-any.whl", hash = "sha256:87831f1070534b636fea2241dd66f3afe37ac9041bcca6d0af3215cdcfbf7d82"},
+    {file = "virtualenv-20.0.13.tar.gz", hash = "sha256:f3128d882383c503003130389bf892856341c1da12c881ae24d6358c82561b55"},
 ]
 wcwidth = [
     {file = "wcwidth-0.1.8-py2.py3-none-any.whl", hash = "sha256:8fd29383f539be45b20bd4df0dc29c20ba48654a41e661925e612311e9f3c603"},
