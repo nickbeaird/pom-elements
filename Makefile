@@ -7,6 +7,6 @@ build:
 test:
 	@poetry run pytest
 
-# Run all pre-commit hooks
-commit-hooks:
+# Run all pre-commit hooks on all files
+verify-commit-hooks:
 	@poetry run pre-commit run --all-files
