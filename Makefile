@@ -5,6 +5,7 @@ build:
 	@poetry install
 
 test:
+	@poetry run mypy
 	@poetry run pytest
 
 # Run all pre-commit hooks on all files
