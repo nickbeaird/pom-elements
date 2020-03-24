@@ -15,6 +15,10 @@ repos:
     -   id: trailing-whitespace
     -   id: flake8
         args: [--max-line-length=88]
+-   repo: https://github.com/PyCQA/pydocstyle
+    rev: ''
+    hooks:
+    -   id: pydocstyle
 -   repo: https://github.com/psf/black
     rev: stable
     hooks:
