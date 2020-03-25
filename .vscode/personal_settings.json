@@ -1,7 +1,0 @@
-{
-    "$extends": "./settings.json",
-    "python.pythonPath": "/Users/nicklasb/Library/Caches/pypoetry/virtualenvs/selenium-xpath-GuJUukU9-py3.8",
-    "python.autoComplete.extraPaths": [
-        "/Users/nicklasb/Library/Caches/pypoetry/virtualenvs/selenium-xpath-GuJUukU9-py3.8"
-    ]
-}
