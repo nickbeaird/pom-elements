@@ -2,5 +2,17 @@
     "editor.rulers": [88,120],
     "workbench.colorCustomizations": {
         "editorRuler.foreground": "#ff4081"
-    }
+    },
+    // "python.autoComplete.extraPaths": [
+    //     "/Users/nicklasb/Library/Caches/pypoetry/virtualenvs/selenium-xpath-GuJUukU9-py3.8"
+    // ],
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    // "python.pythonPath": "/Users/nicklasb/.pyenv/versions/3.8.2/bin/python3.8"
+    "terminal.integrated.shellArgs.linux": ["poetry shell"],
+    "python.pythonPath": "/Users/nicklasb/Library/Caches/pypoetry/virtualenvs/selenium-xpath-GuJUukU9-py3.8",
+    "python.autoComplete.extraPaths": [
+        "/Users/nicklasb/Library/Caches/pypoetry/virtualenvs/selenium-xpath-GuJUukU9-py3.8"
+    ]
 }
