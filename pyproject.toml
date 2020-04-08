@@ -12,12 +12,18 @@ pre-commit = "^2.2.0"
 flake8 = "^3.7.9"
 mypy = "^0.770"
 selenium = "^3.141.0"
+isort = "^4.3.21"
+pytest-webdriver = "^1.7.0"
+pytest-selenium = "^1.17.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
 flake8 = "^3.7.9"
 mypy = "^0.770"
 black = "^19.10b0"
+
+[tool.poetry.extras]
+test = ["pytest"]
 
 [tool.black]
 line-length = 88
