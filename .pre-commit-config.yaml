@@ -1,13 +1,22 @@
+# INSTALLATION
+# 1. `brew install pre-commit`
+# 2. `pre-commit install `
+
 default_language_version:
   python: python3.8
 
 repos:
+  # Automatic code formatting for Python
+  - repo: https://github.com/psf/black
+    rev: stable
+    hooks:
+      - id: black
+
+  # Using pre-commit built in file checking
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v2.3.0
     hooks:
       - id: check-yaml
-        files: '.*\.(yaml)$'
-      - id: sort-simple-yaml
         files: '.*\.(yaml)$'
       - id: check-toml
       - id: check-ast
@@ -15,23 +24,27 @@ repos:
       - id: trailing-whitespace
       - id: flake8
         args: [--max-line-length=88]
-  - repo: https://github.com/PyCQA/pydocstyle
-    rev: ""
-    hooks:
-      - id: pydocstyle
-  - repo: https://github.com/pre-commit/mirrors-isort
-    rev: "" # Use the revision sha / tag you want to point at
-    hooks:
-      - id: isort
-  - repo: https://github.com/psf/black
-    rev: stable
-    hooks:
-      - id: black
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: "" # Use the sha / tag you want to point at
-    hooks:
-      - id: mypy
+
+  # Code formatting for all other languages
   - repo: https://github.com/prettier/prettier
     rev: "" # Use the sha or tag you want to point at
     hooks:
       - id: prettier
+
+  # Set formatting styles for python docstrings
+  - repo: https://github.com/PyCQA/pydocstyle
+    rev: ""
+    hooks:
+      - id: pydocstyle
+
+  # Sort imports at the top of the file
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: ""
+    hooks:
+      - id: isort
+
+  # Static type hinting for python
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: ""
+    hooks:
+      - id: mypy
