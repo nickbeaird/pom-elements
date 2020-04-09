@@ -1,5 +1,5 @@
-# This file is part of Selenium-XPath
-
+# The first make statement is what runs when you run `make` in the shell.
+# This sets up a shell and makes sure that the project dependencies are installed.
 build:
 	@poetry shell
 	@poetry install

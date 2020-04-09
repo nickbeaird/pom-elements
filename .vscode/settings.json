@@ -1,24 +1,20 @@
 {
-    "editor.rulers": [88,120],
-    "workbench.colorCustomizations": {
-        "editorRuler.foreground": "#ff4081"
-    },
-    "python.linting.pylintEnabled": false,
-    "python.linting.flake8Enabled": true,
-    "python.linting.flake8Args": [
-        "--max-line-length=88"
-    ],
-    "python.linting.enabled": true,
-    "terminal.integrated.shellArgs.linux": ["poetry shell"],
-    "python.pythonPath": "~/Library/Caches/pypoetry/virtualenvs/selenium-xpath-GuJUukU9-py3.8",
-    "python.autoComplete.extraPaths": [
-        "~/Library/Caches/pypoetry/virtualenvs/selenium-xpath-GuJUukU9-py3.8",
-    ],
-    "python.poetryPath": "~/.poetry/bin/poetry",
-    "python.testing.pytestArgs": [
-        "tests"
-    ],
-    "python.testing.unittestEnabled": false,
-    "python.testing.nosetestsEnabled": false,
-    "python.testing.pytestEnabled": true,
+  "editor.rulers": [88, 120],
+  "workbench.colorCustomizations": {
+    "editorRuler.foreground": "#ff4081"
+  },
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Args": ["--max-line-length=88"],
+  "python.linting.enabled": true,
+  "terminal.integrated.shellArgs.linux": ["poetry shell"],
+  "python.pythonPath": "~/Library/Caches/pypoetry/virtualenvs/selenium-xpath-GuJUukU9-py3.8",
+  "python.autoComplete.extraPaths": [
+    "~/Library/Caches/pypoetry/virtualenvs/selenium-xpath-GuJUukU9-py3.8"
+  ],
+  "python.poetryPath": "~/.poetry/bin/poetry",
+  "python.testing.pytestArgs": ["tests"],
+  "python.testing.unittestEnabled": false,
+  "python.testing.nosetestsEnabled": false,
+  "python.testing.pytestEnabled": true
 }
