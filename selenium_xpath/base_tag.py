@@ -22,12 +22,6 @@ class BaseTag:
         if webddriver:
             self._webdriver = webddriver
             self.web_element = self.find()
-            # self.test_value = 10
-
-    def _get_webdriver(self):
-        if self.webdriver is None:
-            raise ValueError("A webdriver is not set.")
-        return self.webdriver
 
     @property
     def webdriver(self) -> webdriver:
