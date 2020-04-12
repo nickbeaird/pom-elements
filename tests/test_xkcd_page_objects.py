@@ -36,7 +36,7 @@ def test_user_can_set_webdriver_on_pageobject():
     browser.get("https://xkcd.com/")
 
     class xkcd_link_menu_wo_webdriver:
-        selenium = browser
+        webdriver = browser
         archive = BaseTag(xpath="//a", href="/archive")
         howto = BaseTag(xpath="//a", href="/how-to/")
         about = BaseTag(xpath="//a", href="/about")

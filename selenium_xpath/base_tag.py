@@ -146,10 +146,7 @@ class BaseTag:
 
         Allows setting a webdriver on the PageObject and refreshes the instance when accessed.
         """
-        parent_webdriver = getattr(instance, "selenium", None)
-        owner_webdriver = getattr(owner, "selenium", None)
-        print("parent_webdriver: ", parent_webdriver)
-        print("owner_webdriver: ", owner_webdriver)
+        parent_webdriver = getattr(instance, "webdriver", None)
         if parent_webdriver is not None:
             self.webdriver = parent_webdriver
         self.find()

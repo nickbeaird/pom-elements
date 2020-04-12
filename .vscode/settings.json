@@ -12,9 +12,5 @@
   "python.autoComplete.extraPaths": [
     "~/Library/Caches/pypoetry/virtualenvs/selenium-xpath-GuJUukU9-py3.8"
   ],
-  "python.poetryPath": "~/.poetry/bin/poetry",
-  "python.testing.pytestArgs": ["tests"],
-  "python.testing.unittestEnabled": false,
-  "python.testing.nosetestsEnabled": false,
-  "python.testing.pytestEnabled": true
+  "python.poetryPath": "~/.poetry/bin/poetry"
 }
