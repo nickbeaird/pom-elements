@@ -1,0 +1,124 @@
+import unittest
+
+from selenium import webdriver
+from selenium.webdriver.remote.webelement import WebElement
+from selenium_xpath.base_tag import BaseTag, PageObject
+
+
+class ChromeDriver(unittest.TestCase):
+    """Setup class for unittest style unit tests."""
+
+    def setUp(self):
+        """Set a webdriver for all unitest style integration tests."""
+        self.driver = webdriver.Chrome()
+
+    def tearDown(self):
+        """Tear down browser after tests complete."""
+        self.driver.close()
+
+
+class TestBaseTag(ChromeDriver):
+    """Verify that Tags are able to be set with unittest class structure."""
+
+    def test_can_use_basetag_with_webdriver(self):
+        """Verify that unittest tests allow for setting the webdriver directly on the Tag."""
+        self.driver.get("https://xkcd.com/")
+
+        class xkcd_link_menu:
+            """Test class for setting up a non-pageobject container for tag."""
+
+            archive = BaseTag(webdriver=self.driver, xpath="//a", href="/archive")
+            howto = BaseTag(webdriver=self.driver, xpath="//a", href="/how-to/")
+            about = BaseTag(webdriver=self.driver, xpath="//a", href="/about")
+
+        # Page that works
+        page = xkcd_link_menu()
+        # Verify that a page object returns a web element
+        assert isinstance(page.about.find(), WebElement)
+
+    def test_can_use_basetag_without_webdriver(self):
+        """Verify that a user can instantiate a browser on all tags with a class variable."""
+        self.driver.get("https://xkcd.com/")
+
+        class xkcd_link_menu_wo_webdriver:
+            """Class to set a webdriver on the class variable."""
+
+            webdriver = self.driver
+            archive = BaseTag(xpath="//a", href="/archive")
+            howto = BaseTag(xpath="//a", href="/how-to/")
+            about = BaseTag(xpath="//a", href="/about")
+
+        page2 = xkcd_link_menu_wo_webdriver()
+        assert isinstance(page2.about.find(), WebElement)
+
+
+class TestPageObject(ChromeDriver):
+    """Verify the PageObject used in unittest style tests."""
+
+    def test_complex_pageobject_in_unittest(self):
+        """Test that we can use unittest style tests with complex page object selenium sessions."""
+        chrome = webdriver.Chrome()
+        firefox = webdriver.Firefox()
+        safari = webdriver.Safari()
+
+        class Widget(PageObject):
+            """A widget PageObject."""
+
+            widget1 = PageObject()
+            widget2 = PageObject()
+            widget3 = PageObject()
+
+        class Container(PageObject):
+            """A Container PageObject."""
+
+            container1 = Widget()
+            container2 = Widget()
+            container3 = Widget()
+
+        class Page(PageObject):
+            """A Page PageObject."""
+
+            top = Container()
+            middle = Container()
+            bottom = Container()
+
+        page_chrome = Page(webdriver=chrome)
+        page_firefox = Page(webdriver=firefox)
+        page_safari = Page(webdriver=safari)
+
+        # Get the Webdriver.session_id all PageObject Chrome instances.
+        chrome_page_session = page_chrome.webdriver.session_id
+        chrome_top_tree_widget = page_chrome.top.container1.widget1.webdriver.session_id
+        chrome_bottom_tree_widget = (
+            page_chrome.bottom.container3.widget3.webdriver.session_id
+        )
+
+        # Get the Webdriver.session_id all PageObject Firefox instances.
+        firefox_page_session = page_firefox.webdriver.session_id
+        firefox_top_tree_widget = (
+            page_firefox.top.container1.widget1.webdriver.session_id
+        )
+        firefox_bottom_tree_widget = (
+            page_firefox.bottom.container3.widget3.webdriver.session_id
+        )
+
+        # Get the Webdriver.session_id all PageObject Safari instances.
+        safari_page_session = page_safari.webdriver.session_id
+        safari_top_tree_widget = page_safari.top.container1.widget1.webdriver.session_id
+        safari_bottom_tree_widget = (
+            page_safari.bottom.container3.widget3.webdriver.session_id
+        )
+
+        assert (
+            chrome_page_session == chrome_top_tree_widget == chrome_bottom_tree_widget
+        )
+        assert (
+            firefox_page_session
+            == firefox_top_tree_widget
+            == firefox_bottom_tree_widget
+        )
+        assert (
+            safari_page_session == safari_top_tree_widget == safari_bottom_tree_widget
+        )
+
+        assert chrome_page_session != firefox_page_session
