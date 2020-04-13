@@ -13,7 +13,12 @@ class BaseTag:
     tag = "*"
 
     def __init__(
-        self, webdriver: webdriver = None, xpath: str = "", timeout: int = 5, **kwargs
+        self,
+        webdriver: webdriver = None,
+        text="",
+        xpath: str = "",
+        timeout: int = 5,
+        **kwargs,
     ) -> None:
         self.user_input = kwargs
         self.xpath = xpath
@@ -153,7 +158,7 @@ class BaseTag:
 
     def __repr__(self) -> str:
         """Return __repr__ of BaseTag."""
-        return f"{self.__class__.__name__}(xpath='{str(self.xpath)}')"
+        return f'{self.__class__.__name__}(xpath="{str(self.xpath)}")'
 
 
 class PageObject:
@@ -187,13 +192,3 @@ class PageObject:
         print("instance_webdriver: ", instance_webdriver)
         print("owner_webdriver: ", owner_webdriver)
         return self
-
-
-# TODO: Remove when I am sure that we are not wanting to set session as a class variable.
-# class PageObject:
-#     def __init__(self, webdriver: webdriver = None, url: str = None) -> None:
-#         PageObject.webdriver = webdriver
-#         PageObject.url = url
-
-#     def __get__(self, instance, owner):
-#         return self
