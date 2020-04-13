@@ -11,7 +11,6 @@ class BaseTag:
     """Base tag to inherit all tags from."""
 
     tag = "*"
-    css = ""
 
     def __init__(
         self, webdriver: webdriver = None, xpath: str = "", timeout: int = 5, **kwargs
