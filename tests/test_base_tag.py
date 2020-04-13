@@ -8,11 +8,19 @@ def test_base_tag_xpath():
     )
     assert a.xpath == '//br[@class="new_class"][@id="old_id"][@time_attr="newtest"]'
 
-    b = BaseTag(html_class="new_class", html_id="old_id", time_attr="newtest")
-    assert b.xpath == '//*[@class="new_class"][@id="old_id"][@time_attr="newtest"]'
-
     c = BaseTag()
     assert c.xpath == "//*"
 
 
-# TODO: Verify that a user can manually reset xpath.
+def test_class_set_xpath():
+    """Verify that the class variable is being set in the xpath and repr."""
+    tag_with_class_set = BaseTag(html_class="new_class")
+    assert tag_with_class_set.xpath == '//*[@class="new_class"]'
+
+    assert str(tag_with_class_set) == 'BaseTag(xpath="//*[@class="new_class"]")'
+
+
+def test_class_str_method():
+    """Test that the correct __repr__ is being generated."""
+    base_str = BaseTag()
+    assert str(base_str) == 'BaseTag(xpath="//*")'
