@@ -1,4 +1,4 @@
-from selenium_xpath.base_tag import BaseTag
+from pom_element.base_tag import BaseTag
 
 
 def test_base_tag_xpath():

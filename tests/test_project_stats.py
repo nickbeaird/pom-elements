@@ -1,4 +1,4 @@
-from selenium_xpath import __version__
+from pom_element import __version__
 
 
 def test_version():

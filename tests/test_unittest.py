@@ -1,9 +1,9 @@
 import unittest
 
 import pytest
+from pom_element.base_tag import BaseTag, PageObject
 from selenium import webdriver
 from selenium.webdriver.remote.webelement import WebElement
-from selenium_xpath.base_tag import BaseTag, PageObject
 
 
 class ChromeDriver(unittest.TestCase):

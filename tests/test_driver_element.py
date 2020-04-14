@@ -1,7 +1,7 @@
 import pytest
+from pom_element.base_tag import BaseTag
 from selenium import webdriver
 from selenium.webdriver.remote.webelement import WebElement
-from selenium_xpath.base_tag import BaseTag
 
 
 def test_get_web_element():

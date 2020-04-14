@@ -1,5 +1,5 @@
+from pom_element.base_tag import MultiElement
 from selenium import webdriver
-from selenium_xpath.base_tag import MultiElement
 
 
 def test_multi_element():

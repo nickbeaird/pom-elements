@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "selenium-xpath"
+name = "pom_element"
 version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
