@@ -8,8 +8,8 @@ test:
 	@poetry run mypy
 	@poetry run pytest
 
-verify:
-	@poetry run pytest tests/test_$(t)
+atest:
+	@poetry run pytest $(t)
 
 # Run all pre-commit hooks on all files
 verify-commit-hooks:
