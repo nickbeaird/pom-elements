@@ -1,3 +1,4 @@
+import pytest
 from selenium import webdriver
 from selenium.webdriver.remote.webelement import WebElement
 from selenium_xpath.base_tag import BaseTag, PageObject
@@ -83,6 +84,9 @@ def test_nested_pageobject_two_deep():
     selenium.quit()
 
 
+@pytest.mark.skip(
+    reason="This test is working and is a little heavy for fast development."
+)
 def test_nested_pageobject_multiple_deep():
     """Test that a user can have many nested PageObject models.
 
@@ -121,6 +125,9 @@ def test_nested_pageobject_multiple_deep():
     selenium.quit()
 
 
+@pytest.mark.skip(
+    reason="Safari continues to be a pain on local setup. This test is overkill."
+)
 def test_multiple_webdrivers_and_pageobject_sessions():
     """Test that a user can have many nested PageObject models and multiple WebDriver sessions.
 
