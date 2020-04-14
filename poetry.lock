@@ -1,13 +1,5 @@
 [[package]]
 category = "main"
-description = "apipkg: namespace control and lazy-import mechanism"
-name = "apipkg"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "1.5"
-
-[[package]]
-category = "main"
 description = "A small Python module for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
 name = "appdirs"
 optional = false
@@ -113,20 +105,6 @@ name = "entrypoints"
 optional = false
 python-versions = ">=2.7"
 version = "0.3"
-
-[[package]]
-category = "main"
-description = "execnet: rapid multi-Python deployment"
-name = "execnet"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "1.7.1"
-
-[package.dependencies]
-apipkg = ">=1.4"
-
-[package.extras]
-testing = ["pre-commit"]
 
 [[package]]
 category = "main"
@@ -346,31 +324,6 @@ requests = ">=2.9"
 
 [[package]]
 category = "main"
-description = "Fixture configuration utils for py.test"
-name = "pytest-fixture-config"
-optional = false
-python-versions = "*"
-version = "1.7.0"
-
-[package.dependencies]
-pytest = "*"
-
-[package.extras]
-tests = ["six"]
-
-[[package]]
-category = "main"
-description = "run tests in isolated forked subprocesses"
-name = "pytest-forked"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "1.1.3"
-
-[package.dependencies]
-pytest = ">=3.1.0"
-
-[[package]]
-category = "main"
 description = "pytest plugin for generating HTML reports"
 name = "pytest-html"
 optional = false
@@ -426,40 +379,6 @@ pytest = ">=2.4.2"
 hjson = ["hjson"]
 toml = ["toml"]
 yaml = ["pyyaml"]
-
-[[package]]
-category = "main"
-description = "Selenium webdriver fixture for py.test"
-name = "pytest-webdriver"
-optional = false
-python-versions = "*"
-version = "1.7.0"
-
-[package.dependencies]
-py = "*"
-pytest = "*"
-pytest-fixture-config = "*"
-selenium = "*"
-
-[package.extras]
-tests = ["mock"]
-
-[[package]]
-category = "main"
-description = "pytest xdist plugin for distributed testing and loop-on-failing modes"
-name = "pytest-xdist"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "1.31.0"
-
-[package.dependencies]
-execnet = ">=1.1"
-pytest = ">=4.4.0"
-pytest-forked = "*"
-six = "*"
-
-[package.extras]
-testing = ["filelock"]
 
 [[package]]
 category = "main"
@@ -603,14 +522,10 @@ version = "0.1.8"
 test = []
 
 [metadata]
-content-hash = "19da93bb0109b5012c1af9d08fde0933bd7709eccdbec72c3e533fbf80a9da09"
+content-hash = "bf2485600b4a19bd8f8663273d4b981c19207bc77ca8a38f12d8c72bbfc5e5c7"
 python-versions = "^3.8"
 
 [metadata.files]
-apipkg = [
-    {file = "apipkg-1.5-py2.py3-none-any.whl", hash = "sha256:58587dd4dc3daefad0487f6d9ae32b4542b185e1c36db6993290e7c41ca2b47c"},
-    {file = "apipkg-1.5.tar.gz", hash = "sha256:37228cda29411948b422fae072f57e31d3396d2ee1c9783775980ee9c9990af6"},
-]
 appdirs = [
     {file = "appdirs-1.4.3-py2.py3-none-any.whl", hash = "sha256:d8b24664561d0d34ddfaec54636d502d7cea6e29c3eaf68f3df6180863e2166e"},
     {file = "appdirs-1.4.3.tar.gz", hash = "sha256:9e5896d1372858f8dd3344faf4e5014d21849c756c8d5701f78f8a103b372d92"},
@@ -653,10 +568,6 @@ distlib = [
 entrypoints = [
     {file = "entrypoints-0.3-py2.py3-none-any.whl", hash = "sha256:589f874b313739ad35be6e0cd7efde2a4e9b6fea91edcc34e58ecbb8dbe56d19"},
     {file = "entrypoints-0.3.tar.gz", hash = "sha256:c70dd71abe5a8c85e55e12c19bd91ccfeec11a6e99044204511f9ed547d48451"},
-]
-execnet = [
-    {file = "execnet-1.7.1-py2.py3-none-any.whl", hash = "sha256:d4efd397930c46415f62f8a31388d6be4f27a91d7550eb79bc64a756e0056547"},
-    {file = "execnet-1.7.1.tar.gz", hash = "sha256:cacb9df31c9680ec5f95553976c4da484d407e85e41c83cb812aa014f0eddc50"},
 ]
 filelock = [
     {file = "filelock-3.0.12-py3-none-any.whl", hash = "sha256:929b7d63ec5b7d6b71b0fa5ac14e030b3f70b75747cef1b10da9b879fef15836"},
@@ -749,16 +660,6 @@ pytest-base-url = [
     {file = "pytest-base-url-1.4.1.tar.gz", hash = "sha256:7425e8163345494ac7f544e99c6f3e5a08f4228bee5e26013b98c462a4d31f6e"},
     {file = "pytest_base_url-1.4.1-py2.py3-none-any.whl", hash = "sha256:31e42366a5fc22f450b398837dc819bb7569f5e6bd5d74e494b2b9ec239876d1"},
 ]
-pytest-fixture-config = [
-    {file = "pytest-fixture-config-1.7.0.tar.gz", hash = "sha256:41a17417721f6862ce6b40e3280fddd8e1659b2c306ec46b237d7021fec5218e"},
-    {file = "pytest_fixture_config-1.7.0-py2.7.egg", hash = "sha256:9bda6a817a3ac91a118dd42274cb3cc42dc0290a11317a7217d17eaae82800c5"},
-    {file = "pytest_fixture_config-1.7.0-py2.py3-none-any.whl", hash = "sha256:a0e35e239e70fa12614bbe9ca51d3238fbeb89519deb80cd365b487665a666b0"},
-    {file = "pytest_fixture_config-1.7.0-py3.6.egg", hash = "sha256:1413e5e2c6572a3d7709de7ad69dc35004393d777a7883c8431b6f78a2e28fd0"},
-]
-pytest-forked = [
-    {file = "pytest-forked-1.1.3.tar.gz", hash = "sha256:1805699ed9c9e60cb7a8179b8d4fa2b8898098e82d229b0825d8095f0f261100"},
-    {file = "pytest_forked-1.1.3-py2.py3-none-any.whl", hash = "sha256:1ae25dba8ee2e56fb47311c9638f9e58552691da87e82d25b0ce0e4bf52b7d87"},
-]
 pytest-html = [
     {file = "pytest-html-2.1.1.tar.gz", hash = "sha256:6a4ac391e105e391208e3eb9bd294a60dd336447fd8e1acddff3a6de7f4e57c5"},
     {file = "pytest_html-2.1.1-py2.py3-none-any.whl", hash = "sha256:9e4817e8be8ddde62e8653c8934d0f296b605da3d2277a052f762c56a8b32df2"},
@@ -774,16 +675,6 @@ pytest-selenium = [
 pytest-variables = [
     {file = "pytest-variables-1.9.0.tar.gz", hash = "sha256:f79851e4c92a94c93d3f1d02377b5ac97cc8800392e87d108d2cbfda774ecc2a"},
     {file = "pytest_variables-1.9.0-py2.py3-none-any.whl", hash = "sha256:ccf4afcd70de1f5f18b4463758a19f24647a9def1805f675e80db851c9e00ac0"},
-]
-pytest-webdriver = [
-    {file = "pytest-webdriver-1.7.0.tar.gz", hash = "sha256:f93552f44979bc1d6d34eea9fc587d9d9ea7f9c36344916b68057a960c34210e"},
-    {file = "pytest_webdriver-1.7.0-py2.7.egg", hash = "sha256:33bc0fda0b8baacae69c4b1b603692eca91b7ede8dcc7338b2df44042f213156"},
-    {file = "pytest_webdriver-1.7.0-py2.py3-none-any.whl", hash = "sha256:5bedc08f6c4c21ce206118d942eb896bcdaaf30675f79629c7d935493aac32e7"},
-    {file = "pytest_webdriver-1.7.0-py3.6.egg", hash = "sha256:ede974d656bc0c60a947470a791e3fdcd25b93295a3432b65040805f4c9d04a2"},
-]
-pytest-xdist = [
-    {file = "pytest-xdist-1.31.0.tar.gz", hash = "sha256:7dc0d027d258cd0defc618fb97055fbd1002735ca7a6d17037018cf870e24011"},
-    {file = "pytest_xdist-1.31.0-py2.py3-none-any.whl", hash = "sha256:0f46020d3d9619e6d17a65b5b989c1ebbb58fc7b1da8fb126d70f4bac4dfeed1"},
 ]
 pyyaml = [
     {file = "PyYAML-5.3.1-cp27-cp27m-win32.whl", hash = "sha256:74809a57b329d6cc0fdccee6318f44b9b8649961fa73144a98735b0aaf029f1f"},
