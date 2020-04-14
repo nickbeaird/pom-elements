@@ -192,3 +192,20 @@ def test_multiple_webdrivers_and_pageobject_sessions():
     chrome.quit()
     firefox.quit()
     safari.quit()
+
+
+def test_page_object():
+    """How does this work."""
+    selenium = webdriver.Chrome()
+    selenium.get("https://xkcd.com/")
+
+    class Menu(PageObject):
+        archive_link = BaseTag(xpath="//a", href="/archive")
+        how_to = BaseTag(xpath="//a", href="/how-to/")
+
+    class XKCDMainPage(PageObject):
+        menu = Menu()
+
+    page = XKCDMainPage(webdriver=selenium)
+    assert page.menu.how_to.can_be_clicked()
+    assert page.menu.how_to.xpath == '//a[@href="/how-to/"]'
