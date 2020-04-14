@@ -1,3 +1,5 @@
+from abc import ABC, abstractmethod
+
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
@@ -7,52 +9,22 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium_xpath.harness import Harness
 
 
-class BaseTag:
-    """Base tag to inherit all tags from."""
+class BaseElement(ABC):
+    """Abstract Base class to set most Element commands."""
 
-    tag = "*"
-
-    def __init__(
-        self,
-        webdriver: webdriver = None,
-        text="",
-        xpath: str = "",
-        timeout: int = 5,
-        **kwargs,
-    ) -> None:
-        self.user_input = kwargs
-        self.xpath = xpath
+    def __init__(self, webdriver=None, timeout=0.5):
         self._default_timeout = timeout
         if webdriver:
             self._webdriver = webdriver
             self.web_element = self.find()
 
     @property
-    def webdriver(self) -> webdriver:
-        """Get the tag's Selenium webdriver instance."""
-        try:
-            return self._webdriver
-        except AttributeError as exc:
-            raise AttributeError(
-                "A webdriver instance needs to be set on the Tag or the PageObject class."
-            ) from exc
-
-    @webdriver.setter
-    def webdriver(self, wd) -> None:
-        """Set the tag's Selenium webdriver instance."""
-        self._webdriver = wd
-
-    @property
-    def default_timeout(self):
-        """Get the default timeout."""
-        return self._default_timeout
-
-    @default_timeout.setter
-    def default_timeout(self, timeout: int = None) -> None:
-        """Set the default timeout."""
-        if timeout is None:
-            timeout = Harness.global_timeout
-        self._default_timeout = timeout
+    @abstractmethod
+    def locator(self):
+        """Return the Selenium locator used for this object."""
+        raise NotImplementedError(
+            "Any class that inherits from this needs to have a locator set."
+        )
 
     def find(self, timeout: int = None) -> WebElement:
         """Return the Selenium WebElement in the provided timeout, or raise an error."""
@@ -61,11 +33,11 @@ class BaseTag:
 
         try:
             wait = WebDriverWait(self.webdriver, timeout)
-            elem = wait.until(EC.presence_of_element_located((By.XPATH, self.xpath)))
+            elem = wait.until(EC.presence_of_element_located(self.locator))
 
         except TimeoutException as exc:
             raise AssertionError(
-                f"Unable to find {str(self.__repr__())}, xpath: {self.xpath} in the {timeout} seconds."
+                f"Unable to find {str(self.__repr__())} in the {timeout} seconds."
             ) from exc
 
         self.web_element = elem
@@ -97,6 +69,33 @@ class BaseTag:
             return False
         return True
 
+    @property
+    def webdriver(self) -> webdriver:
+        """Get the tag's Selenium webdriver instance."""
+        try:
+            return self._webdriver
+        except AttributeError as exc:
+            raise AttributeError(
+                "A webdriver instance needs to be set on the Tag or the PageObject class."
+            ) from exc
+
+    @webdriver.setter
+    def webdriver(self, wd) -> None:
+        """Set the tag's Selenium webdriver instance."""
+        self._webdriver = wd
+
+    @property
+    def default_timeout(self):
+        """Get the default timeout."""
+        return self._default_timeout
+
+    @default_timeout.setter
+    def default_timeout(self, timeout: int = None) -> None:
+        """Set the default timeout."""
+        if timeout is None:
+            timeout = Harness.global_timeout
+        self._default_timeout = timeout
+
     def click(self, timeout: int = None):
         """Click the web element if it is available to be clicked."""
         if timeout is None:
@@ -104,31 +103,6 @@ class BaseTag:
 
         self.find(timeout=timeout)
         self.web_element.click()
-
-    @property
-    def xpath(self) -> str:
-        """Get the xpath value as a string."""
-        return self._xpath
-
-    @xpath.setter
-    def xpath(self, xpath: str) -> None:
-        """Set the xpath value of the string as value."""
-        if not isinstance(xpath, str):
-            raise ValueError("xpath must be of type str")
-
-        generated_xpath = ""
-        if xpath != "":
-            generated_xpath = xpath
-        else:
-            generated_xpath = f"//{self.tag}"
-
-        for key in self.user_input.keys():
-            if key.startswith("html_"):
-                new_value = key[5:]
-                generated_xpath += f'[@{new_value}="{self.user_input[key]}"]'
-            else:
-                generated_xpath += f'[@{key}="{self.user_input[key]}"]'
-        self._xpath = generated_xpath
 
     def __get__(self, instance, owner):
         """Update the __get__ method to set the webdriver and refresh the webelement.
@@ -155,6 +129,71 @@ class BaseTag:
             self.webdriver = parent_webdriver
         self.find()
         return self
+
+
+class BaseTag(BaseElement):
+    """Base tag to inherit all tags from."""
+
+    tag = "*"
+
+    def __init__(
+        self,
+        webdriver: webdriver = None,
+        timeout: int = 5,
+        text="",
+        xpath: str = "",
+        **kwargs,
+    ) -> None:
+        self.user_input = kwargs
+        self.xpath = xpath
+        super().__init__(webdriver, timeout)
+
+    @property
+    def locator(self):
+        """Return the Xpath Locator element."""
+        return (By.XPATH, self.xpath)
+
+    def find(self, timeout: int = None) -> WebElement:
+        """Return the Selenium WebElement in the provided timeout, or raise an error."""
+        if timeout is None:
+            timeout = self.default_timeout
+
+        try:
+            wait = WebDriverWait(self.webdriver, timeout)
+            elem = wait.until(EC.presence_of_element_located(self.locator))
+
+        except TimeoutException as exc:
+            raise AssertionError(
+                f"Unable to find {str(self.__repr__())}, xpath: {self.xpath} in the {timeout} seconds."
+            ) from exc
+
+        self.web_element = elem
+        return elem
+
+    @property
+    def xpath(self) -> str:
+        """Get the xpath value as a string."""
+        return self._xpath
+
+    @xpath.setter
+    def xpath(self, xpath: str) -> None:
+        """Set the xpath value of the string as value."""
+        if not isinstance(xpath, str):
+            raise ValueError("xpath must be of type str")
+
+        generated_xpath = ""
+        if xpath != "":
+            generated_xpath = xpath
+        else:
+            generated_xpath = f"//{self.tag}"
+
+        for key in self.user_input.keys():
+            if key.startswith("html_"):
+                new_value = key[5:]
+                generated_xpath += f'[@{new_value}="{self.user_input[key]}"]'
+            else:
+                generated_xpath += f'[@{key}="{self.user_input[key]}"]'
+        self._xpath = generated_xpath
 
     def __repr__(self) -> str:
         """Return __repr__ of BaseTag."""
