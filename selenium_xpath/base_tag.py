@@ -131,6 +131,42 @@ class BaseElement(ABC):
         return self
 
 
+class MultiElement(BaseElement):
+    """Set any Page Element using a Selenium Locators."""
+
+    _LOCATOR_MAP = {
+        "css": By.CSS_SELECTOR,
+        "id_": By.ID,
+        "name": By.NAME,
+        "xpath": By.XPATH,
+        "link_text": By.LINK_TEXT,
+        "partial_link_text": By.PARTIAL_LINK_TEXT,
+        "tag_name": By.TAG_NAME,
+        "class_name": By.CLASS_NAME,
+    }
+
+    def __init__(self, webdriver=None, timeout=0.5, **kwargs):
+        if kwargs is None:
+            raise AttributeError("No attribute was set. Please set a Locator.")
+        if len(kwargs) > 1:
+            raise AttributeError(
+                "Two attributes set and this can only set a single Locator."
+            )
+        k, v = next(iter(kwargs.items()))
+        self._locator = (self._LOCATOR_MAP[k], v)
+        super().__init__(webdriver, timeout)
+
+    @property
+    def locator(self):
+        """Return the locator element set on the class."""
+        return self._locator
+
+    @locator.setter
+    def locator(self, locator):
+        """Set the locator for the class."""
+        self._locator = locator
+
+
 class BaseTag(BaseElement):
     """Base tag to inherit all tags from."""
 
