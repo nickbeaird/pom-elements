@@ -1,4 +1,4 @@
-from pom_element.base_tag import MultiElement
+from pom_elements.multi_element import MultiElement
 from selenium import webdriver
 
 

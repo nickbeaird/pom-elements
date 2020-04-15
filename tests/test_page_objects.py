@@ -1,5 +1,6 @@
 import pytest
-from pom_element.base_tag import BaseTag, PageObject
+from pom_elements.page_object import PageObject
+from pom_elements.xpath_element import XPathElement
 from selenium import webdriver
 from selenium.webdriver.remote.webelement import WebElement
 
@@ -8,16 +9,16 @@ def test_user_can_set_webdriver_on_tag():
     """Test that a uesr can set a webdriver on a tag set as a Class variable.
 
     We are verifying the base use case where someone wants to organize their tests by a
-    rough page object model. We are verifying that a user can access the BaseTag instance
+    rough page object model. We are verifying that a user can access the XPathElement instance
     as a set class variable on the page-like class.
     """
     browser = webdriver.Chrome()
     browser.get("https://xkcd.com/")
 
     class xkcd_link_menu:
-        archive = BaseTag(webdriver=browser, xpath="//a", href="/archive")
-        howto = BaseTag(webdriver=browser, xpath="//a", href="/how-to/")
-        about = BaseTag(webdriver=browser, xpath="//a", href="/about")
+        archive = XPathElement(webdriver=browser, xpath="//a", href="/archive")
+        howto = XPathElement(webdriver=browser, xpath="//a", href="/how-to/")
+        about = XPathElement(webdriver=browser, xpath="//a", href="/about")
 
     # Page that works
     page = xkcd_link_menu()
@@ -30,7 +31,7 @@ def test_user_can_set_webdriver_on_pageobject():
     """Test that a user can set a webdriver on a PageObject only and not set it on the Element.
 
     We are inferring that the user is able to propogate the webdriver instance to the
-    BaseTag instance by the virtue that the BaseTag is able to instantiate, allow the
+    XPathElement instance by the virtue that the XPathElement is able to instantiate, allow the
     browser to run, and then click then find and return and instance of WebElement.
     """
     browser = webdriver.Chrome()
@@ -38,9 +39,9 @@ def test_user_can_set_webdriver_on_pageobject():
 
     class xkcd_link_menu_wo_webdriver:
         webdriver = browser
-        archive = BaseTag(xpath="//a", href="/archive")
-        howto = BaseTag(xpath="//a", href="/how-to/")
-        about = BaseTag(xpath="//a", href="/about")
+        archive = XPathElement(xpath="//a", href="/archive")
+        howto = XPathElement(xpath="//a", href="/how-to/")
+        about = XPathElement(xpath="//a", href="/about")
 
     page2 = xkcd_link_menu_wo_webdriver()
     assert isinstance(page2.about.find(), WebElement)
@@ -200,8 +201,8 @@ def test_page_object():
     selenium.get("https://xkcd.com/")
 
     class Menu(PageObject):
-        archive_link = BaseTag(xpath="//a", href="/archive")
-        how_to = BaseTag(xpath="//a", href="/how-to/")
+        archive_link = XPathElement(xpath="//a", href="/archive")
+        how_to = XPathElement(xpath="//a", href="/how-to/")
 
     class XKCDMainPage(PageObject):
         menu = Menu()

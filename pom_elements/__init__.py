@@ -1,2 +1,6 @@
-"""Pom-Elements allows provides a wrapper for selenium."""
-__version__ = "0.1.0"
+"""POM-Elements allows provides for designing tests in an easy Page Object design pattern."""
+
+from .multi_element import MultiElement
+from .xpath_element import XPathElement
+
+__all__ = ["MultiElement", "XPathElement"]

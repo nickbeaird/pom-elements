@@ -1,4 +1,4 @@
-from pom_element import __version__
+from pom_elements import __version__
 
 
 def test_version():
