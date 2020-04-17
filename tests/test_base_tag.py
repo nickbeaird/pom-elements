@@ -6,9 +6,7 @@ def test_base_tag_xpath():
     a = XPathElement(
         xpath="//br", html_class="new_class", html_id="old_id", time_attr="newtest"
     )
-    import pdb
 
-    pdb.set_trace()
     assert a.xpath == '//br[@class="new_class"][@id="old_id"][@time_attr="newtest"]'
 
     c = XPathElement()

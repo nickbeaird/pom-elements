@@ -8,6 +8,12 @@ test:
 	@poetry run mypy
 	@poetry run pytest
 
+coverage:
+	@poetry run pytest --cov=pom_elements tests
+
+view-coverage-report
+	@poetry run coverage report -m
+
 atest:
 	@poetry run pytest $(t)
 

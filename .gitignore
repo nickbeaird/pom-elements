@@ -1,6 +1,7 @@
+.coverage
 .git
-.tox
+.mypy_cache/
 __pycache__/
 .pytest_cache
-.mypy_cache/
+.tox
 geckodriver.log
