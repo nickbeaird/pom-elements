@@ -11,7 +11,7 @@ test:
 coverage:
 	@poetry run pytest --cov=pom_elements tests
 
-view-coverage-report
+view-coverage-report:
 	@poetry run coverage report -m
 
 atest:
