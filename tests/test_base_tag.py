@@ -17,7 +17,6 @@ def test_class_set_xpath():
     """Verify that the class variable is being set in the xpath and repr."""
     tag_with_class_set = XPathElement(html_class="new_class")
     assert tag_with_class_set.xpath == '//*[@class="new_class"]'
-
     assert str(tag_with_class_set) == 'XPathElement(xpath="//*[@class="new_class"]")'
 
 

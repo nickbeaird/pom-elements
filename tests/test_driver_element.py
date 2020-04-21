@@ -1,68 +1,55 @@
 import pytest
 from pom_elements.xpath_element import XPathElement
-from selenium import webdriver
 from selenium.webdriver.remote.webelement import WebElement
 
 
-def test_get_web_element():
+def test_get_web_element(selenium_chrome):
     """Test that the Tag class can return an element on instantiation."""
-    browser = webdriver.Chrome()
-    browser.get("https://www.google.com")
-    elem = XPathElement(xpath="//input", type="text", webdriver=browser).find()
+    selenium_chrome.get("https://www.google.com")
+    elem = XPathElement(xpath="//input", type="text", webdriver=selenium_chrome).find()
     assert isinstance(elem, WebElement)
-    browser.quit()
 
 
-def test_elem_is_visible():
+def test_elem_is_visible(selenium_chrome):
     """Test that that the method is_visible() returns a boolean."""
-    browser = webdriver.Chrome()
-    browser.get("https://www.google.com")
-    elem = XPathElement(xpath="//input", type="text", webdriver=browser)
+    selenium_chrome.get("https://www.google.com")
+    elem = XPathElement(xpath="//input", type="text", webdriver=selenium_chrome)
     assert elem.is_visible() is True
-    browser.quit()
 
 
-def test_elem_can_be_clicked():
+def test_elem_can_be_clicked(selenium_chrome):
     """Test that an element can be checked to see if it can be clicked."""
-    browser = webdriver.Chrome()
-    browser.get("https://www.google.com")
-    elem = XPathElement(xpath="//input", type="text", webdriver=browser)
+    selenium_chrome.get("https://www.google.com")
+    elem = XPathElement(xpath="//input", type="text", webdriver=selenium_chrome)
     assert elem.can_be_clicked()
-    browser.quit()
 
 
-def test_click_elem():
+def test_click_elem(selenium_chrome):
     """Test that we can click a Selenium WebElement."""
-    browser = webdriver.Chrome()
-    browser.get("https://www.google.com")
-    elem = XPathElement(xpath="//input", type="text", webdriver=browser)
+    selenium_chrome.get("https://www.google.com")
+    elem = XPathElement(xpath="//input", type="text", webdriver=selenium_chrome)
     elem.click()
-    browser.quit()
 
 
-def test_elem_that_does_exist_raises_error():
+def test_elem_that_does_exist_raises_error(selenium_chrome):
     """Test that an element that cannot be found returns the correct error."""
-    browser = webdriver.Chrome()
-    browser.get("https://www.google.com")
+    selenium_chrome.get("https://www.google.com")
     with pytest.raises(AssertionError):
-        XPathElement(xpath="//input", type="flabber", webdriver=browser)
-    browser.quit()
+        XPathElement(xpath="//input", type="flabber", webdriver=selenium_chrome)
 
 
-def test_can_set_timeout():
+def test_can_set_timeout(selenium_chrome):
     """Test that a user can set a timeout on element."""
-    browser = webdriver.Chrome()
-    browser.get("https://www.google.com")
+    selenium_chrome.get("https://www.google.com")
     with pytest.raises(AssertionError):
-        XPathElement(xpath="//input", type="flabber", webdriver=browser, timeout=8)
-    browser.quit()
+        XPathElement(
+            xpath="//input", type="flabber", webdriver=selenium_chrome, timeout=8
+        )
 
 
-def test_set_no_webdriver():
-    """Test that a user receives an Attribute when a WebDriver is not set."""
-    browser = webdriver.Chrome()
-    browser.get("https://www.google.com")
+def test_set_no_webdriver(selenium_chrome):
+    """Test that a user receives an Attribute Error when a WebDriver is not set."""
+    selenium_chrome.get("https://www.google.com")
     with pytest.raises(AttributeError):
-        elem = XPathElement(xpath="//input", type="text")
+        elem = XPathElement(xpath="//input", type="text", timeout=0.2)
         elem.click()
-    browser.quit()

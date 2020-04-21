@@ -1,10 +1,16 @@
-# The first make statement is what runs when you run `make` in the shell.
-# This sets up a shell and makes sure that the project dependencies are installed.
 build:
+	# The first make statement is what runs when you run `make` in the shell.
+	# This sets up a shell and makes sure that the project dependencies are installed.
 	@poetry shell
 	@poetry install
 
+test-speed:
+	# Check the speed of the tests and return the slowest tests by the --durations flag
+	# Run with `make test-speed top=NUMBER_OF_TESTS
+	@poetry run pytest --durations=${top}
+
 test:
+	# Run all tests
 	@poetry run mypy
 	@poetry run pytest
 
@@ -15,8 +21,8 @@ view-coverage-report:
 	@poetry run coverage report -m
 
 atest:
-	@poetry run pytest $(t)
+	@poetry run pytest tests/test_$(t)
 
-# Run all pre-commit hooks on all files
 verify-commit-hooks:
+	# Run all pre-commit hooks on all files
 	@poetry run pre-commit run --all-files

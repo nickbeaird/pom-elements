@@ -1,6 +1,6 @@
-from pom_elements import __version__
+from pom_elements.__version__ import __version__ as project_version
 
 
 def test_version():
-    """Verify current version is as expected."""
-    assert __version__ == "0.1.0"
+    """Test that the current version of the project is set accurately."""
+    assert project_version == "0.1.0"

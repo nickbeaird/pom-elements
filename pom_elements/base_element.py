@@ -124,6 +124,7 @@ class BaseElement(ABC):
         Allows setting a webdriver on the PageObject and refreshes the instance when accessed.
         """
         parent_webdriver = getattr(instance, "webdriver", None)
+
         if parent_webdriver is not None:
             self.webdriver = parent_webdriver
         self.find()

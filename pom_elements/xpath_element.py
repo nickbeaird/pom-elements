@@ -54,7 +54,6 @@ class XPathElement(BaseElement):
         if not isinstance(xpath, str):
             raise ValueError("xpath must be of type str")
 
-        print("--> xpath: ", xpath)
         generated_xpath = ""
         if xpath != "":
             generated_xpath = xpath
