@@ -18,20 +18,3 @@ jobs:
 
       - name: Flake8
         run: poetry run flake8
-      
-      - name: Coveralls GitHub Action
-        uses: coverallsapp/github-action@v1.1.0
-        with:
-          # 
-          github-token: github-token: ${{ secrets.GITHUB_TOKEN }}
-          # Path to lcov file
-          path-to-lcov: # default is ./coverage/lcov.info
-          # Set to true if you are running parallel jobs, then use "parallel_finished: true" for the last action.
-          parallel: # optional
-          # Set to true for the last action when using "parallel: true".
-          parallel-finished: # optional
-          # Coveralls Enterprise server (more info: https://enterprise.coveralls.io)
-          coveralls-endpoint: # optional, default is https://coveralls.io
-          # The root folder of the project that originally ran the tests
-          base-path: # optional
-        
