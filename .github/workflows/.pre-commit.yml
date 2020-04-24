@@ -12,6 +12,9 @@ jobs:
 
       - name: Poetry
         run: poetry install
+      
+      - name: Type-check
+        run: poetry run mypy
 
       - name: Black
         run: poetry run black --target-version py38 . --check
