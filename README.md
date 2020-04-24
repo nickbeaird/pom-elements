@@ -1,3 +1,6 @@
+![Run Checks](https://github.com/nickbeaird/pom-elements/workflows/Run%20Checks/badge.svg?branch=master)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 # POM-Elements
 
 The POM-Elements project allows for organizing tests using the Page Object Pattern and
