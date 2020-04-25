@@ -26,6 +26,7 @@ class XPathElement(BaseElement):
     """
 
     tag = "*"
+    """tag class attribute is the xpath html tag (i.e. div, span, ul)."""
 
     def __init__(
         self, webdriver: webdriver = None, timeout: int = 5, xpath: str = "", **kwargs,

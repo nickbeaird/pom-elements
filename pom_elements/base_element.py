@@ -85,8 +85,7 @@ class BaseElement(ABC):
         """Return true if the webelement can be clicked in the time (seconds) provided.
 
         Args:
-            timeout: The length of time that we expect a WebElement to be returned within. Defaults
-            to the _default_timeout if not set.
+            timeout: The length of time that we expect a WebElement to be returned within. Defaults to the _default_timeout if not set.
 
         Returns:
             bool: True if element can be clicked.
@@ -136,8 +135,7 @@ class BaseElement(ABC):
         """Set the default timeout.
 
         Args:
-            timeout: The length of time that we expect a WebElement to be returned within.
-            Sets the default timeout for all methods on the instance.
+            timeout: The length of time that we expect a WebElement to be returned within. Sets the default timeout for all methods on the instance.
         """
         if timeout is None:
             timeout = Harness.global_timeout

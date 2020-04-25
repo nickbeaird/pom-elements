@@ -17,6 +17,10 @@ test:
 coverage:
 	@poetry run pytest --cov=pom_elements tests
 
+doc-server:
+	# Create a live server to test out your documentation changes.
+	pdoc --http : pom_elements
+
 view-coverage-report:
 	@poetry run coverage report -m
 
