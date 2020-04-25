@@ -17,7 +17,6 @@ test:
 coverage:
 	@poetry run pytest --cov=pom_elements tests
 
-.PHONY: docs
 docs:
 	# Create a directory of updated docs
 	@pdoc --html --output-dir docs pom_elements --force
