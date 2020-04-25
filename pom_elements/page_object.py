@@ -1,34 +1,35 @@
+from typing import Optional
+
 from selenium import webdriver
 
 
 class PageObject:
-    """The PageObject pattern allows for abstracting web pages into sections.
+    """The PageObject allows for abstracting web pages into full pages or sections.
 
-    Read more on the PageObject pattern as described by Martin Fowler https://martinfowler.com/bliki/PageObject.html.
+    Args:
+        webdriver (webdriver): A selenium webdriver instance for the PageObject.
+        url (str): The url of the the PageObject.
     """
 
-    def __init__(self, webdriver: webdriver = None, url: str = None) -> None:
+    def __init__(self, webdriver: webdriver = None, url: Optional[str] = None) -> None:
         self.webdriver = webdriver
         self.url = url
 
     def __get__(self, instance, owner):
-        """Return a PageObject and set the webdriver to the webdriver of the parent PageObject.
+        """Return a PageObject and set the webdriver to the webdriver of the parent PageObject instance.
 
-        The PageObject class should allow users to create a container of a concept for
-        a Page, section, or widget of the web page. The user should also only have to set
-        the webdriver for the page once, and have the webdriver be propogated through all
-        instances that were assigned as variables to this instance.
+        The PageObject class allows users to create any number of PageObject instances
+        as class variables on a PageObject class and pass the webdriver from parent
+        PageObject class to itself.
 
-        Additionally, we are propogating instance variables rather than using class
-        variables as this allows us to set Pages with differing webdrivers. For example,
-        one test can verify a PageObject with a WebDriver.session_id for Chrome, while
-        a similar but separate instance creates a PageObject with a WebDriver.session_id
+        Additionally, we are propogating the webdriver as instance variables rather than
+        class variables, as this allows us to create any number of PageObject instances
+        under a single PageObject representing the Page and use separate webdrivers. For
+        example, one test can verify a PageObject with a WebDriver.session_id for Chrome,
+        while a separate instantiated PageObject Page can have a WebDriver.session_id
         for Firefox, Safari, or any other browser as available with Selenium.
         """
         instance_webdriver = getattr(instance, "webdriver", None)
         if instance_webdriver is not None:
             self.webdriver = instance_webdriver
-        owner_webdriver = getattr(owner, "webdriver", None)
-        print("instance_webdriver: ", instance_webdriver)
-        print("owner_webdriver: ", owner_webdriver)
         return self

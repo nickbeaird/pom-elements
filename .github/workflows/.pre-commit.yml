@@ -12,7 +12,7 @@ jobs:
 
       - name: Poetry
         run: poetry install
-      
+
       - name: Type-check
         run: poetry run mypy
 

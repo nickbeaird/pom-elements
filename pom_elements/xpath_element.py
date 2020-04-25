@@ -1,4 +1,4 @@
-from typing import Tuple
+from typing import Optional, Tuple
 
 from pom_elements.base_element import BaseElement
 from selenium import webdriver
@@ -10,7 +10,20 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 
 class XPathElement(BaseElement):
-    """Base tag to inherit all tags from."""
+    """Generate xpath and find Selenium WebElements easily.
+
+    Args:
+        webdriver (webdriver): A Selenium webdriver instance.
+        timeout (float): An integer or float setting the default timeout for all XPath methods.
+        xpath (str): The base xpath tag.
+
+    Examples:
+        >>> print(XPath(html_id="foo").xpath)
+        '//*[@id="foo"]'
+
+        >>> print(XPath(xpath='//div/span', data-attrbite='bar', name='baz'))
+        '//div/span[@data-attribute="bar"][@name="baz"]'
+    """
 
     tag = "*"
 
@@ -26,8 +39,13 @@ class XPathElement(BaseElement):
         """Return the Xpath Locator element."""
         return (By.XPATH, self.xpath)
 
-    def find(self, timeout: int = None) -> WebElement:
-        """Return the Selenium WebElement in the provided timeout, or raise an error."""
+    def find(self, timeout: Optional[float] = None) -> WebElement:
+        """Return the Selenium WebElement in the provided timeout or raise an error.
+
+        Args:
+            timeout: The length of time that we expect a WebElement to be returned within.
+            Defaults to the _default_timeout if not set.
+        """
         if timeout is None:
             timeout = self.default_timeout
 
@@ -50,7 +68,11 @@ class XPathElement(BaseElement):
 
     @xpath.setter
     def xpath(self, xpath: str) -> None:
-        """Set the xpath value of the string as value."""
+        """Set the xpath value of the string as value.
+
+        Args:
+            xpath: The xpath of the page element.
+        """
         if not isinstance(xpath, str):
             raise ValueError("xpath must be of type str")
 

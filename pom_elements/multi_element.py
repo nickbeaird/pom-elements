@@ -1,4 +1,4 @@
-from typing import Tuple
+from typing import Optional, Tuple
 
 from pom_elements.base_element import BaseElement
 from selenium import webdriver
@@ -20,7 +20,7 @@ class MultiElement(BaseElement):
     }
 
     def __init__(
-        self, webdriver: webdriver = None, timeout: float = 0.5, **kwargs
+        self, webdriver: webdriver = None, timeout: Optional[float] = 0.5, **kwargs
     ) -> None:
         if kwargs is None:
             raise AttributeError("No attribute was set. Please set a Locator.")
@@ -34,7 +34,7 @@ class MultiElement(BaseElement):
 
     @property
     def locator(self) -> Tuple[By, str]:
-        """Return the locator element set on the class."""
+        """Return the locator set on the class."""
         return self._locator
 
     @locator.setter
