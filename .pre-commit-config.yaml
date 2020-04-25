@@ -30,6 +30,7 @@ repos:
     rev: "" # Use the sha or tag you want to point at
     hooks:
       - id: prettier
+        exclude: ^docs
 
   # Set formatting styles for python docstrings
   - repo: https://github.com/PyCQA/pydocstyle

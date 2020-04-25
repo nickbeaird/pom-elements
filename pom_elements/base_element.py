@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Optional
 
 from pom_elements.harness import Harness
 from selenium import webdriver
@@ -9,9 +10,16 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 
 class BaseElement(ABC):
-    """Abstract Base class to set most Element commands."""
+    """Base Element is an Abstract Base Class sets all methods for all inherited Element classes.
 
-    def __init__(self, webdriver=None, timeout=0.5):
+    This class must be inherited and the `locator` method needs to be defined.
+
+    Args:
+        webdriver (webdriver): A selenium webdriver instance (i.e. webdriver.Chrome(), webdriver.Firefox(), etc.)
+        timeout (float): An integer or float setting the default timeout for all BaseElement methods.
+    """
+
+    def __init__(self, webdriver: webdriver = None, timeout: Optional[float] = 0.5):
         self._default_timeout = timeout
         if webdriver:
             self._webdriver = webdriver
@@ -25,8 +33,19 @@ class BaseElement(ABC):
             "Any class that inherits from this needs to have a locator set."
         )
 
-    def find(self, timeout: int = None) -> WebElement:
-        """Return the Selenium WebElement in the provided timeout, or raise an error."""
+    def find(self, timeout: Optional[float] = None) -> WebElement:
+        """Returns the defined Selenium WebElement in the provided timeout or raise an error.
+
+        Args:
+            timeout: The length of time that we expect a WebElement to be returned within. Defaults
+            to the _default_timeout if not set.
+
+        Raises:
+            AssertionError: Asserts that an element should be visible within the specified timeout.
+
+        Returns:
+            WebElement: A Selenium Webelement
+        """
         if timeout is None:
             timeout = self.default_timeout
 
@@ -42,8 +61,16 @@ class BaseElement(ABC):
         self.web_element = elem
         return elem
 
-    def is_visible(self, timeout: int = None) -> bool:
-        """Return true if the webelement is visible on the page in the time (seconds) provided."""
+    def is_visible(self, timeout: Optional[int] = None) -> bool:
+        """Return true if the webelement is visible on the page in the time (seconds) provided.
+
+        Args:
+            timeout: The length of time that we expect a WebElement to be returned within. Defaults
+            to the _default_timeout if not set.
+
+        Returns:
+            bool: True if element is visible.
+        """
         if timeout is None:
             timeout = self.default_timeout
 
@@ -54,8 +81,15 @@ class BaseElement(ABC):
             return True
         return False
 
-    def can_be_clicked(self, timeout: int = None) -> bool:
-        """Return true if the webelement can be clicked in the time (seconds) provided."""
+    def can_be_clicked(self, timeout: Optional[int] = None) -> bool:
+        """Return true if the webelement can be clicked in the time (seconds) provided.
+
+        Args:
+            timeout: The length of time that we expect a WebElement to be returned within. Defaults to the _default_timeout if not set.
+
+        Returns:
+            bool: True if element can be clicked.
+        """
         if timeout is None:
             timeout = self.default_timeout
 
@@ -70,7 +104,11 @@ class BaseElement(ABC):
 
     @property
     def webdriver(self) -> webdriver:
-        """Get the tag's Selenium webdriver instance."""
+        """Get the Element's Selenium webdriver instance.
+
+        Returns:
+            WebElement: A Selenium Webelement
+        """
         try:
             return self._webdriver
         except AttributeError as exc:
@@ -79,8 +117,12 @@ class BaseElement(ABC):
             ) from exc
 
     @webdriver.setter
-    def webdriver(self, wd) -> None:
-        """Set the tag's Selenium webdriver instance."""
+    def webdriver(self, wd: webdriver) -> None:
+        """Set the Element's Selenium webdriver instance.
+
+        Args:
+            wd: Selenium webdriver instance.
+        """
         self._webdriver = wd
 
     @property
@@ -89,13 +131,17 @@ class BaseElement(ABC):
         return self._default_timeout
 
     @default_timeout.setter
-    def default_timeout(self, timeout: int = None) -> None:
-        """Set the default timeout."""
+    def default_timeout(self, timeout: Optional[float] = None) -> None:
+        """Set the default timeout.
+
+        Args:
+            timeout: The length of time that we expect a WebElement to be returned within. Sets the default timeout for all methods on the instance.
+        """
         if timeout is None:
             timeout = Harness.global_timeout
         self._default_timeout = timeout
 
-    def click(self, timeout: int = None):
+    def click(self, timeout: Optional[float] = None):
         """Click the web element if it is available to be clicked."""
         if timeout is None:
             timeout = self.default_timeout

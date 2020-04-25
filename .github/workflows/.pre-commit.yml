@@ -12,7 +12,7 @@ jobs:
 
       - name: Poetry
         run: poetry install
-      
+
       - name: Type-check
         run: poetry run mypy
 
@@ -21,3 +21,6 @@ jobs:
 
       - name: Flake8
         run: poetry run flake8
+
+      - name: Generate Docs
+        run: pdoc --html --output-dir docs pom_elements --force
