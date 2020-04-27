@@ -51,7 +51,7 @@ class Page(PageObject):
         self._url = url
 
     @property
-    def url(self):
+    def url(self) -> str:
         """Get the url defined for this Page Object."""
         return self._url
 
@@ -65,15 +65,15 @@ class Page(PageObject):
         self._url = url
 
     @property
-    def current_url(self):
+    def current_url(self) -> str:
         """Return the url of the page currently being displayed by the webdriver."""
         return self.webdriver.current_url
 
-    def go(self):
+    def go(self) -> None:
         """Navigate to the url set as the url for this Page object."""
         self.webdriver.get(self.url)
 
-    def get(self, url: str):
+    def get(self, url: str) -> None:
         """Navigate to the provided url.
 
         Args:
@@ -81,31 +81,31 @@ class Page(PageObject):
         """
         self.webdriver.get(url)
 
-    def back(self):
+    def back(self) -> None:
         """Navigate back one page on the web browser."""
         self.webdriver.back()
 
-    def forward(self):
+    def forward(self) -> None:
         """Navigate forward one page on the web browser."""
         self.webdriver.forward()
 
-    def refresh(self):
+    def refresh(self) -> None:
         """Refresh the web browser."""
         self.webdriver.refresh()
 
     @property
-    def title(self):
+    def title(self) -> str:
         """The title of the current web page."""
         return self.webdriver.title
 
-    def quit(self):
+    def quit(self) -> None:
         """Quit the webdriver instance."""
         self.webdriver.quit()
 
-    def maximize_window(self):
+    def maximize_window(self) -> None:
         """Maximize the web browser's window."""
         self.webdriver.maximize_window
 
-    def minimize_window(self):
+    def minimize_window(self) -> None:
         """Minimize the web browser's window."""
         self.webdriver.minimize_window
