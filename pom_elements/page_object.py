@@ -1,16 +1,17 @@
-from typing import Optional
-
 from selenium import webdriver
 
 
 class PageObject:
     """The PageObject allows for abstracting web pages into full pages or sections.
 
+    Todo:
+        Add type hints for the Selenium library to add Optional[webdriver].
+
     Args:
         webdriver (webdriver): A selenium webdriver instance for the PageObject.
     """
 
-    def __init__(self, webdriver: Optional[webdriver] = None) -> None:
+    def __init__(self, webdriver: webdriver = None) -> None:
         if webdriver is not None:
             self.webdriver = webdriver
 
