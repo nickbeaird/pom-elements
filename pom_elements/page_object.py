@@ -8,12 +8,11 @@ class PageObject:
 
     Args:
         webdriver (webdriver): A selenium webdriver instance for the PageObject.
-        url (str): The url of the the PageObject.
     """
 
-    def __init__(self, webdriver: webdriver = None, url: Optional[str] = None) -> None:
-        self.webdriver = webdriver
-        self.url = url
+    def __init__(self, webdriver: Optional[webdriver] = None) -> None:
+        if webdriver is not None:
+            self.webdriver = webdriver
 
     def __get__(self, instance, owner):
         """Return a PageObject and set the webdriver to the webdriver of the parent PageObject instance.
@@ -33,3 +32,80 @@ class PageObject:
         if instance_webdriver is not None:
             self.webdriver = instance_webdriver
         return self
+
+
+class Page(PageObject):
+    """The class representing all of the methods and interactions of a web page.
+
+    A Page represents all of the functionality of the webdriver that is not encapsulated
+    in the PageElement objects. The attached methods are all interactions with the web
+    browser instance, and not elements on a single web page.
+
+    Args:
+        webdriver (webdriver): A selenium webdriver instance for the PageObject.
+        url (str): The url of the the PageObject.
+    """
+
+    def __init__(self, webdriver: webdriver, url: str) -> None:
+        super().__init__(webdriver=webdriver)
+        self._url = url
+
+    @property
+    def url(self):
+        """Get the url defined for this Page Object."""
+        return self._url
+
+    @url.setter
+    def url(self, url: str) -> None:
+        """Set the url for this instance.
+
+        Args:
+            url: The url that this Page should be defined.
+        """
+        self._url = url
+
+    @property
+    def current_url(self):
+        """Return the url of the page currently being displayed by the webdriver."""
+        return self.webdriver.current_url
+
+    def go(self):
+        """Navigate to the url set as the url for this Page object."""
+        self.webdriver.get(self.url)
+
+    def get(self, url: str):
+        """Navigate to the provided url.
+
+        Args:
+            url: A url as a string.
+        """
+        self.webdriver.get(url)
+
+    def back(self):
+        """Navigate back one page on the web browser."""
+        self.webdriver.back()
+
+    def forward(self):
+        """Navigate forward one page on the web browser."""
+        self.webdriver.forward()
+
+    def refresh(self):
+        """Refresh the web browser."""
+        self.webdriver.refresh()
+
+    @property
+    def title(self):
+        """The title of the current web page."""
+        return self.webdriver.title
+
+    def quit(self):
+        """Quit the webdriver instance."""
+        self.webdriver.quit()
+
+    def maximize_window(self):
+        """Maximize the web browser's window."""
+        self.webdriver.maximize_window
+
+    def minimize_window(self):
+        """Minimize the web browser's window."""
+        self.webdriver.minimize_window

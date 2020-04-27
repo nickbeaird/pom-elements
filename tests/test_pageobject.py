@@ -1,4 +1,4 @@
-from pom_elements.page_object import PageObject
+from pom_elements.page_object import Page, PageObject
 from pom_elements.xpath_element import XPathElement
 from selenium.webdriver.remote.webelement import WebElement
 
@@ -80,8 +80,6 @@ def test_nested_pageobject_two_deep(selenium_chrome):
 # @pytest.mark.skip(
 #     reason="This test is working and is a little heavy for fast development."
 # )
-
-
 def test_nested_pageobject_multiple_deep(selenium_chrome):
     """Test that a user can have many nested PageObject models.
 
@@ -132,3 +130,35 @@ def test_page_object(selenium_chrome):
     page = XKCDMainPage(webdriver=selenium_chrome)
     assert page.menu.how_to.can_be_clicked()
     assert page.menu.how_to.xpath == '//a[@href="/how-to/"]'
+
+
+def test_page_pageobject_methods(selenium_chrome):
+    """Verify that we are able to use the Page class."""
+    url_google = "https://www.google.com/"
+    url_yahoo = "https://www.yahoo.com/"
+    google_home = Page(webdriver=selenium_chrome, url=url_google)
+    google_home.go()
+    assert google_home.title == "Google"
+
+    # Navigate to another page and return to the Page's defined url.
+    google_home.get(url_yahoo)
+    assert google_home.url == url_google
+    google_home.go()
+
+    # Check the Page's browser navigation methods.
+    google_home.back()
+    google_home.forward()
+    google_home.refresh()
+    assert google_home.current_url == url_google
+    assert google_home.title == "Google"
+
+    # Set the url on the page object.
+    google_home.url = url_yahoo
+    google_home.go()
+    assert google_home.current_url == url_yahoo
+    assert google_home.title == "Yahoo"
+
+    # Check the Page's display methods.
+    google_home.maximize_window()
+    google_home.minimize_window()
+    google_home.quit()
