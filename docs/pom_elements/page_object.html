@@ -24,22 +24,22 @@
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from typing import Optional
-
-from selenium import webdriver
+<pre><code class="python">from selenium import webdriver
 
 
 class PageObject:
     &#34;&#34;&#34;The PageObject allows for abstracting web pages into full pages or sections.
 
+    Todo:
+        Add type hints for the Selenium library to add Optional[webdriver].
+
     Args:
         webdriver (webdriver): A selenium webdriver instance for the PageObject.
-        url (str): The url of the the PageObject.
     &#34;&#34;&#34;
 
-    def __init__(self, webdriver: webdriver = None, url: Optional[str] = None) -&gt; None:
-        self.webdriver = webdriver
-        self.url = url
+    def __init__(self, webdriver: webdriver = None) -&gt; None:
+        if webdriver is not None:
+            self.webdriver = webdriver
 
     def __get__(self, instance, owner):
         &#34;&#34;&#34;Return a PageObject and set the webdriver to the webdriver of the parent PageObject instance.
@@ -58,7 +58,84 @@ class PageObject:
         instance_webdriver = getattr(instance, &#34;webdriver&#34;, None)
         if instance_webdriver is not None:
             self.webdriver = instance_webdriver
-        return self</code></pre>
+        return self
+
+
+class Page(PageObject):
+    &#34;&#34;&#34;The class representing all of the methods and interactions of a web page.
+
+    A Page represents all of the functionality of the webdriver that is not encapsulated
+    in the PageElement objects. The attached methods are all interactions with the web
+    browser instance, and not elements on a single web page.
+
+    Args:
+        webdriver (webdriver): A selenium webdriver instance for the PageObject.
+        url (str): The url of the the PageObject.
+    &#34;&#34;&#34;
+
+    def __init__(self, webdriver: webdriver, url: str) -&gt; None:
+        super().__init__(webdriver=webdriver)
+        self._url = url
+
+    @property
+    def url(self) -&gt; str:
+        &#34;&#34;&#34;Get the url defined for this Page Object.&#34;&#34;&#34;
+        return self._url
+
+    @url.setter
+    def url(self, url: str) -&gt; None:
+        &#34;&#34;&#34;Set the url for this instance.
+
+        Args:
+            url: The url that this Page should be defined.
+        &#34;&#34;&#34;
+        self._url = url
+
+    @property
+    def current_url(self) -&gt; str:
+        &#34;&#34;&#34;Return the url of the page currently being displayed by the webdriver.&#34;&#34;&#34;
+        return self.webdriver.current_url
+
+    def go(self) -&gt; None:
+        &#34;&#34;&#34;Navigate to the url set as the url for this Page object.&#34;&#34;&#34;
+        self.webdriver.get(self.url)
+
+    def get(self, url: str) -&gt; None:
+        &#34;&#34;&#34;Navigate to the provided url.
+
+        Args:
+            url: A url as a string.
+        &#34;&#34;&#34;
+        self.webdriver.get(url)
+
+    def back(self) -&gt; None:
+        &#34;&#34;&#34;Navigate back one page on the web browser.&#34;&#34;&#34;
+        self.webdriver.back()
+
+    def forward(self) -&gt; None:
+        &#34;&#34;&#34;Navigate forward one page on the web browser.&#34;&#34;&#34;
+        self.webdriver.forward()
+
+    def refresh(self) -&gt; None:
+        &#34;&#34;&#34;Refresh the web browser.&#34;&#34;&#34;
+        self.webdriver.refresh()
+
+    @property
+    def title(self) -&gt; str:
+        &#34;&#34;&#34;The title of the current web page.&#34;&#34;&#34;
+        return self.webdriver.title
+
+    def quit(self) -&gt; None:
+        &#34;&#34;&#34;Quit the webdriver instance.&#34;&#34;&#34;
+        self.webdriver.quit()
+
+    def maximize_window(self) -&gt; None:
+        &#34;&#34;&#34;Maximize the web browser&#39;s window.&#34;&#34;&#34;
+        self.webdriver.maximize_window
+
+    def minimize_window(self) -&gt; None:
+        &#34;&#34;&#34;Minimize the web browser&#39;s window.&#34;&#34;&#34;
+        self.webdriver.minimize_window</code></pre>
 </details>
 </section>
 <section>
@@ -70,12 +147,15 @@ class PageObject:
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="pom_elements.page_object.PageObject"><code class="flex name class">
-<span>class <span class="ident">PageObject</span></span>
-<span>(</span><span>webdriver: <module 'selenium.webdriver' from '/Users/nicklasb/Library/Caches/pypoetry/virtualenvs/pom-element-5SbT6Yqb-py3.8/lib/python3.8/site-packages/selenium/webdriver/__init__.py'> = None, url: Union[str, NoneType] = None)</span>
+<dt id="pom_elements.page_object.Page"><code class="flex name class">
+<span>class <span class="ident">Page</span></span>
+<span>(</span><span>webdriver: <module 'selenium.webdriver' from '/Users/nicklasb/Library/Caches/pypoetry/virtualenvs/pom-element-5SbT6Yqb-py3.8/lib/python3.8/site-packages/selenium/webdriver/__init__.py'>, url: str)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>The PageObject allows for abstracting web pages into full pages or sections.</p>
+<div class="desc"><p>The class representing all of the methods and interactions of a web page.</p>
+<p>A Page represents all of the functionality of the webdriver that is not encapsulated
+in the PageElement objects. The attached methods are all interactions with the web
+browser instance, and not elements on a single web page.</p>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>webdriver</code></strong> :&ensp;<code>webdriver</code></dt>
@@ -87,17 +167,283 @@ class PageObject:
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class PageObject:
-    &#34;&#34;&#34;The PageObject allows for abstracting web pages into full pages or sections.
+<pre><code class="python">class Page(PageObject):
+    &#34;&#34;&#34;The class representing all of the methods and interactions of a web page.
+
+    A Page represents all of the functionality of the webdriver that is not encapsulated
+    in the PageElement objects. The attached methods are all interactions with the web
+    browser instance, and not elements on a single web page.
 
     Args:
         webdriver (webdriver): A selenium webdriver instance for the PageObject.
         url (str): The url of the the PageObject.
     &#34;&#34;&#34;
 
-    def __init__(self, webdriver: webdriver = None, url: Optional[str] = None) -&gt; None:
-        self.webdriver = webdriver
-        self.url = url
+    def __init__(self, webdriver: webdriver, url: str) -&gt; None:
+        super().__init__(webdriver=webdriver)
+        self._url = url
+
+    @property
+    def url(self) -&gt; str:
+        &#34;&#34;&#34;Get the url defined for this Page Object.&#34;&#34;&#34;
+        return self._url
+
+    @url.setter
+    def url(self, url: str) -&gt; None:
+        &#34;&#34;&#34;Set the url for this instance.
+
+        Args:
+            url: The url that this Page should be defined.
+        &#34;&#34;&#34;
+        self._url = url
+
+    @property
+    def current_url(self) -&gt; str:
+        &#34;&#34;&#34;Return the url of the page currently being displayed by the webdriver.&#34;&#34;&#34;
+        return self.webdriver.current_url
+
+    def go(self) -&gt; None:
+        &#34;&#34;&#34;Navigate to the url set as the url for this Page object.&#34;&#34;&#34;
+        self.webdriver.get(self.url)
+
+    def get(self, url: str) -&gt; None:
+        &#34;&#34;&#34;Navigate to the provided url.
+
+        Args:
+            url: A url as a string.
+        &#34;&#34;&#34;
+        self.webdriver.get(url)
+
+    def back(self) -&gt; None:
+        &#34;&#34;&#34;Navigate back one page on the web browser.&#34;&#34;&#34;
+        self.webdriver.back()
+
+    def forward(self) -&gt; None:
+        &#34;&#34;&#34;Navigate forward one page on the web browser.&#34;&#34;&#34;
+        self.webdriver.forward()
+
+    def refresh(self) -&gt; None:
+        &#34;&#34;&#34;Refresh the web browser.&#34;&#34;&#34;
+        self.webdriver.refresh()
+
+    @property
+    def title(self) -&gt; str:
+        &#34;&#34;&#34;The title of the current web page.&#34;&#34;&#34;
+        return self.webdriver.title
+
+    def quit(self) -&gt; None:
+        &#34;&#34;&#34;Quit the webdriver instance.&#34;&#34;&#34;
+        self.webdriver.quit()
+
+    def maximize_window(self) -&gt; None:
+        &#34;&#34;&#34;Maximize the web browser&#39;s window.&#34;&#34;&#34;
+        self.webdriver.maximize_window
+
+    def minimize_window(self) -&gt; None:
+        &#34;&#34;&#34;Minimize the web browser&#39;s window.&#34;&#34;&#34;
+        self.webdriver.minimize_window</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pom_elements.page_object.PageObject" href="#pom_elements.page_object.PageObject">PageObject</a></li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pom_elements.page_object.Page.current_url"><code class="name">var <span class="ident">current_url</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Return the url of the page currently being displayed by the webdriver.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def current_url(self) -&gt; str:
+    &#34;&#34;&#34;Return the url of the page currently being displayed by the webdriver.&#34;&#34;&#34;
+    return self.webdriver.current_url</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.page_object.Page.title"><code class="name">var <span class="ident">title</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The title of the current web page.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def title(self) -&gt; str:
+    &#34;&#34;&#34;The title of the current web page.&#34;&#34;&#34;
+    return self.webdriver.title</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.page_object.Page.url"><code class="name">var <span class="ident">url</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Get the url defined for this Page Object.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def url(self) -&gt; str:
+    &#34;&#34;&#34;Get the url defined for this Page Object.&#34;&#34;&#34;
+    return self._url</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="pom_elements.page_object.Page.back"><code class="name flex">
+<span>def <span class="ident">back</span></span>(<span>self) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Navigate back one page on the web browser.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def back(self) -&gt; None:
+    &#34;&#34;&#34;Navigate back one page on the web browser.&#34;&#34;&#34;
+    self.webdriver.back()</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.page_object.Page.forward"><code class="name flex">
+<span>def <span class="ident">forward</span></span>(<span>self) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Navigate forward one page on the web browser.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def forward(self) -&gt; None:
+    &#34;&#34;&#34;Navigate forward one page on the web browser.&#34;&#34;&#34;
+    self.webdriver.forward()</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.page_object.Page.get"><code class="name flex">
+<span>def <span class="ident">get</span></span>(<span>self, url: str) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Navigate to the provided url.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>url</code></strong></dt>
+<dd>A url as a string.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get(self, url: str) -&gt; None:
+    &#34;&#34;&#34;Navigate to the provided url.
+
+    Args:
+        url: A url as a string.
+    &#34;&#34;&#34;
+    self.webdriver.get(url)</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.page_object.Page.go"><code class="name flex">
+<span>def <span class="ident">go</span></span>(<span>self) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Navigate to the url set as the url for this Page object.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def go(self) -&gt; None:
+    &#34;&#34;&#34;Navigate to the url set as the url for this Page object.&#34;&#34;&#34;
+    self.webdriver.get(self.url)</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.page_object.Page.maximize_window"><code class="name flex">
+<span>def <span class="ident">maximize_window</span></span>(<span>self) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Maximize the web browser's window.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def maximize_window(self) -&gt; None:
+    &#34;&#34;&#34;Maximize the web browser&#39;s window.&#34;&#34;&#34;
+    self.webdriver.maximize_window</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.page_object.Page.minimize_window"><code class="name flex">
+<span>def <span class="ident">minimize_window</span></span>(<span>self) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Minimize the web browser's window.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def minimize_window(self) -&gt; None:
+    &#34;&#34;&#34;Minimize the web browser&#39;s window.&#34;&#34;&#34;
+    self.webdriver.minimize_window</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.page_object.Page.quit"><code class="name flex">
+<span>def <span class="ident">quit</span></span>(<span>self) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Quit the webdriver instance.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def quit(self) -&gt; None:
+    &#34;&#34;&#34;Quit the webdriver instance.&#34;&#34;&#34;
+    self.webdriver.quit()</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.page_object.Page.refresh"><code class="name flex">
+<span>def <span class="ident">refresh</span></span>(<span>self) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Refresh the web browser.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def refresh(self) -&gt; None:
+    &#34;&#34;&#34;Refresh the web browser.&#34;&#34;&#34;
+    self.webdriver.refresh()</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="pom_elements.page_object.PageObject"><code class="flex name class">
+<span>class <span class="ident">PageObject</span></span>
+<span>(</span><span>webdriver: <module 'selenium.webdriver' from '/Users/nicklasb/Library/Caches/pypoetry/virtualenvs/pom-element-5SbT6Yqb-py3.8/lib/python3.8/site-packages/selenium/webdriver/__init__.py'> = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>The PageObject allows for abstracting web pages into full pages or sections.</p>
+<h2 id="todo">Todo</h2>
+<p>Add type hints for the Selenium library to add Optional[webdriver].</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>webdriver</code></strong> :&ensp;<code>webdriver</code></dt>
+<dd>A selenium webdriver instance for the PageObject.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class PageObject:
+    &#34;&#34;&#34;The PageObject allows for abstracting web pages into full pages or sections.
+
+    Todo:
+        Add type hints for the Selenium library to add Optional[webdriver].
+
+    Args:
+        webdriver (webdriver): A selenium webdriver instance for the PageObject.
+    &#34;&#34;&#34;
+
+    def __init__(self, webdriver: webdriver = None) -&gt; None:
+        if webdriver is not None:
+            self.webdriver = webdriver
 
     def __get__(self, instance, owner):
         &#34;&#34;&#34;Return a PageObject and set the webdriver to the webdriver of the parent PageObject instance.
@@ -118,6 +464,10 @@ class PageObject:
             self.webdriver = instance_webdriver
         return self</code></pre>
 </details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="pom_elements.page_object.Page" href="#pom_elements.page_object.Page">Page</a></li>
+</ul>
 </dd>
 </dl>
 </section>
@@ -135,6 +485,22 @@ class PageObject:
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
+<li>
+<h4><code><a title="pom_elements.page_object.Page" href="#pom_elements.page_object.Page">Page</a></code></h4>
+<ul class="two-column">
+<li><code><a title="pom_elements.page_object.Page.back" href="#pom_elements.page_object.Page.back">back</a></code></li>
+<li><code><a title="pom_elements.page_object.Page.current_url" href="#pom_elements.page_object.Page.current_url">current_url</a></code></li>
+<li><code><a title="pom_elements.page_object.Page.forward" href="#pom_elements.page_object.Page.forward">forward</a></code></li>
+<li><code><a title="pom_elements.page_object.Page.get" href="#pom_elements.page_object.Page.get">get</a></code></li>
+<li><code><a title="pom_elements.page_object.Page.go" href="#pom_elements.page_object.Page.go">go</a></code></li>
+<li><code><a title="pom_elements.page_object.Page.maximize_window" href="#pom_elements.page_object.Page.maximize_window">maximize_window</a></code></li>
+<li><code><a title="pom_elements.page_object.Page.minimize_window" href="#pom_elements.page_object.Page.minimize_window">minimize_window</a></code></li>
+<li><code><a title="pom_elements.page_object.Page.quit" href="#pom_elements.page_object.Page.quit">quit</a></code></li>
+<li><code><a title="pom_elements.page_object.Page.refresh" href="#pom_elements.page_object.Page.refresh">refresh</a></code></li>
+<li><code><a title="pom_elements.page_object.Page.title" href="#pom_elements.page_object.Page.title">title</a></code></li>
+<li><code><a title="pom_elements.page_object.Page.url" href="#pom_elements.page_object.Page.url">url</a></code></li>
+</ul>
+</li>
 <li>
 <h4><code><a title="pom_elements.page_object.PageObject" href="#pom_elements.page_object.PageObject">PageObject</a></code></h4>
 </li>
