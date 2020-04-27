@@ -105,8 +105,8 @@ class Page(PageObject):
 
     def maximize_window(self) -> None:
         """Maximize the web browser's window."""
-        self.webdriver.maximize_window
+        self.webdriver.maximize_window()
 
     def minimize_window(self) -> None:
         """Minimize the web browser's window."""
-        self.webdriver.minimize_window
+        self.webdriver.minimize_window()

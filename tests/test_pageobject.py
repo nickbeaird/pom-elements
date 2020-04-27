@@ -159,6 +159,6 @@ def test_page_pageobject_methods(selenium_chrome):
     assert google_home.title == "Yahoo"
 
     # Check the Page's display methods.
-    google_home.maximize_window()
     google_home.minimize_window()
+    google_home.maximize_window()
     google_home.quit()
