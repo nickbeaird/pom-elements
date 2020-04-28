@@ -19,11 +19,11 @@ coverage:
 
 docs:
 	# Create a directory of updated docs
-	@pdoc --html --output-dir docs pom_elements --force
+	@pdoc --config show_inherited_members=True --html --output-dir docs pom_elements --force
 
 doc-server:
 	# Create a live server to test out your documentation changes.
-	@pdoc --http : pom_elements
+	@pdoc --config show_inherited_members=True --http : pom_elements
 
 view-coverage-report:
 	@poetry run coverage report -m
