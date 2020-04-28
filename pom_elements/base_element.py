@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Optional
+from typing import Any, Optional
 
 from pom_elements.harness import Harness
 from selenium import webdriver
@@ -191,7 +191,7 @@ class BaseElement(ABC):
             self.web_element,
         )
 
-    def get_property(self, property):
+    def get_property(self, property: str) -> Any:
         """Get the property of the element.
 
         Args:
@@ -200,7 +200,7 @@ class BaseElement(ABC):
         Returns:
             The property of the provided name.
         """
-        return self.webdriver.get_property
+        return self.webdriver.get_property(property)
 
     def __get__(self, instance, owner):
         """Update the __get__ method to set the webdriver and refresh the webelement.
