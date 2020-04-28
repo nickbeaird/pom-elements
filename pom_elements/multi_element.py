@@ -1,6 +1,6 @@
 from typing import Optional, Tuple, Union
 
-from pom_elements.base_element import BaseElement
+from pom_elements._base_element import BaseElement
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
