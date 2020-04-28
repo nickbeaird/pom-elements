@@ -25,7 +25,7 @@
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">from abc import ABC, abstractmethod
-from typing import Optional
+from typing import Any, Optional
 
 from pom_elements.harness import Harness
 from selenium import webdriver
@@ -107,6 +107,26 @@ class BaseElement(ABC):
             return True
         return False
 
+    def is_invisible(self, timeout: Optional[int] = None) -&gt; bool:
+        &#34;&#34;&#34;Return true if the webelement is invisible on the page within the time (seconds) provided.
+
+        Args:
+            timeout: The length of time that we expect the WebElement to return that it
+            is in visible. Defaults to the _default_timeout if not set.
+
+        Returns:
+            bool: True if element is visible.
+        &#34;&#34;&#34;
+        if timeout is None:
+            timeout = self.default_timeout
+
+        is_visible = WebDriverWait(self.webdriver, timeout).until(
+            EC.invisibility_of_element(self.locator)
+        )
+        if is_visible:
+            return True
+        return False
+
     def can_be_clicked(self, timeout: Optional[int] = None) -&gt; bool:
         &#34;&#34;&#34;Return true if the webelement can be clicked in the time (seconds) provided.
 
@@ -122,7 +142,7 @@ class BaseElement(ABC):
         # The method returns an webelement if true and false otherwise. We ignore the
         # found Selenium WebElement as we already have this item stored.
         is_clickable = WebDriverWait(self.webdriver, timeout).until(
-            EC.visibility_of(self.web_element)
+            EC.element_to_be_clickable(self.locator)
         )
         if is_clickable is False:
             return False
@@ -174,6 +194,39 @@ class BaseElement(ABC):
 
         self.find(timeout=timeout)
         self.web_element.click()
+
+    def is_displayed(self):
+        &#34;&#34;&#34;Returns true if the Element is displayed else false.&#34;&#34;&#34;
+        is_displayed = self.webdriver.is_displayed()
+        if is_displayed:
+            return True
+        return False
+
+    def get_attribute(self, name):
+        &#34;&#34;&#34;Returns the attribute of the name provided.&#34;&#34;&#34;
+        return self.webdriver.get_attribute(name)
+
+    def get_all_attributes(self) -&gt; dict:
+        &#34;&#34;&#34;Return a dictionary containing all of the attributes of an element.&#34;&#34;&#34;
+        if not self.webdriver.execute_script:
+            raise AttributeError(
+                &#34;This webdriver type does not have this ability at this time.&#34;
+            )
+        return self.webdriver.execute_script(
+            &#34;var items = {}; for (index = 0; index &lt; arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;&#34;,
+            self.web_element,
+        )
+
+    def get_property(self, property: str) -&gt; Any:
+        &#34;&#34;&#34;Get the property of the element.
+
+        Args:
+            property - Name of the property to retrieve.
+
+        Returns:
+            The property of the provided name.
+        &#34;&#34;&#34;
+        return self.webdriver.get_property
 
     def __get__(self, instance, owner):
         &#34;&#34;&#34;Update the __get__ method to set the webdriver and refresh the webelement.
@@ -302,6 +355,26 @@ class BaseElement(ABC):
             return True
         return False
 
+    def is_invisible(self, timeout: Optional[int] = None) -&gt; bool:
+        &#34;&#34;&#34;Return true if the webelement is invisible on the page within the time (seconds) provided.
+
+        Args:
+            timeout: The length of time that we expect the WebElement to return that it
+            is in visible. Defaults to the _default_timeout if not set.
+
+        Returns:
+            bool: True if element is visible.
+        &#34;&#34;&#34;
+        if timeout is None:
+            timeout = self.default_timeout
+
+        is_visible = WebDriverWait(self.webdriver, timeout).until(
+            EC.invisibility_of_element(self.locator)
+        )
+        if is_visible:
+            return True
+        return False
+
     def can_be_clicked(self, timeout: Optional[int] = None) -&gt; bool:
         &#34;&#34;&#34;Return true if the webelement can be clicked in the time (seconds) provided.
 
@@ -317,7 +390,7 @@ class BaseElement(ABC):
         # The method returns an webelement if true and false otherwise. We ignore the
         # found Selenium WebElement as we already have this item stored.
         is_clickable = WebDriverWait(self.webdriver, timeout).until(
-            EC.visibility_of(self.web_element)
+            EC.element_to_be_clickable(self.locator)
         )
         if is_clickable is False:
             return False
@@ -369,6 +442,39 @@ class BaseElement(ABC):
 
         self.find(timeout=timeout)
         self.web_element.click()
+
+    def is_displayed(self):
+        &#34;&#34;&#34;Returns true if the Element is displayed else false.&#34;&#34;&#34;
+        is_displayed = self.webdriver.is_displayed()
+        if is_displayed:
+            return True
+        return False
+
+    def get_attribute(self, name):
+        &#34;&#34;&#34;Returns the attribute of the name provided.&#34;&#34;&#34;
+        return self.webdriver.get_attribute(name)
+
+    def get_all_attributes(self) -&gt; dict:
+        &#34;&#34;&#34;Return a dictionary containing all of the attributes of an element.&#34;&#34;&#34;
+        if not self.webdriver.execute_script:
+            raise AttributeError(
+                &#34;This webdriver type does not have this ability at this time.&#34;
+            )
+        return self.webdriver.execute_script(
+            &#34;var items = {}; for (index = 0; index &lt; arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;&#34;,
+            self.web_element,
+        )
+
+    def get_property(self, property: str) -&gt; Any:
+        &#34;&#34;&#34;Get the property of the element.
+
+        Args:
+            property - Name of the property to retrieve.
+
+        Returns:
+            The property of the provided name.
+        &#34;&#34;&#34;
+        return self.webdriver.get_property
 
     def __get__(self, instance, owner):
         &#34;&#34;&#34;Update the __get__ method to set the webdriver and refresh the webelement.
@@ -501,7 +607,7 @@ def webdriver(self) -&gt; webdriver:
     # The method returns an webelement if true and false otherwise. We ignore the
     # found Selenium WebElement as we already have this item stored.
     is_clickable = WebDriverWait(self.webdriver, timeout).until(
-        EC.visibility_of(self.web_element)
+        EC.element_to_be_clickable(self.locator)
     )
     if is_clickable is False:
         return False
@@ -580,6 +686,124 @@ def webdriver(self) -&gt; webdriver:
     return elem</code></pre>
 </details>
 </dd>
+<dt id="pom_elements.base_element.BaseElement.get_all_attributes"><code class="name flex">
+<span>def <span class="ident">get_all_attributes</span></span>(<span>self) -> dict</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a dictionary containing all of the attributes of an element.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_all_attributes(self) -&gt; dict:
+    &#34;&#34;&#34;Return a dictionary containing all of the attributes of an element.&#34;&#34;&#34;
+    if not self.webdriver.execute_script:
+        raise AttributeError(
+            &#34;This webdriver type does not have this ability at this time.&#34;
+        )
+    return self.webdriver.execute_script(
+        &#34;var items = {}; for (index = 0; index &lt; arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;&#34;,
+        self.web_element,
+    )</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.base_element.BaseElement.get_attribute"><code class="name flex">
+<span>def <span class="ident">get_attribute</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the attribute of the name provided.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_attribute(self, name):
+    &#34;&#34;&#34;Returns the attribute of the name provided.&#34;&#34;&#34;
+    return self.webdriver.get_attribute(name)</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.base_element.BaseElement.get_property"><code class="name flex">
+<span>def <span class="ident">get_property</span></span>(<span>self, property: str) -> Any</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the property of the element.</p>
+<h2 id="args">Args</h2>
+<p>property - Name of the property to retrieve.</p>
+<h2 id="returns">Returns</h2>
+<p>The property of the provided name.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_property(self, property: str) -&gt; Any:
+    &#34;&#34;&#34;Get the property of the element.
+
+    Args:
+        property - Name of the property to retrieve.
+
+    Returns:
+        The property of the provided name.
+    &#34;&#34;&#34;
+    return self.webdriver.get_property</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.base_element.BaseElement.is_displayed"><code class="name flex">
+<span>def <span class="ident">is_displayed</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns true if the Element is displayed else false.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_displayed(self):
+    &#34;&#34;&#34;Returns true if the Element is displayed else false.&#34;&#34;&#34;
+    is_displayed = self.webdriver.is_displayed()
+    if is_displayed:
+        return True
+    return False</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.base_element.BaseElement.is_invisible"><code class="name flex">
+<span>def <span class="ident">is_invisible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return true if the webelement is invisible on the page within the time (seconds) provided.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>timeout</code></strong></dt>
+<dd>The length of time that we expect the WebElement to return that it</dd>
+</dl>
+<p>is in visible. Defaults to the _default_timeout if not set.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>bool</code></dt>
+<dd>True if element is visible.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_invisible(self, timeout: Optional[int] = None) -&gt; bool:
+    &#34;&#34;&#34;Return true if the webelement is invisible on the page within the time (seconds) provided.
+
+    Args:
+        timeout: The length of time that we expect the WebElement to return that it
+        is in visible. Defaults to the _default_timeout if not set.
+
+    Returns:
+        bool: True if element is visible.
+    &#34;&#34;&#34;
+    if timeout is None:
+        timeout = self.default_timeout
+
+    is_visible = WebDriverWait(self.webdriver, timeout).until(
+        EC.invisibility_of_element(self.locator)
+    )
+    if is_visible:
+        return True
+    return False</code></pre>
+</details>
+</dd>
 <dt id="pom_elements.base_element.BaseElement.is_visible"><code class="name flex">
 <span>def <span class="ident">is_visible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
 </code></dt>
@@ -646,6 +870,11 @@ def webdriver(self) -&gt; webdriver:
 <li><code><a title="pom_elements.base_element.BaseElement.click" href="#pom_elements.base_element.BaseElement.click">click</a></code></li>
 <li><code><a title="pom_elements.base_element.BaseElement.default_timeout" href="#pom_elements.base_element.BaseElement.default_timeout">default_timeout</a></code></li>
 <li><code><a title="pom_elements.base_element.BaseElement.find" href="#pom_elements.base_element.BaseElement.find">find</a></code></li>
+<li><code><a title="pom_elements.base_element.BaseElement.get_all_attributes" href="#pom_elements.base_element.BaseElement.get_all_attributes">get_all_attributes</a></code></li>
+<li><code><a title="pom_elements.base_element.BaseElement.get_attribute" href="#pom_elements.base_element.BaseElement.get_attribute">get_attribute</a></code></li>
+<li><code><a title="pom_elements.base_element.BaseElement.get_property" href="#pom_elements.base_element.BaseElement.get_property">get_property</a></code></li>
+<li><code><a title="pom_elements.base_element.BaseElement.is_displayed" href="#pom_elements.base_element.BaseElement.is_displayed">is_displayed</a></code></li>
+<li><code><a title="pom_elements.base_element.BaseElement.is_invisible" href="#pom_elements.base_element.BaseElement.is_invisible">is_invisible</a></code></li>
 <li><code><a title="pom_elements.base_element.BaseElement.is_visible" href="#pom_elements.base_element.BaseElement.is_visible">is_visible</a></code></li>
 <li><code><a title="pom_elements.base_element.BaseElement.locator" href="#pom_elements.base_element.BaseElement.locator">locator</a></code></li>
 <li><code><a title="pom_elements.base_element.BaseElement.webdriver" href="#pom_elements.base_element.BaseElement.webdriver">webdriver</a></code></li>

@@ -28,10 +28,10 @@
 <pre><code class="python">&#34;&#34;&#34;POM-Elements allows for creating Page Object and adding Page Elements (MultiElement, XPathElement).&#34;&#34;&#34;
 
 from .multi_element import MultiElement
-from .xpath_element import XPathElement
 from .page_object import Page, PageObject
+from .xpath_element import XPathElement
 
-__all__ = [&#34;MultiElement&#34;, &#34;XPathElement&#34;]</code></pre>
+__all__ = [&#34;MultiElement&#34;, &#34;XPathElement&#34;, &#34;PageObject&#34;, &#34;Page&#34;]</code></pre>
 </details>
 </section>
 <section>
@@ -71,36 +71,50 @@ __all__ = [&#34;MultiElement&#34;, &#34;XPathElement&#34;]</code></pre>
 <span>(</span><span>webdriver: <module 'selenium.webdriver' from '/Users/nicklasb/Library/Caches/pypoetry/virtualenvs/pom-element-5SbT6Yqb-py3.8/lib/python3.8/site-packages/selenium/webdriver/__init__.py'> = None, timeout: Union[float, NoneType] = 0.5, **kwargs)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Set any Page Element using a Selenium Locators.</p></div>
+<div class="desc"><p>Set any Page Element using a Selenium Locators.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>webdriver</code></strong> :&ensp;<code>webdriver</code></dt>
+<dd>A selenium webdriver instance.</dd>
+<dt><strong><code>timeout</code></strong> :&ensp;<code>float</code></dt>
+<dd>An integer or float. Defaults to default timeout if not set.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class MultiElement(BaseElement):
-    &#34;&#34;&#34;Set any Page Element using a Selenium Locators.&#34;&#34;&#34;
+    &#34;&#34;&#34;Set any Page Element using a Selenium Locators.
 
-    _LOCATOR_MAP = {
+    Args:
+        webdriver (webdriver): A selenium webdriver instance.
+        timeout (float): An integer or float. Defaults to default timeout if not set.
+    &#34;&#34;&#34;
+
+    LOCATOR = {
         &#34;css&#34;: By.CSS_SELECTOR,
         &#34;id_&#34;: By.ID,
         &#34;name&#34;: By.NAME,
-        &#34;xpath&#34;: By.XPATH,
+        &#34;class_name&#34;: By.CLASS_NAME,
         &#34;link_text&#34;: By.LINK_TEXT,
         &#34;partial_link_text&#34;: By.PARTIAL_LINK_TEXT,
         &#34;tag_name&#34;: By.TAG_NAME,
-        &#34;class_name&#34;: By.CLASS_NAME,
+        &#34;xpath&#34;: By.XPATH,
     }
+    &#34;&#34;&#34;The dictionary containing the Selenium LOCATOR reference.&#34;&#34;&#34;
 
     def __init__(
         self, webdriver: webdriver = None, timeout: Optional[float] = 0.5, **kwargs
     ) -&gt; None:
-        if kwargs is None:
+        locators = {k: v for k, v in kwargs.items() if k in self.LOCATOR}
+        if len(locators) == 0 or kwargs is None:
             raise AttributeError(&#34;No attribute was set. Please set a Locator.&#34;)
-        if len(kwargs) &gt; 1:
+        if len(locators) &gt; 1:
             raise AttributeError(
                 &#34;Two attributes set and this can only set a single Locator.&#34;
             )
-        k, v = next(iter(kwargs.items()))
-        self._locator = (self._LOCATOR_MAP[k], v)
+        k, v = next(iter(locators.items()))
+        self._locator = (self.LOCATOR[k], v)
         super().__init__(webdriver, timeout)
 
     @property
@@ -109,17 +123,34 @@ __all__ = [&#34;MultiElement&#34;, &#34;XPathElement&#34;]</code></pre>
         return self._locator
 
     @locator.setter
-    def locator(self, locator: Tuple[By, str]) -&gt; None:
+    def locator(self, locator: Union[Tuple[str, str], str]) -&gt; None:
         &#34;&#34;&#34;Set the locator for the class.&#34;&#34;&#34;
-        self._locator = locator</code></pre>
+        raise NotImplementedError(
+            &#34;Changing an Element&#39;s locator is not avilable at this time.&#34;
+        )</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></li>
 <li>abc.ABC</li>
 </ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="pom_elements.MultiElement.LOCATOR"><code class="name">var <span class="ident">LOCATOR</span></code></dt>
+<dd>
+<div class="desc"><p>The dictionary containing the Selenium LOCATOR reference.</p></div>
+</dd>
+</dl>
 <h3>Instance variables</h3>
 <dl>
+<dt id="pom_elements.MultiElement.default_timeout"><code class="name">var <span class="ident">default_timeout</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.default_timeout" href="base_element.html#pom_elements.base_element.BaseElement.default_timeout">default_timeout</a></code>
+</p>
+<div class="desc inherited"><p>Get the default timeout.</p></div>
+</dd>
 <dt id="pom_elements.MultiElement.locator"><code class="name">var <span class="ident">locator</span> : Tuple[selenium.webdriver.common.by.By, str]</code></dt>
 <dd>
 <div class="desc"><p>Return the locator set on the class.</p></div>
@@ -133,19 +164,429 @@ def locator(self) -&gt; Tuple[By, str]:
     return self._locator</code></pre>
 </details>
 </dd>
+<dt id="pom_elements.MultiElement.webdriver"><code class="name">var <span class="ident">webdriver</span> : <module 'selenium.webdriver' from '/Users/nicklasb/Library/Caches/pypoetry/virtualenvs/pom-element-5SbT6Yqb-py3.8/lib/python3.8/site-packages/selenium/webdriver/__init__.py'></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.webdriver" href="base_element.html#pom_elements.base_element.BaseElement.webdriver">webdriver</a></code>
+</p>
+<div class="desc inherited"><p>Get the Element's Selenium webdriver instance …</p></div>
+</dd>
 </dl>
-<h3>Inherited members</h3>
+<h3>Methods</h3>
+<dl>
+<dt id="pom_elements.MultiElement.can_be_clicked"><code class="name flex">
+<span>def <span class="ident">can_be_clicked</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.can_be_clicked" href="base_element.html#pom_elements.base_element.BaseElement.can_be_clicked">can_be_clicked</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement can be clicked in the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.MultiElement.click"><code class="name flex">
+<span>def <span class="ident">click</span></span>(<span>self, timeout: Union[float, NoneType] = None)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.click" href="base_element.html#pom_elements.base_element.BaseElement.click">click</a></code>
+</p>
+<div class="desc inherited"><p>Click the web element if it is available to be clicked.</p></div>
+</dd>
+<dt id="pom_elements.MultiElement.find"><code class="name flex">
+<span>def <span class="ident">find</span></span>(<span>self, timeout: Union[float, NoneType] = None) -> selenium.webdriver.remote.webelement.WebElement</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.find" href="base_element.html#pom_elements.base_element.BaseElement.find">find</a></code>
+</p>
+<div class="desc inherited"><p>Returns the defined Selenium WebElement in the provided timeout or raise an error …</p></div>
+</dd>
+<dt id="pom_elements.MultiElement.get_all_attributes"><code class="name flex">
+<span>def <span class="ident">get_all_attributes</span></span>(<span>self) -> dict</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.get_all_attributes" href="base_element.html#pom_elements.base_element.BaseElement.get_all_attributes">get_all_attributes</a></code>
+</p>
+<div class="desc inherited"><p>Return a dictionary containing all of the attributes of an element.</p></div>
+</dd>
+<dt id="pom_elements.MultiElement.get_attribute"><code class="name flex">
+<span>def <span class="ident">get_attribute</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.get_attribute" href="base_element.html#pom_elements.base_element.BaseElement.get_attribute">get_attribute</a></code>
+</p>
+<div class="desc inherited"><p>Returns the attribute of the name provided.</p></div>
+</dd>
+<dt id="pom_elements.MultiElement.get_property"><code class="name flex">
+<span>def <span class="ident">get_property</span></span>(<span>self, property: str) -> Any</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.get_property" href="base_element.html#pom_elements.base_element.BaseElement.get_property">get_property</a></code>
+</p>
+<div class="desc inherited"><p>Get the property of the element …</p></div>
+</dd>
+<dt id="pom_elements.MultiElement.is_displayed"><code class="name flex">
+<span>def <span class="ident">is_displayed</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.is_displayed" href="base_element.html#pom_elements.base_element.BaseElement.is_displayed">is_displayed</a></code>
+</p>
+<div class="desc inherited"><p>Returns true if the Element is displayed else false.</p></div>
+</dd>
+<dt id="pom_elements.MultiElement.is_invisible"><code class="name flex">
+<span>def <span class="ident">is_invisible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.is_invisible" href="base_element.html#pom_elements.base_element.BaseElement.is_invisible">is_invisible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is invisible on the page within the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.MultiElement.is_visible"><code class="name flex">
+<span>def <span class="ident">is_visible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.is_visible" href="base_element.html#pom_elements.base_element.BaseElement.is_visible">is_visible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is visible on the page in the time (seconds) provided …</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="pom_elements.Page"><code class="flex name class">
+<span>class <span class="ident">Page</span></span>
+<span>(</span><span>webdriver: <module 'selenium.webdriver' from '/Users/nicklasb/Library/Caches/pypoetry/virtualenvs/pom-element-5SbT6Yqb-py3.8/lib/python3.8/site-packages/selenium/webdriver/__init__.py'>, url: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>The class representing all of the methods and interactions of a web page.</p>
+<p>A Page represents all of the functionality of the webdriver that is not encapsulated
+in the PageElement objects. The attached methods are all interactions with the web
+browser instance, and not elements on a single web page.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>webdriver</code></strong> :&ensp;<code>webdriver</code></dt>
+<dd>A selenium webdriver instance for the PageObject.</dd>
+<dt><strong><code>url</code></strong> :&ensp;<code>str</code></dt>
+<dd>The url of the the PageObject.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Page(PageObject):
+    &#34;&#34;&#34;The class representing all of the methods and interactions of a web page.
+
+    A Page represents all of the functionality of the webdriver that is not encapsulated
+    in the PageElement objects. The attached methods are all interactions with the web
+    browser instance, and not elements on a single web page.
+
+    Args:
+        webdriver (webdriver): A selenium webdriver instance for the PageObject.
+        url (str): The url of the the PageObject.
+    &#34;&#34;&#34;
+
+    def __init__(self, webdriver: webdriver, url: str) -&gt; None:
+        super().__init__(webdriver=webdriver)
+        self._url = url
+
+    @property
+    def url(self) -&gt; str:
+        &#34;&#34;&#34;Get the url defined for this Page Object.&#34;&#34;&#34;
+        return self._url
+
+    @url.setter
+    def url(self, url: str) -&gt; None:
+        &#34;&#34;&#34;Set the url for this instance.
+
+        Args:
+            url: The url that this Page should be defined.
+        &#34;&#34;&#34;
+        self._url = url
+
+    @property
+    def current_url(self) -&gt; str:
+        &#34;&#34;&#34;Return the url of the page currently being displayed by the webdriver.&#34;&#34;&#34;
+        return self.webdriver.current_url
+
+    def go(self) -&gt; None:
+        &#34;&#34;&#34;Navigate to the url set as the url for this Page object.&#34;&#34;&#34;
+        self.webdriver.get(self.url)
+
+    def get(self, url: str) -&gt; None:
+        &#34;&#34;&#34;Navigate to the provided url.
+
+        Args:
+            url: A url as a string.
+        &#34;&#34;&#34;
+        self.webdriver.get(url)
+
+    def back(self) -&gt; None:
+        &#34;&#34;&#34;Navigate back one page on the web browser.&#34;&#34;&#34;
+        self.webdriver.back()
+
+    def forward(self) -&gt; None:
+        &#34;&#34;&#34;Navigate forward one page on the web browser.&#34;&#34;&#34;
+        self.webdriver.forward()
+
+    def refresh(self) -&gt; None:
+        &#34;&#34;&#34;Refresh the web browser.&#34;&#34;&#34;
+        self.webdriver.refresh()
+
+    @property
+    def title(self) -&gt; str:
+        &#34;&#34;&#34;The title of the current web page.&#34;&#34;&#34;
+        return self.webdriver.title
+
+    def quit(self) -&gt; None:
+        &#34;&#34;&#34;Quit the webdriver instance.&#34;&#34;&#34;
+        self.webdriver.quit()
+
+    def maximize_window(self) -&gt; None:
+        &#34;&#34;&#34;Maximize the web browser&#39;s window.&#34;&#34;&#34;
+        self.webdriver.maximize_window()
+
+    def minimize_window(self) -&gt; None:
+        &#34;&#34;&#34;Minimize the web browser&#39;s window.&#34;&#34;&#34;
+        self.webdriver.minimize_window()</code></pre>
+</details>
+<h3>Ancestors</h3>
 <ul class="hlist">
-<li><code><b><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></b></code>:
-<ul class="hlist">
-<li><code><a title="pom_elements.base_element.BaseElement.can_be_clicked" href="base_element.html#pom_elements.base_element.BaseElement.can_be_clicked">can_be_clicked</a></code></li>
-<li><code><a title="pom_elements.base_element.BaseElement.click" href="base_element.html#pom_elements.base_element.BaseElement.click">click</a></code></li>
-<li><code><a title="pom_elements.base_element.BaseElement.default_timeout" href="base_element.html#pom_elements.base_element.BaseElement.default_timeout">default_timeout</a></code></li>
-<li><code><a title="pom_elements.base_element.BaseElement.find" href="base_element.html#pom_elements.base_element.BaseElement.find">find</a></code></li>
-<li><code><a title="pom_elements.base_element.BaseElement.is_visible" href="base_element.html#pom_elements.base_element.BaseElement.is_visible">is_visible</a></code></li>
-<li><code><a title="pom_elements.base_element.BaseElement.webdriver" href="base_element.html#pom_elements.base_element.BaseElement.webdriver">webdriver</a></code></li>
+<li><a title="pom_elements.page_object.PageObject" href="page_object.html#pom_elements.page_object.PageObject">PageObject</a></li>
 </ul>
-</li>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pom_elements.Page.current_url"><code class="name">var <span class="ident">current_url</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Return the url of the page currently being displayed by the webdriver.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def current_url(self) -&gt; str:
+    &#34;&#34;&#34;Return the url of the page currently being displayed by the webdriver.&#34;&#34;&#34;
+    return self.webdriver.current_url</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.Page.title"><code class="name">var <span class="ident">title</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The title of the current web page.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def title(self) -&gt; str:
+    &#34;&#34;&#34;The title of the current web page.&#34;&#34;&#34;
+    return self.webdriver.title</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.Page.url"><code class="name">var <span class="ident">url</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Get the url defined for this Page Object.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def url(self) -&gt; str:
+    &#34;&#34;&#34;Get the url defined for this Page Object.&#34;&#34;&#34;
+    return self._url</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="pom_elements.Page.back"><code class="name flex">
+<span>def <span class="ident">back</span></span>(<span>self) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Navigate back one page on the web browser.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def back(self) -&gt; None:
+    &#34;&#34;&#34;Navigate back one page on the web browser.&#34;&#34;&#34;
+    self.webdriver.back()</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.Page.forward"><code class="name flex">
+<span>def <span class="ident">forward</span></span>(<span>self) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Navigate forward one page on the web browser.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def forward(self) -&gt; None:
+    &#34;&#34;&#34;Navigate forward one page on the web browser.&#34;&#34;&#34;
+    self.webdriver.forward()</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.Page.get"><code class="name flex">
+<span>def <span class="ident">get</span></span>(<span>self, url: str) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Navigate to the provided url.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>url</code></strong></dt>
+<dd>A url as a string.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get(self, url: str) -&gt; None:
+    &#34;&#34;&#34;Navigate to the provided url.
+
+    Args:
+        url: A url as a string.
+    &#34;&#34;&#34;
+    self.webdriver.get(url)</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.Page.go"><code class="name flex">
+<span>def <span class="ident">go</span></span>(<span>self) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Navigate to the url set as the url for this Page object.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def go(self) -&gt; None:
+    &#34;&#34;&#34;Navigate to the url set as the url for this Page object.&#34;&#34;&#34;
+    self.webdriver.get(self.url)</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.Page.maximize_window"><code class="name flex">
+<span>def <span class="ident">maximize_window</span></span>(<span>self) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Maximize the web browser's window.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def maximize_window(self) -&gt; None:
+    &#34;&#34;&#34;Maximize the web browser&#39;s window.&#34;&#34;&#34;
+    self.webdriver.maximize_window()</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.Page.minimize_window"><code class="name flex">
+<span>def <span class="ident">minimize_window</span></span>(<span>self) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Minimize the web browser's window.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def minimize_window(self) -&gt; None:
+    &#34;&#34;&#34;Minimize the web browser&#39;s window.&#34;&#34;&#34;
+    self.webdriver.minimize_window()</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.Page.quit"><code class="name flex">
+<span>def <span class="ident">quit</span></span>(<span>self) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Quit the webdriver instance.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def quit(self) -&gt; None:
+    &#34;&#34;&#34;Quit the webdriver instance.&#34;&#34;&#34;
+    self.webdriver.quit()</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.Page.refresh"><code class="name flex">
+<span>def <span class="ident">refresh</span></span>(<span>self) -> NoneType</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Refresh the web browser.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def refresh(self) -&gt; None:
+    &#34;&#34;&#34;Refresh the web browser.&#34;&#34;&#34;
+    self.webdriver.refresh()</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="pom_elements.PageObject"><code class="flex name class">
+<span>class <span class="ident">PageObject</span></span>
+<span>(</span><span>webdriver: <module 'selenium.webdriver' from '/Users/nicklasb/Library/Caches/pypoetry/virtualenvs/pom-element-5SbT6Yqb-py3.8/lib/python3.8/site-packages/selenium/webdriver/__init__.py'> = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>The PageObject allows for abstracting web pages into full pages or sections.</p>
+<h2 id="todo">Todo</h2>
+<p>Add type hints for the Selenium library to add Optional[webdriver].</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>webdriver</code></strong> :&ensp;<code>webdriver</code></dt>
+<dd>A selenium webdriver instance for the PageObject.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class PageObject:
+    &#34;&#34;&#34;The PageObject allows for abstracting web pages into full pages or sections.
+
+    Todo:
+        Add type hints for the Selenium library to add Optional[webdriver].
+
+    Args:
+        webdriver (webdriver): A selenium webdriver instance for the PageObject.
+    &#34;&#34;&#34;
+
+    def __init__(self, webdriver: webdriver = None) -&gt; None:
+        if webdriver is not None:
+            self.webdriver = webdriver
+
+    def __get__(self, instance, owner):
+        &#34;&#34;&#34;Return a PageObject and set the webdriver to the webdriver of the parent PageObject instance.
+
+        The PageObject class allows users to create any number of PageObject instances
+        as class variables on a PageObject class and pass the webdriver from parent
+        PageObject class to itself.
+
+        Additionally, we are propogating the webdriver as instance variables rather than
+        class variables, as this allows us to create any number of PageObject instances
+        under a single PageObject representing the Page and use separate webdrivers. For
+        example, one test can verify a PageObject with a WebDriver.session_id for Chrome,
+        while a separate instantiated PageObject Page can have a WebDriver.session_id
+        for Firefox, Safari, or any other browser as available with Selenium.
+        &#34;&#34;&#34;
+        instance_webdriver = getattr(instance, &#34;webdriver&#34;, None)
+        if instance_webdriver is not None:
+            self.webdriver = instance_webdriver
+        return self</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="pom_elements.page_object.Page" href="page_object.html#pom_elements.page_object.Page">Page</a></li>
 </ul>
 </dd>
 <dt id="pom_elements.XPathElement"><code class="flex name class">
@@ -274,6 +715,14 @@ def locator(self) -&gt; Tuple[By, str]:
 </dl>
 <h3>Instance variables</h3>
 <dl>
+<dt id="pom_elements.XPathElement.default_timeout"><code class="name">var <span class="ident">default_timeout</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.default_timeout" href="base_element.html#pom_elements.base_element.BaseElement.default_timeout">default_timeout</a></code>
+</p>
+<div class="desc inherited"><p>Get the default timeout.</p></div>
+</dd>
 <dt id="pom_elements.XPathElement.locator"><code class="name">var <span class="ident">locator</span> : Tuple[selenium.webdriver.common.by.By, str]</code></dt>
 <dd>
 <div class="desc"><p>Return the Xpath Locator element.</p></div>
@@ -286,6 +735,14 @@ def locator(self) -&gt; Tuple[By, str]:
     &#34;&#34;&#34;Return the Xpath Locator element.&#34;&#34;&#34;
     return (By.XPATH, self.xpath)</code></pre>
 </details>
+</dd>
+<dt id="pom_elements.XPathElement.webdriver"><code class="name">var <span class="ident">webdriver</span> : <module 'selenium.webdriver' from '/Users/nicklasb/Library/Caches/pypoetry/virtualenvs/pom-element-5SbT6Yqb-py3.8/lib/python3.8/site-packages/selenium/webdriver/__init__.py'></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.webdriver" href="base_element.html#pom_elements.base_element.BaseElement.webdriver">webdriver</a></code>
+</p>
+<div class="desc inherited"><p>Get the Element's Selenium webdriver instance …</p></div>
 </dd>
 <dt id="pom_elements.XPathElement.xpath"><code class="name">var <span class="ident">xpath</span> : str</code></dt>
 <dd>
@@ -303,6 +760,26 @@ def xpath(self) -&gt; str:
 </dl>
 <h3>Methods</h3>
 <dl>
+<dt id="pom_elements.XPathElement.can_be_clicked"><code class="name flex">
+<span>def <span class="ident">can_be_clicked</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.can_be_clicked" href="base_element.html#pom_elements.base_element.BaseElement.can_be_clicked">can_be_clicked</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement can be clicked in the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.XPathElement.click"><code class="name flex">
+<span>def <span class="ident">click</span></span>(<span>self, timeout: Union[float, NoneType] = None)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.click" href="base_element.html#pom_elements.base_element.BaseElement.click">click</a></code>
+</p>
+<div class="desc inherited"><p>Click the web element if it is available to be clicked.</p></div>
+</dd>
 <dt id="pom_elements.XPathElement.find"><code class="name flex">
 <span>def <span class="ident">find</span></span>(<span>self, timeout: Union[float, NoneType] = None) -> selenium.webdriver.remote.webelement.WebElement</span>
 </code></dt>
@@ -341,19 +818,67 @@ def xpath(self) -&gt; str:
     return elem</code></pre>
 </details>
 </dd>
+<dt id="pom_elements.XPathElement.get_all_attributes"><code class="name flex">
+<span>def <span class="ident">get_all_attributes</span></span>(<span>self) -> dict</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.get_all_attributes" href="base_element.html#pom_elements.base_element.BaseElement.get_all_attributes">get_all_attributes</a></code>
+</p>
+<div class="desc inherited"><p>Return a dictionary containing all of the attributes of an element.</p></div>
+</dd>
+<dt id="pom_elements.XPathElement.get_attribute"><code class="name flex">
+<span>def <span class="ident">get_attribute</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.get_attribute" href="base_element.html#pom_elements.base_element.BaseElement.get_attribute">get_attribute</a></code>
+</p>
+<div class="desc inherited"><p>Returns the attribute of the name provided.</p></div>
+</dd>
+<dt id="pom_elements.XPathElement.get_property"><code class="name flex">
+<span>def <span class="ident">get_property</span></span>(<span>self, property: str) -> Any</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.get_property" href="base_element.html#pom_elements.base_element.BaseElement.get_property">get_property</a></code>
+</p>
+<div class="desc inherited"><p>Get the property of the element …</p></div>
+</dd>
+<dt id="pom_elements.XPathElement.is_displayed"><code class="name flex">
+<span>def <span class="ident">is_displayed</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.is_displayed" href="base_element.html#pom_elements.base_element.BaseElement.is_displayed">is_displayed</a></code>
+</p>
+<div class="desc inherited"><p>Returns true if the Element is displayed else false.</p></div>
+</dd>
+<dt id="pom_elements.XPathElement.is_invisible"><code class="name flex">
+<span>def <span class="ident">is_invisible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.is_invisible" href="base_element.html#pom_elements.base_element.BaseElement.is_invisible">is_invisible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is invisible on the page within the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.XPathElement.is_visible"><code class="name flex">
+<span>def <span class="ident">is_visible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.is_visible" href="base_element.html#pom_elements.base_element.BaseElement.is_visible">is_visible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is visible on the page in the time (seconds) provided …</p></div>
+</dd>
 </dl>
-<h3>Inherited members</h3>
-<ul class="hlist">
-<li><code><b><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></b></code>:
-<ul class="hlist">
-<li><code><a title="pom_elements.base_element.BaseElement.can_be_clicked" href="base_element.html#pom_elements.base_element.BaseElement.can_be_clicked">can_be_clicked</a></code></li>
-<li><code><a title="pom_elements.base_element.BaseElement.click" href="base_element.html#pom_elements.base_element.BaseElement.click">click</a></code></li>
-<li><code><a title="pom_elements.base_element.BaseElement.default_timeout" href="base_element.html#pom_elements.base_element.BaseElement.default_timeout">default_timeout</a></code></li>
-<li><code><a title="pom_elements.base_element.BaseElement.is_visible" href="base_element.html#pom_elements.base_element.BaseElement.is_visible">is_visible</a></code></li>
-<li><code><a title="pom_elements.base_element.BaseElement.webdriver" href="base_element.html#pom_elements.base_element.BaseElement.webdriver">webdriver</a></code></li>
-</ul>
-</li>
-</ul>
 </dd>
 </dl>
 </section>
@@ -377,16 +902,57 @@ def xpath(self) -&gt; str:
 <ul>
 <li>
 <h4><code><a title="pom_elements.MultiElement" href="#pom_elements.MultiElement">MultiElement</a></code></h4>
-<ul class="">
+<ul class="two-column">
+<li><code><a title="pom_elements.MultiElement.LOCATOR" href="#pom_elements.MultiElement.LOCATOR">LOCATOR</a></code></li>
+<li><code><a title="pom_elements.MultiElement.can_be_clicked" href="base_element.html#pom_elements.MultiElement.can_be_clicked">can_be_clicked</a></code></li>
+<li><code><a title="pom_elements.MultiElement.click" href="base_element.html#pom_elements.MultiElement.click">click</a></code></li>
+<li><code><a title="pom_elements.MultiElement.default_timeout" href="base_element.html#pom_elements.MultiElement.default_timeout">default_timeout</a></code></li>
+<li><code><a title="pom_elements.MultiElement.find" href="base_element.html#pom_elements.MultiElement.find">find</a></code></li>
+<li><code><a title="pom_elements.MultiElement.get_all_attributes" href="base_element.html#pom_elements.MultiElement.get_all_attributes">get_all_attributes</a></code></li>
+<li><code><a title="pom_elements.MultiElement.get_attribute" href="base_element.html#pom_elements.MultiElement.get_attribute">get_attribute</a></code></li>
+<li><code><a title="pom_elements.MultiElement.get_property" href="base_element.html#pom_elements.MultiElement.get_property">get_property</a></code></li>
+<li><code><a title="pom_elements.MultiElement.is_displayed" href="base_element.html#pom_elements.MultiElement.is_displayed">is_displayed</a></code></li>
+<li><code><a title="pom_elements.MultiElement.is_invisible" href="base_element.html#pom_elements.MultiElement.is_invisible">is_invisible</a></code></li>
+<li><code><a title="pom_elements.MultiElement.is_visible" href="base_element.html#pom_elements.MultiElement.is_visible">is_visible</a></code></li>
 <li><code><a title="pom_elements.MultiElement.locator" href="#pom_elements.MultiElement.locator">locator</a></code></li>
+<li><code><a title="pom_elements.MultiElement.webdriver" href="base_element.html#pom_elements.MultiElement.webdriver">webdriver</a></code></li>
 </ul>
 </li>
 <li>
+<h4><code><a title="pom_elements.Page" href="#pom_elements.Page">Page</a></code></h4>
+<ul class="two-column">
+<li><code><a title="pom_elements.Page.back" href="#pom_elements.Page.back">back</a></code></li>
+<li><code><a title="pom_elements.Page.current_url" href="#pom_elements.Page.current_url">current_url</a></code></li>
+<li><code><a title="pom_elements.Page.forward" href="#pom_elements.Page.forward">forward</a></code></li>
+<li><code><a title="pom_elements.Page.get" href="#pom_elements.Page.get">get</a></code></li>
+<li><code><a title="pom_elements.Page.go" href="#pom_elements.Page.go">go</a></code></li>
+<li><code><a title="pom_elements.Page.maximize_window" href="#pom_elements.Page.maximize_window">maximize_window</a></code></li>
+<li><code><a title="pom_elements.Page.minimize_window" href="#pom_elements.Page.minimize_window">minimize_window</a></code></li>
+<li><code><a title="pom_elements.Page.quit" href="#pom_elements.Page.quit">quit</a></code></li>
+<li><code><a title="pom_elements.Page.refresh" href="#pom_elements.Page.refresh">refresh</a></code></li>
+<li><code><a title="pom_elements.Page.title" href="#pom_elements.Page.title">title</a></code></li>
+<li><code><a title="pom_elements.Page.url" href="#pom_elements.Page.url">url</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pom_elements.PageObject" href="#pom_elements.PageObject">PageObject</a></code></h4>
+</li>
+<li>
 <h4><code><a title="pom_elements.XPathElement" href="#pom_elements.XPathElement">XPathElement</a></code></h4>
-<ul class="">
+<ul class="two-column">
+<li><code><a title="pom_elements.XPathElement.can_be_clicked" href="base_element.html#pom_elements.XPathElement.can_be_clicked">can_be_clicked</a></code></li>
+<li><code><a title="pom_elements.XPathElement.click" href="base_element.html#pom_elements.XPathElement.click">click</a></code></li>
+<li><code><a title="pom_elements.XPathElement.default_timeout" href="base_element.html#pom_elements.XPathElement.default_timeout">default_timeout</a></code></li>
 <li><code><a title="pom_elements.XPathElement.find" href="#pom_elements.XPathElement.find">find</a></code></li>
+<li><code><a title="pom_elements.XPathElement.get_all_attributes" href="base_element.html#pom_elements.XPathElement.get_all_attributes">get_all_attributes</a></code></li>
+<li><code><a title="pom_elements.XPathElement.get_attribute" href="base_element.html#pom_elements.XPathElement.get_attribute">get_attribute</a></code></li>
+<li><code><a title="pom_elements.XPathElement.get_property" href="base_element.html#pom_elements.XPathElement.get_property">get_property</a></code></li>
+<li><code><a title="pom_elements.XPathElement.is_displayed" href="base_element.html#pom_elements.XPathElement.is_displayed">is_displayed</a></code></li>
+<li><code><a title="pom_elements.XPathElement.is_invisible" href="base_element.html#pom_elements.XPathElement.is_invisible">is_invisible</a></code></li>
+<li><code><a title="pom_elements.XPathElement.is_visible" href="base_element.html#pom_elements.XPathElement.is_visible">is_visible</a></code></li>
 <li><code><a title="pom_elements.XPathElement.locator" href="#pom_elements.XPathElement.locator">locator</a></code></li>
 <li><code><a title="pom_elements.XPathElement.tag" href="#pom_elements.XPathElement.tag">tag</a></code></li>
+<li><code><a title="pom_elements.XPathElement.webdriver" href="base_element.html#pom_elements.XPathElement.webdriver">webdriver</a></code></li>
 <li><code><a title="pom_elements.XPathElement.xpath" href="#pom_elements.XPathElement.xpath">xpath</a></code></li>
 </ul>
 </li>

@@ -24,7 +24,7 @@
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from typing import Optional, Tuple
+<pre><code class="python">from typing import Optional, Tuple, Union
 
 from pom_elements.base_element import BaseElement
 from selenium import webdriver
@@ -32,30 +32,37 @@ from selenium.webdriver.common.by import By
 
 
 class MultiElement(BaseElement):
-    &#34;&#34;&#34;Set any Page Element using a Selenium Locators.&#34;&#34;&#34;
+    &#34;&#34;&#34;Set any Page Element using a Selenium Locators.
 
-    _LOCATOR_MAP = {
+    Args:
+        webdriver (webdriver): A selenium webdriver instance.
+        timeout (float): An integer or float. Defaults to default timeout if not set.
+    &#34;&#34;&#34;
+
+    LOCATOR = {
         &#34;css&#34;: By.CSS_SELECTOR,
         &#34;id_&#34;: By.ID,
         &#34;name&#34;: By.NAME,
-        &#34;xpath&#34;: By.XPATH,
+        &#34;class_name&#34;: By.CLASS_NAME,
         &#34;link_text&#34;: By.LINK_TEXT,
         &#34;partial_link_text&#34;: By.PARTIAL_LINK_TEXT,
         &#34;tag_name&#34;: By.TAG_NAME,
-        &#34;class_name&#34;: By.CLASS_NAME,
+        &#34;xpath&#34;: By.XPATH,
     }
+    &#34;&#34;&#34;The dictionary containing the Selenium LOCATOR reference.&#34;&#34;&#34;
 
     def __init__(
         self, webdriver: webdriver = None, timeout: Optional[float] = 0.5, **kwargs
     ) -&gt; None:
-        if kwargs is None:
+        locators = {k: v for k, v in kwargs.items() if k in self.LOCATOR}
+        if len(locators) == 0 or kwargs is None:
             raise AttributeError(&#34;No attribute was set. Please set a Locator.&#34;)
-        if len(kwargs) &gt; 1:
+        if len(locators) &gt; 1:
             raise AttributeError(
                 &#34;Two attributes set and this can only set a single Locator.&#34;
             )
-        k, v = next(iter(kwargs.items()))
-        self._locator = (self._LOCATOR_MAP[k], v)
+        k, v = next(iter(locators.items()))
+        self._locator = (self.LOCATOR[k], v)
         super().__init__(webdriver, timeout)
 
     @property
@@ -64,9 +71,11 @@ class MultiElement(BaseElement):
         return self._locator
 
     @locator.setter
-    def locator(self, locator: Tuple[By, str]) -&gt; None:
+    def locator(self, locator: Union[Tuple[str, str], str]) -&gt; None:
         &#34;&#34;&#34;Set the locator for the class.&#34;&#34;&#34;
-        self._locator = locator</code></pre>
+        raise NotImplementedError(
+            &#34;Changing an Element&#39;s locator is not avilable at this time.&#34;
+        )</code></pre>
 </details>
 </section>
 <section>
@@ -83,36 +92,50 @@ class MultiElement(BaseElement):
 <span>(</span><span>webdriver: <module 'selenium.webdriver' from '/Users/nicklasb/Library/Caches/pypoetry/virtualenvs/pom-element-5SbT6Yqb-py3.8/lib/python3.8/site-packages/selenium/webdriver/__init__.py'> = None, timeout: Union[float, NoneType] = 0.5, **kwargs)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Set any Page Element using a Selenium Locators.</p></div>
+<div class="desc"><p>Set any Page Element using a Selenium Locators.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>webdriver</code></strong> :&ensp;<code>webdriver</code></dt>
+<dd>A selenium webdriver instance.</dd>
+<dt><strong><code>timeout</code></strong> :&ensp;<code>float</code></dt>
+<dd>An integer or float. Defaults to default timeout if not set.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class MultiElement(BaseElement):
-    &#34;&#34;&#34;Set any Page Element using a Selenium Locators.&#34;&#34;&#34;
+    &#34;&#34;&#34;Set any Page Element using a Selenium Locators.
 
-    _LOCATOR_MAP = {
+    Args:
+        webdriver (webdriver): A selenium webdriver instance.
+        timeout (float): An integer or float. Defaults to default timeout if not set.
+    &#34;&#34;&#34;
+
+    LOCATOR = {
         &#34;css&#34;: By.CSS_SELECTOR,
         &#34;id_&#34;: By.ID,
         &#34;name&#34;: By.NAME,
-        &#34;xpath&#34;: By.XPATH,
+        &#34;class_name&#34;: By.CLASS_NAME,
         &#34;link_text&#34;: By.LINK_TEXT,
         &#34;partial_link_text&#34;: By.PARTIAL_LINK_TEXT,
         &#34;tag_name&#34;: By.TAG_NAME,
-        &#34;class_name&#34;: By.CLASS_NAME,
+        &#34;xpath&#34;: By.XPATH,
     }
+    &#34;&#34;&#34;The dictionary containing the Selenium LOCATOR reference.&#34;&#34;&#34;
 
     def __init__(
         self, webdriver: webdriver = None, timeout: Optional[float] = 0.5, **kwargs
     ) -&gt; None:
-        if kwargs is None:
+        locators = {k: v for k, v in kwargs.items() if k in self.LOCATOR}
+        if len(locators) == 0 or kwargs is None:
             raise AttributeError(&#34;No attribute was set. Please set a Locator.&#34;)
-        if len(kwargs) &gt; 1:
+        if len(locators) &gt; 1:
             raise AttributeError(
                 &#34;Two attributes set and this can only set a single Locator.&#34;
             )
-        k, v = next(iter(kwargs.items()))
-        self._locator = (self._LOCATOR_MAP[k], v)
+        k, v = next(iter(locators.items()))
+        self._locator = (self.LOCATOR[k], v)
         super().__init__(webdriver, timeout)
 
     @property
@@ -121,17 +144,34 @@ class MultiElement(BaseElement):
         return self._locator
 
     @locator.setter
-    def locator(self, locator: Tuple[By, str]) -&gt; None:
+    def locator(self, locator: Union[Tuple[str, str], str]) -&gt; None:
         &#34;&#34;&#34;Set the locator for the class.&#34;&#34;&#34;
-        self._locator = locator</code></pre>
+        raise NotImplementedError(
+            &#34;Changing an Element&#39;s locator is not avilable at this time.&#34;
+        )</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></li>
 <li>abc.ABC</li>
 </ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="pom_elements.multi_element.MultiElement.LOCATOR"><code class="name">var <span class="ident">LOCATOR</span></code></dt>
+<dd>
+<div class="desc"><p>The dictionary containing the Selenium LOCATOR reference.</p></div>
+</dd>
+</dl>
 <h3>Instance variables</h3>
 <dl>
+<dt id="pom_elements.multi_element.MultiElement.default_timeout"><code class="name">var <span class="ident">default_timeout</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.default_timeout" href="base_element.html#pom_elements.base_element.BaseElement.default_timeout">default_timeout</a></code>
+</p>
+<div class="desc inherited"><p>Get the default timeout.</p></div>
+</dd>
 <dt id="pom_elements.multi_element.MultiElement.locator"><code class="name">var <span class="ident">locator</span> : Tuple[selenium.webdriver.common.by.By, str]</code></dt>
 <dd>
 <div class="desc"><p>Return the locator set on the class.</p></div>
@@ -145,20 +185,108 @@ def locator(self) -&gt; Tuple[By, str]:
     return self._locator</code></pre>
 </details>
 </dd>
+<dt id="pom_elements.multi_element.MultiElement.webdriver"><code class="name">var <span class="ident">webdriver</span> : <module 'selenium.webdriver' from '/Users/nicklasb/Library/Caches/pypoetry/virtualenvs/pom-element-5SbT6Yqb-py3.8/lib/python3.8/site-packages/selenium/webdriver/__init__.py'></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.webdriver" href="base_element.html#pom_elements.base_element.BaseElement.webdriver">webdriver</a></code>
+</p>
+<div class="desc inherited"><p>Get the Element's Selenium webdriver instance …</p></div>
+</dd>
 </dl>
-<h3>Inherited members</h3>
-<ul class="hlist">
-<li><code><b><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></b></code>:
-<ul class="hlist">
-<li><code><a title="pom_elements.base_element.BaseElement.can_be_clicked" href="base_element.html#pom_elements.base_element.BaseElement.can_be_clicked">can_be_clicked</a></code></li>
-<li><code><a title="pom_elements.base_element.BaseElement.click" href="base_element.html#pom_elements.base_element.BaseElement.click">click</a></code></li>
-<li><code><a title="pom_elements.base_element.BaseElement.default_timeout" href="base_element.html#pom_elements.base_element.BaseElement.default_timeout">default_timeout</a></code></li>
-<li><code><a title="pom_elements.base_element.BaseElement.find" href="base_element.html#pom_elements.base_element.BaseElement.find">find</a></code></li>
-<li><code><a title="pom_elements.base_element.BaseElement.is_visible" href="base_element.html#pom_elements.base_element.BaseElement.is_visible">is_visible</a></code></li>
-<li><code><a title="pom_elements.base_element.BaseElement.webdriver" href="base_element.html#pom_elements.base_element.BaseElement.webdriver">webdriver</a></code></li>
-</ul>
-</li>
-</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="pom_elements.multi_element.MultiElement.can_be_clicked"><code class="name flex">
+<span>def <span class="ident">can_be_clicked</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.can_be_clicked" href="base_element.html#pom_elements.base_element.BaseElement.can_be_clicked">can_be_clicked</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement can be clicked in the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.multi_element.MultiElement.click"><code class="name flex">
+<span>def <span class="ident">click</span></span>(<span>self, timeout: Union[float, NoneType] = None)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.click" href="base_element.html#pom_elements.base_element.BaseElement.click">click</a></code>
+</p>
+<div class="desc inherited"><p>Click the web element if it is available to be clicked.</p></div>
+</dd>
+<dt id="pom_elements.multi_element.MultiElement.find"><code class="name flex">
+<span>def <span class="ident">find</span></span>(<span>self, timeout: Union[float, NoneType] = None) -> selenium.webdriver.remote.webelement.WebElement</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.find" href="base_element.html#pom_elements.base_element.BaseElement.find">find</a></code>
+</p>
+<div class="desc inherited"><p>Returns the defined Selenium WebElement in the provided timeout or raise an error …</p></div>
+</dd>
+<dt id="pom_elements.multi_element.MultiElement.get_all_attributes"><code class="name flex">
+<span>def <span class="ident">get_all_attributes</span></span>(<span>self) -> dict</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.get_all_attributes" href="base_element.html#pom_elements.base_element.BaseElement.get_all_attributes">get_all_attributes</a></code>
+</p>
+<div class="desc inherited"><p>Return a dictionary containing all of the attributes of an element.</p></div>
+</dd>
+<dt id="pom_elements.multi_element.MultiElement.get_attribute"><code class="name flex">
+<span>def <span class="ident">get_attribute</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.get_attribute" href="base_element.html#pom_elements.base_element.BaseElement.get_attribute">get_attribute</a></code>
+</p>
+<div class="desc inherited"><p>Returns the attribute of the name provided.</p></div>
+</dd>
+<dt id="pom_elements.multi_element.MultiElement.get_property"><code class="name flex">
+<span>def <span class="ident">get_property</span></span>(<span>self, property: str) -> Any</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.get_property" href="base_element.html#pom_elements.base_element.BaseElement.get_property">get_property</a></code>
+</p>
+<div class="desc inherited"><p>Get the property of the element …</p></div>
+</dd>
+<dt id="pom_elements.multi_element.MultiElement.is_displayed"><code class="name flex">
+<span>def <span class="ident">is_displayed</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.is_displayed" href="base_element.html#pom_elements.base_element.BaseElement.is_displayed">is_displayed</a></code>
+</p>
+<div class="desc inherited"><p>Returns true if the Element is displayed else false.</p></div>
+</dd>
+<dt id="pom_elements.multi_element.MultiElement.is_invisible"><code class="name flex">
+<span>def <span class="ident">is_invisible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.is_invisible" href="base_element.html#pom_elements.base_element.BaseElement.is_invisible">is_invisible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is invisible on the page within the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.multi_element.MultiElement.is_visible"><code class="name flex">
+<span>def <span class="ident">is_visible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.base_element.BaseElement" href="base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></code>.<code><a title="pom_elements.base_element.BaseElement.is_visible" href="base_element.html#pom_elements.base_element.BaseElement.is_visible">is_visible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is visible on the page in the time (seconds) provided …</p></div>
+</dd>
+</dl>
 </dd>
 </dl>
 </section>
@@ -178,8 +306,20 @@ def locator(self) -&gt; Tuple[By, str]:
 <ul>
 <li>
 <h4><code><a title="pom_elements.multi_element.MultiElement" href="#pom_elements.multi_element.MultiElement">MultiElement</a></code></h4>
-<ul class="">
+<ul class="two-column">
+<li><code><a title="pom_elements.multi_element.MultiElement.LOCATOR" href="#pom_elements.multi_element.MultiElement.LOCATOR">LOCATOR</a></code></li>
+<li><code><a title="pom_elements.multi_element.MultiElement.can_be_clicked" href="base_element.html#pom_elements.multi_element.MultiElement.can_be_clicked">can_be_clicked</a></code></li>
+<li><code><a title="pom_elements.multi_element.MultiElement.click" href="base_element.html#pom_elements.multi_element.MultiElement.click">click</a></code></li>
+<li><code><a title="pom_elements.multi_element.MultiElement.default_timeout" href="base_element.html#pom_elements.multi_element.MultiElement.default_timeout">default_timeout</a></code></li>
+<li><code><a title="pom_elements.multi_element.MultiElement.find" href="base_element.html#pom_elements.multi_element.MultiElement.find">find</a></code></li>
+<li><code><a title="pom_elements.multi_element.MultiElement.get_all_attributes" href="base_element.html#pom_elements.multi_element.MultiElement.get_all_attributes">get_all_attributes</a></code></li>
+<li><code><a title="pom_elements.multi_element.MultiElement.get_attribute" href="base_element.html#pom_elements.multi_element.MultiElement.get_attribute">get_attribute</a></code></li>
+<li><code><a title="pom_elements.multi_element.MultiElement.get_property" href="base_element.html#pom_elements.multi_element.MultiElement.get_property">get_property</a></code></li>
+<li><code><a title="pom_elements.multi_element.MultiElement.is_displayed" href="base_element.html#pom_elements.multi_element.MultiElement.is_displayed">is_displayed</a></code></li>
+<li><code><a title="pom_elements.multi_element.MultiElement.is_invisible" href="base_element.html#pom_elements.multi_element.MultiElement.is_invisible">is_invisible</a></code></li>
+<li><code><a title="pom_elements.multi_element.MultiElement.is_visible" href="base_element.html#pom_elements.multi_element.MultiElement.is_visible">is_visible</a></code></li>
 <li><code><a title="pom_elements.multi_element.MultiElement.locator" href="#pom_elements.multi_element.MultiElement.locator">locator</a></code></li>
+<li><code><a title="pom_elements.multi_element.MultiElement.webdriver" href="base_element.html#pom_elements.multi_element.MultiElement.webdriver">webdriver</a></code></li>
 </ul>
 </li>
 </ul>
