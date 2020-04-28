@@ -191,7 +191,7 @@ class BaseElement(ABC):
             self.web_element,
         )
 
-    def get_property(self, property: str) -> Any:
+    def get_property(self, value: str) -> Any:
         """Get the property of the element.
 
         Args:
@@ -200,7 +200,7 @@ class BaseElement(ABC):
         Returns:
             The property of the provided name.
         """
-        return self.webdriver.get_property(property)
+        return self.webdriver.get_property(value)
 
     def __get__(self, instance, owner):
         """Update the __get__ method to set the webdriver and refresh the webelement.
