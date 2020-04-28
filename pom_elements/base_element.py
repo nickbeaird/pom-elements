@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Optional
+from typing import Any, Optional
 
 from pom_elements.harness import Harness
 from selenium import webdriver
@@ -81,6 +81,26 @@ class BaseElement(ABC):
             return True
         return False
 
+    def is_invisible(self, timeout: Optional[int] = None) -> bool:
+        """Return true if the webelement is invisible on the page within the time (seconds) provided.
+
+        Args:
+            timeout: The length of time that we expect the WebElement to return that it
+            is in visible. Defaults to the _default_timeout if not set.
+
+        Returns:
+            bool: True if element is visible.
+        """
+        if timeout is None:
+            timeout = self.default_timeout
+
+        is_visible = WebDriverWait(self.webdriver, timeout).until(
+            EC.invisibility_of_element(self.locator)
+        )
+        if is_visible:
+            return True
+        return False
+
     def can_be_clicked(self, timeout: Optional[int] = None) -> bool:
         """Return true if the webelement can be clicked in the time (seconds) provided.
 
@@ -96,7 +116,7 @@ class BaseElement(ABC):
         # The method returns an webelement if true and false otherwise. We ignore the
         # found Selenium WebElement as we already have this item stored.
         is_clickable = WebDriverWait(self.webdriver, timeout).until(
-            EC.visibility_of(self.web_element)
+            EC.element_to_be_clickable(self.locator)
         )
         if is_clickable is False:
             return False
@@ -148,6 +168,39 @@ class BaseElement(ABC):
 
         self.find(timeout=timeout)
         self.web_element.click()
+
+    def is_displayed(self):
+        """Returns true if the Element is displayed else false."""
+        is_displayed = self.webdriver.is_displayed()
+        if is_displayed:
+            return True
+        return False
+
+    def get_attribute(self, name):
+        """Returns the attribute of the name provided."""
+        return self.webdriver.get_attribute(name)
+
+    def get_all_attributes(self) -> dict:
+        """Return a dictionary containing all of the attributes of an element."""
+        if not self.webdriver.execute_script:
+            raise AttributeError(
+                "This webdriver type does not have this ability at this time."
+            )
+        return self.webdriver.execute_script(
+            "var items = {}; for (index = 0; index < arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;",
+            self.web_element,
+        )
+
+    def get_property(self, value: str) -> Any:
+        """Get the property of the element.
+
+        Args:
+            property - Name of the property to retrieve.
+
+        Returns:
+            The property of the provided name.
+        """
+        return self.webdriver.get_property(value)
 
     def __get__(self, instance, owner):
         """Update the __get__ method to set the webdriver and refresh the webelement.

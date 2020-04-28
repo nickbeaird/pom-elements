@@ -131,11 +131,11 @@ class Page(PageObject):
 
     def maximize_window(self) -&gt; None:
         &#34;&#34;&#34;Maximize the web browser&#39;s window.&#34;&#34;&#34;
-        self.webdriver.maximize_window
+        self.webdriver.maximize_window()
 
     def minimize_window(self) -&gt; None:
         &#34;&#34;&#34;Minimize the web browser&#39;s window.&#34;&#34;&#34;
-        self.webdriver.minimize_window</code></pre>
+        self.webdriver.minimize_window()</code></pre>
 </details>
 </section>
 <section>
@@ -237,11 +237,11 @@ browser instance, and not elements on a single web page.</p>
 
     def maximize_window(self) -&gt; None:
         &#34;&#34;&#34;Maximize the web browser&#39;s window.&#34;&#34;&#34;
-        self.webdriver.maximize_window
+        self.webdriver.maximize_window()
 
     def minimize_window(self) -&gt; None:
         &#34;&#34;&#34;Minimize the web browser&#39;s window.&#34;&#34;&#34;
-        self.webdriver.minimize_window</code></pre>
+        self.webdriver.minimize_window()</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -367,7 +367,7 @@ def url(self) -&gt; str:
 </summary>
 <pre><code class="python">def maximize_window(self) -&gt; None:
     &#34;&#34;&#34;Maximize the web browser&#39;s window.&#34;&#34;&#34;
-    self.webdriver.maximize_window</code></pre>
+    self.webdriver.maximize_window()</code></pre>
 </details>
 </dd>
 <dt id="pom_elements.page_object.Page.minimize_window"><code class="name flex">
@@ -381,7 +381,7 @@ def url(self) -&gt; str:
 </summary>
 <pre><code class="python">def minimize_window(self) -&gt; None:
     &#34;&#34;&#34;Minimize the web browser&#39;s window.&#34;&#34;&#34;
-    self.webdriver.minimize_window</code></pre>
+    self.webdriver.minimize_window()</code></pre>
 </details>
 </dd>
 <dt id="pom_elements.page_object.Page.quit"><code class="name flex">
