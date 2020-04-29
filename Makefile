@@ -17,8 +17,10 @@ test:
 coverage:
 	@poetry run pytest --cov=pom_elements tests
 
+.PHONY: docs
 docs:
 	# Create a directory of updated docs
+	rm docs/pom_elements/*
 	@pdoc --config show_inherited_members=True --html --output-dir docs pom_elements --force
 
 doc-server:

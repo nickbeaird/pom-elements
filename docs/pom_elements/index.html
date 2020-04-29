@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.8.1" />
 <title>pom_elements API documentation</title>
-<meta name="description" content="POM-Elements allows for creating Page Object and adding Page Elements (MultiElement, XPathElement)." />
+<meta name="description" content="The Python package `pom-elements` for making Page Object and extend page Elements …" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
@@ -20,12 +20,101 @@
 <h1 class="title">Package <code>pom_elements</code></h1>
 </header>
 <section id="section-intro">
-<p>POM-Elements allows for creating Page Object and adding Page Elements (MultiElement, XPathElement).</p>
+<p>The Python package <code>pom-elements</code> for making Page Object and extend page Elements.</p>
+<p><code>pom-elements</code> allows for creating Page Object Models for your testing needs and
+extending the model to Elements on the Page. The project is currently only supporting
+Selenium webdriver instance, but is intended to help test writers abstract testing
+organization around web page development choices.</p>
+<p><code>pom-elements</code> allows for easily creating dynamic Page Objects and for simplifying the
+element locators on your page.</p>
+<h2 id="examples-elements">Examples - Elements</h2>
+<p>Write tests using any <code>Selenium Locator</code> (i.e. css, id, xpath, name, etc.) of your choosing.</p>
+<pre><code>&gt;&gt;&gt; element = MultiElement(
+...     css="#recordlist li:nth-child(4)",
+...     webdriver=selenium,
+...     timeout=5)
+...
+&gt;&gt;&gt; element.is_visible()
+True
+&gt;&gt;&gt; element.click()
+</code></pre>
+<p>Or simplify complex xpath arguments with XPathElement.</p>
+<pre><code>&gt;&gt;&gt; xpath_element = XPathElement(
+...                     webdriver=selenium,
+...                     xpath='//a',
+...                     foo='bar',
+...                     baz='spam',
+...                     timeout=3
+...                 )
+&gt;&gt;&gt; xpath_element.xpath
+'//a[@foo="bar"][@baz="spam"]'
+&gt;&gt;&gt; xpath_element.is_invisible()
+False
+&gt;&gt;&gt; xpath_element.can_be_clicked()
+True
+</code></pre>
+<h2 id="examples-page-and-pageobject">Examples - Page and PageObject</h2>
+<p>Organize your tests around a Page.</p>
+<pre><code>&gt;&gt;&gt; class GoogleHomePage(Page):
+...     search_bar = XPathElemnent(xpath='//input', name="search")
+...
+&gt;&gt;&gt; google = GoogleHomePage(
+...              webdriver=selenium,
+...              url='http://google.com'
+...           )
+&gt;&gt;&gt; google.go()
+&gt;&gt;&gt; google.current_url
+'https://www.google.com'
+&gt;&gt;&gt; google.search_bar.send_keys('pom-elements is cool!')
+</code></pre>
+<p>Or a section of a page as an individual PageObject.</p>
+<pre><code>&gt;&gt;&gt; class Header(PageObject):
+...     dropdown = XPathElement(xpath'//button', html_class="btn btn-secondary dropdown-toggle")
+...
+&gt;&gt;&gt; header = Header(webriver=webdriver)
+&gt;&gt;&gt; header.dropdown.click()
+</code></pre>
+<p>Putting it all togher allows organizing entire pages with PageObjects and PageElements&hellip;</p>
+<pre><code>&gt;&gt;&gt; class PageHeader(PageObject):
+...     dropdown = MultiElement(css="div &gt; a")
+...
+&gt;&gt;&gt; class PageFooter(PageObject):
+...     logo = XPath(xpath='//img[dat-attrib="best_image"]')
+...
+&gt;&gt;&gt; class MyPage(PageObject):
+...     header = PageHeader()
+...     footer = PageFooter()
+</code></pre>
+<p>&hellip;Set the webdriver on the Parent PageObject instance&hellip;</p>
+<pre><code>&gt;&gt;&gt; mypage = MyPage(webdriver=selenium)
+...
+&gt;&gt;&gt; mypage.header.dropdown.is_visible()
+True
+</code></pre>
+<p>&hellip;and access the webdriver on all instances of the PageObject or Element set on them.</p>
+<pre><code>&gt;&gt;&gt; mypage.footer.click()
+</code></pre>
+<h2 id="features">Features</h2>
+<ul>
+<li>Organize your tests to reflect how your web page is desinged (Page Objects).</li>
+<li>Augment your current tests by using through the organization of Pages, PageObjects, or individual Elements.</li>
+<li>Allows test writers to bring their favorite locator of choice (MultiElement).</li>
+<li>Use any number of nested PageObjects without needing to manually hand off a webdriver to each instance.</li>
+<li>Improve the experience of debugging through geting the Element on every call (Descriptor Protocol).</li>
+</ul>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">&#34;&#34;&#34;POM-Elements allows for creating Page Object and adding Page Elements (MultiElement, XPathElement).&#34;&#34;&#34;
+<pre><code class="python">&#34;&#34;&#34;The Python package `pom-elements` for making Page Object and extend page Elements.
+
+`pom-elements` allows for creating Page Object Models for your testing needs and
+extending the model to Elements on the Page. The project is currently only supporting
+Selenium webdriver instance, but is intended to help test writers abstract testing
+organization around web page development choices.
+
+.. include:: ../documentation.md
+&#34;&#34;&#34;
 
 from .multi_element import MultiElement
 from .page_object import Page, PageObject
@@ -38,10 +127,6 @@ __all__ = [&#34;MultiElement&#34;, &#34;XPathElement&#34;, &#34;PageObject&#34;,
 <h2 class="section-title" id="header-submodules">Sub-modules</h2>
 <dl>
 <dt><code class="name"><a title="pom_elements.base_element" href="base_element.html">pom_elements.base_element</a></code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt><code class="name"><a title="pom_elements.harness" href="harness.html">pom_elements.harness</a></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -78,6 +163,27 @@ __all__ = [&#34;MultiElement&#34;, &#34;XPathElement&#34;, &#34;PageObject&#34;,
 <dd>A selenium webdriver instance.</dd>
 <dt><strong><code>timeout</code></strong> :&ensp;<code>float</code></dt>
 <dd>An integer or float. Defaults to default timeout if not set.</dd>
+<dt><strong><code>css</code></strong> :&ensp;<code>str</code></dt>
+<dd>the string represenation of a css selector. Uses By.CSS_SELECTOR.</dd>
+<dt><strong><code>id_</code></strong> :&ensp;<code>str</code></dt>
+<dd>the html id of the page element. Uses By.ID.</dd>
+<dt><strong><code>class_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>the html class of the page element. Uses By.NAME.</dd>
+<dt><strong><code>link_text</code></strong> :&ensp;<code>str</code></dt>
+<dd>the texts of provided link. Uses By.LINK_TEXT.</dd>
+<dt><strong><code>partial_link_text</code></strong> :&ensp;<code>str</code></dt>
+<dd>the partial text of a link. Uses. By.PARTIAL_LINK_TEXT.</dd>
+<dt><strong><code>tag</code></strong> :&ensp;<code>str</code></dt>
+<dd>the name of the name. Uses By.TAG_NAME.</dd>
+<dt><strong><code>xpath</code></strong> :&ensp;<code>str</code></dt>
+<dd>the xpath query of the page element. Uses. By.XPATH.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>AttributeError</code></dt>
+<dd>The MultiClass selector must have one locator type and query.</dd>
+<dt><code>AttributeError</code></dt>
+<dd>The MultiClass cannot have more then one locator type and query.</dd>
 </dl></div>
 <details class="source">
 <summary>
@@ -89,6 +195,17 @@ __all__ = [&#34;MultiElement&#34;, &#34;XPathElement&#34;, &#34;PageObject&#34;,
     Args:
         webdriver (webdriver): A selenium webdriver instance.
         timeout (float): An integer or float. Defaults to default timeout if not set.
+        css (str): the string represenation of a css selector. Uses By.CSS_SELECTOR.
+        id_ (str): the html id of the page element. Uses By.ID.
+        class_name (str): the html class of the page element. Uses By.NAME.
+        link_text (str): the texts of provided link. Uses By.LINK_TEXT.
+        partial_link_text (str): the partial text of a link. Uses. By.PARTIAL_LINK_TEXT.
+        tag (str): the name of the name. Uses By.TAG_NAME.
+        xpath (str): the xpath query of the page element. Uses. By.XPATH.
+
+    Raises:
+        AttributeError: The MultiClass selector must have one locator type and query.
+        AttributeError: The MultiClass cannot have more then one locator type and query.
     &#34;&#34;&#34;
 
     LOCATOR = {
@@ -98,7 +215,7 @@ __all__ = [&#34;MultiElement&#34;, &#34;XPathElement&#34;, &#34;PageObject&#34;,
         &#34;class_name&#34;: By.CLASS_NAME,
         &#34;link_text&#34;: By.LINK_TEXT,
         &#34;partial_link_text&#34;: By.PARTIAL_LINK_TEXT,
-        &#34;tag_name&#34;: By.TAG_NAME,
+        &#34;tag&#34;: By.TAG_NAME,
         &#34;xpath&#34;: By.XPATH,
     }
     &#34;&#34;&#34;The dictionary containing the Selenium LOCATOR reference.&#34;&#34;&#34;
@@ -226,7 +343,7 @@ def locator(self) -&gt; Tuple[By, str]:
 <div class="desc inherited"><p>Returns the attribute of the name provided.</p></div>
 </dd>
 <dt id="pom_elements.MultiElement.get_property"><code class="name flex">
-<span>def <span class="ident">get_property</span></span>(<span>self, property: str) -> Any</span>
+<span>def <span class="ident">get_property</span></span>(<span>self, value: str) -> Any</span>
 </code></dt>
 <dd>
 <p class="inheritance">
@@ -839,7 +956,7 @@ def xpath(self) -&gt; str:
 <div class="desc inherited"><p>Returns the attribute of the name provided.</p></div>
 </dd>
 <dt id="pom_elements.XPathElement.get_property"><code class="name flex">
-<span>def <span class="ident">get_property</span></span>(<span>self, property: str) -> Any</span>
+<span>def <span class="ident">get_property</span></span>(<span>self, value: str) -> Any</span>
 </code></dt>
 <dd>
 <p class="inheritance">
@@ -886,13 +1003,16 @@ def xpath(self) -&gt; str:
 <nav id="sidebar">
 <h1>Index</h1>
 <div class="toc">
-<ul></ul>
+<ul>
+<li><a href="#examples-elements">Examples - Elements</a></li>
+<li><a href="#examples-page-and-pageobject">Examples - Page and PageObject</a></li>
+<li><a href="#features">Features</a></li>
+</ul>
 </div>
 <ul id="index">
 <li><h3><a href="#header-submodules">Sub-modules</a></h3>
 <ul>
 <li><code><a title="pom_elements.base_element" href="base_element.html">pom_elements.base_element</a></code></li>
-<li><code><a title="pom_elements.harness" href="harness.html">pom_elements.harness</a></code></li>
 <li><code><a title="pom_elements.multi_element" href="multi_element.html">pom_elements.multi_element</a></code></li>
 <li><code><a title="pom_elements.page_object" href="page_object.html">pom_elements.page_object</a></code></li>
 <li><code><a title="pom_elements.xpath_element" href="xpath_element.html">pom_elements.xpath_element</a></code></li>

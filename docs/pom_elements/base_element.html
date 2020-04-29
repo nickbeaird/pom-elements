@@ -27,7 +27,7 @@
 <pre><code class="python">from abc import ABC, abstractmethod
 from typing import Any, Optional
 
-from pom_elements.harness import Harness
+from pom_elements._harness import Harness
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.remote.webelement import WebElement
@@ -217,7 +217,7 @@ class BaseElement(ABC):
             self.web_element,
         )
 
-    def get_property(self, property: str) -&gt; Any:
+    def get_property(self, value: str) -&gt; Any:
         &#34;&#34;&#34;Get the property of the element.
 
         Args:
@@ -226,7 +226,7 @@ class BaseElement(ABC):
         Returns:
             The property of the provided name.
         &#34;&#34;&#34;
-        return self.webdriver.get_property
+        return self.webdriver.get_property(value)
 
     def __get__(self, instance, owner):
         &#34;&#34;&#34;Update the __get__ method to set the webdriver and refresh the webelement.
@@ -465,7 +465,7 @@ class BaseElement(ABC):
             self.web_element,
         )
 
-    def get_property(self, property: str) -&gt; Any:
+    def get_property(self, value: str) -&gt; Any:
         &#34;&#34;&#34;Get the property of the element.
 
         Args:
@@ -474,7 +474,7 @@ class BaseElement(ABC):
         Returns:
             The property of the provided name.
         &#34;&#34;&#34;
-        return self.webdriver.get_property
+        return self.webdriver.get_property(value)
 
     def __get__(self, instance, owner):
         &#34;&#34;&#34;Update the __get__ method to set the webdriver and refresh the webelement.
@@ -722,7 +722,7 @@ def webdriver(self) -&gt; webdriver:
 </details>
 </dd>
 <dt id="pom_elements.base_element.BaseElement.get_property"><code class="name flex">
-<span>def <span class="ident">get_property</span></span>(<span>self, property: str) -> Any</span>
+<span>def <span class="ident">get_property</span></span>(<span>self, value: str) -> Any</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get the property of the element.</p>
@@ -734,7 +734,7 @@ def webdriver(self) -&gt; webdriver:
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_property(self, property: str) -&gt; Any:
+<pre><code class="python">def get_property(self, value: str) -&gt; Any:
     &#34;&#34;&#34;Get the property of the element.
 
     Args:
@@ -743,7 +743,7 @@ def webdriver(self) -&gt; webdriver:
     Returns:
         The property of the provided name.
     &#34;&#34;&#34;
-    return self.webdriver.get_property</code></pre>
+    return self.webdriver.get_property(value)</code></pre>
 </details>
 </dd>
 <dt id="pom_elements.base_element.BaseElement.is_displayed"><code class="name flex">

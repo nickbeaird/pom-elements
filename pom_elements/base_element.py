@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Any, Optional
 
-from pom_elements.harness import Harness
+from pom_elements._harness import Harness
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.remote.webelement import WebElement

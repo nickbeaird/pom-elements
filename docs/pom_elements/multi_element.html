@@ -37,6 +37,17 @@ class MultiElement(BaseElement):
     Args:
         webdriver (webdriver): A selenium webdriver instance.
         timeout (float): An integer or float. Defaults to default timeout if not set.
+        css (str): the string represenation of a css selector. Uses By.CSS_SELECTOR.
+        id_ (str): the html id of the page element. Uses By.ID.
+        class_name (str): the html class of the page element. Uses By.NAME.
+        link_text (str): the texts of provided link. Uses By.LINK_TEXT.
+        partial_link_text (str): the partial text of a link. Uses. By.PARTIAL_LINK_TEXT.
+        tag (str): the name of the name. Uses By.TAG_NAME.
+        xpath (str): the xpath query of the page element. Uses. By.XPATH.
+
+    Raises:
+        AttributeError: The MultiClass selector must have one locator type and query.
+        AttributeError: The MultiClass cannot have more then one locator type and query.
     &#34;&#34;&#34;
 
     LOCATOR = {
@@ -46,7 +57,7 @@ class MultiElement(BaseElement):
         &#34;class_name&#34;: By.CLASS_NAME,
         &#34;link_text&#34;: By.LINK_TEXT,
         &#34;partial_link_text&#34;: By.PARTIAL_LINK_TEXT,
-        &#34;tag_name&#34;: By.TAG_NAME,
+        &#34;tag&#34;: By.TAG_NAME,
         &#34;xpath&#34;: By.XPATH,
     }
     &#34;&#34;&#34;The dictionary containing the Selenium LOCATOR reference.&#34;&#34;&#34;
@@ -99,6 +110,27 @@ class MultiElement(BaseElement):
 <dd>A selenium webdriver instance.</dd>
 <dt><strong><code>timeout</code></strong> :&ensp;<code>float</code></dt>
 <dd>An integer or float. Defaults to default timeout if not set.</dd>
+<dt><strong><code>css</code></strong> :&ensp;<code>str</code></dt>
+<dd>the string represenation of a css selector. Uses By.CSS_SELECTOR.</dd>
+<dt><strong><code>id_</code></strong> :&ensp;<code>str</code></dt>
+<dd>the html id of the page element. Uses By.ID.</dd>
+<dt><strong><code>class_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>the html class of the page element. Uses By.NAME.</dd>
+<dt><strong><code>link_text</code></strong> :&ensp;<code>str</code></dt>
+<dd>the texts of provided link. Uses By.LINK_TEXT.</dd>
+<dt><strong><code>partial_link_text</code></strong> :&ensp;<code>str</code></dt>
+<dd>the partial text of a link. Uses. By.PARTIAL_LINK_TEXT.</dd>
+<dt><strong><code>tag</code></strong> :&ensp;<code>str</code></dt>
+<dd>the name of the name. Uses By.TAG_NAME.</dd>
+<dt><strong><code>xpath</code></strong> :&ensp;<code>str</code></dt>
+<dd>the xpath query of the page element. Uses. By.XPATH.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>AttributeError</code></dt>
+<dd>The MultiClass selector must have one locator type and query.</dd>
+<dt><code>AttributeError</code></dt>
+<dd>The MultiClass cannot have more then one locator type and query.</dd>
 </dl></div>
 <details class="source">
 <summary>
@@ -110,6 +142,17 @@ class MultiElement(BaseElement):
     Args:
         webdriver (webdriver): A selenium webdriver instance.
         timeout (float): An integer or float. Defaults to default timeout if not set.
+        css (str): the string represenation of a css selector. Uses By.CSS_SELECTOR.
+        id_ (str): the html id of the page element. Uses By.ID.
+        class_name (str): the html class of the page element. Uses By.NAME.
+        link_text (str): the texts of provided link. Uses By.LINK_TEXT.
+        partial_link_text (str): the partial text of a link. Uses. By.PARTIAL_LINK_TEXT.
+        tag (str): the name of the name. Uses By.TAG_NAME.
+        xpath (str): the xpath query of the page element. Uses. By.XPATH.
+
+    Raises:
+        AttributeError: The MultiClass selector must have one locator type and query.
+        AttributeError: The MultiClass cannot have more then one locator type and query.
     &#34;&#34;&#34;
 
     LOCATOR = {
@@ -119,7 +162,7 @@ class MultiElement(BaseElement):
         &#34;class_name&#34;: By.CLASS_NAME,
         &#34;link_text&#34;: By.LINK_TEXT,
         &#34;partial_link_text&#34;: By.PARTIAL_LINK_TEXT,
-        &#34;tag_name&#34;: By.TAG_NAME,
+        &#34;tag&#34;: By.TAG_NAME,
         &#34;xpath&#34;: By.XPATH,
     }
     &#34;&#34;&#34;The dictionary containing the Selenium LOCATOR reference.&#34;&#34;&#34;
@@ -247,7 +290,7 @@ def locator(self) -&gt; Tuple[By, str]:
 <div class="desc inherited"><p>Returns the attribute of the name provided.</p></div>
 </dd>
 <dt id="pom_elements.multi_element.MultiElement.get_property"><code class="name flex">
-<span>def <span class="ident">get_property</span></span>(<span>self, property: str) -> Any</span>
+<span>def <span class="ident">get_property</span></span>(<span>self, value: str) -> Any</span>
 </code></dt>
 <dd>
 <p class="inheritance">
