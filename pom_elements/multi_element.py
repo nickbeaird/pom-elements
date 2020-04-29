@@ -11,6 +11,17 @@ class MultiElement(BaseElement):
     Args:
         webdriver (webdriver): A selenium webdriver instance.
         timeout (float): An integer or float. Defaults to default timeout if not set.
+        css (str): the string represenation of a css selector. Uses By.CSS_SELECTOR.
+        id_ (str): the html id of the page element. Uses By.ID.
+        class_name (str): the html class of the page element. Uses By.NAME.
+        link_text (str): the texts of provided link. Uses By.LINK_TEXT.
+        partial_link_text (str): the partial text of a link. Uses. By.PARTIAL_LINK_TEXT.
+        tag (str): the name of the name. Uses By.TAG_NAME.
+        xpath (str): the xpath query of the page element. Uses. By.XPATH.
+
+    Raises:
+        AttributeError: The MultiClass selector must have one locator type and query.
+        AttributeError: The MultiClass cannot have more then one locator type and query.
     """
 
     LOCATOR = {
@@ -20,7 +31,7 @@ class MultiElement(BaseElement):
         "class_name": By.CLASS_NAME,
         "link_text": By.LINK_TEXT,
         "partial_link_text": By.PARTIAL_LINK_TEXT,
-        "tag_name": By.TAG_NAME,
+        "tag": By.TAG_NAME,
         "xpath": By.XPATH,
     }
     """The dictionary containing the Selenium LOCATOR reference."""
