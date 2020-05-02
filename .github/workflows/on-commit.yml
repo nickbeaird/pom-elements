@@ -1,5 +1,5 @@
 name: Run Checks
-on: push
+on: commit
 
 jobs:
   job1_commit:
