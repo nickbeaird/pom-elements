@@ -2,7 +2,7 @@ name: Run Checks
 on: push
 
 jobs:
-  main:
+  job1_commit:
     name: Main
     runs-on: ubuntu-latest
     steps:
