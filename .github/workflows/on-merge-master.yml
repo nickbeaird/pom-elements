@@ -1,9 +1,10 @@
 name: Merge Master
 
-on:
-  pull_request:
-    branches:
-      - master
+on: commit
+# on:
+#   pull_request:
+#     branches:
+#       - master
 jobs:
   job2_pr:
     name: Merge into master
