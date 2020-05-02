@@ -7,12 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # This step checks out a copy of your repository.
-      - name: Checkout repo
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         # This step references the directory that contains the action.
         # - uses: ./.github/actions/publish-docs.sh
       - uses: actions/setup-python@v1
-      - name: Set up Python
+        name: Set up Python
         with:
           python-version: "3.8.2"
       - name: Creates tmp docss directory
@@ -21,7 +20,7 @@ jobs:
         run: |
           pip install pdoc3
       - name: Build docs
-          pdoc --config show_inherited_members=True --html --output-dir tmp-docs pom_elements --force
+        run: pdoc --config show_inherited_members=True --html --output-dir tmp-docs pom_elements --force
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
