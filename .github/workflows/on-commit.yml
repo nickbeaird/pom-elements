@@ -14,11 +14,11 @@ jobs:
         name: Set up Python
         with:
           python-version: "3.8.2"
-      - name: Creates tmp docss directory
+      - uses: dschep/install-poetry-action@v1.3
+      - name: Poetry - Install Dependencies
+        run: poetry install
+      - name: Creates tmp-docs directory
         run: mkdir tmp-docs
-      - name: Install dependencies
-        run: |
-          pip install pdoc3
       - name: Build docs
         run: pdoc --config show_inherited_members=True --html --output-dir tmp-docs pom_elements --force
       - name: Deploy 🚀
@@ -26,7 +26,7 @@ jobs:
         with:
           ACCESS_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: tmp-docs # The folder the action should deploy.
+          FOLDER: tmp-docs/ # The folder the action should deploy.
     # steps:
     #   - uses: actions/checkout@master
     #   - uses: actions/setup-python@v1
