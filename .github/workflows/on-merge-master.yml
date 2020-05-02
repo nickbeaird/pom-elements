@@ -1,10 +1,5 @@
 name: Merge Master
-
-on: commit
-# on:
-#   pull_request:
-#     branches:
-#       - master
+on: [push]
 jobs:
   job2_pr:
     name: Merge into master
@@ -28,3 +23,8 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to.
           FOLDER: tmp-docs # The folder the action should deploy.
+
+# on:
+#   pull_request:
+#     branches:
+#       - master
