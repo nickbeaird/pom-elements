@@ -1,28 +1,25 @@
 [tool.poetry]
-name = "pom_element"
+name = "pom_elements"
 version = "0.1.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["Nick Beaird <nicklasbeaird@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-black = "^19.10b0"
-tox = "^3.14.5"
-pre-commit = "^2.2.0"
-flake8 = "^3.7.9"
-mypy = "^0.770"
 selenium = "^3.141.0"
-isort = "^4.3.21"
-pytest-selenium = "^1.17.0"
-pytest-cov = "^2.8.1"
 pydocstyle = "^5.0.2"
 pdoc3 = "^0.8.1"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
-flake8 = "^3.7.9"
-mypy = "^0.770"
 black = "^19.10b0"
+flake8 = "^3.7.9"
+isort = "^4.3.21"
+mypy = "^0.770"
+pytest = "^5.2"
+pre-commit = "^2.2.0"
+pytest-cov = "^2.8.1"
+pytest-selenium = "^1.17.0"
+tox = "^3.14.5"
 
 [tool.poetry.extras]
 test = ["pytest"]
