@@ -1,5 +1,5 @@
 name: Run Checks
-on: commit
+on: push
 
 jobs:
   job1_commit:
@@ -11,9 +11,9 @@ jobs:
         # This step references the directory that contains the action.
         # - uses: ./.github/actions/publish-docs.sh
       - uses: actions/setup-python@v1
-        name: Set up Python
-        with:
-          python-version: "3.8.2"
+        # name: Set up Python
+        # with:
+        #   python-version: "3.8"
       - uses: dschep/install-poetry-action@v1.3
       - name: Poetry - Install Dependencies
         run: poetry install
