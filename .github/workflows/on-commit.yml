@@ -18,14 +18,17 @@ jobs:
       - name: Poetry - Install Dependencies
         run: poetry install
       - name: Creates tmp-docs directory
-        run: mkdir tmp-docs
+        run: |
+          mkdir tmp-docs
+          mkdir tmp-deploy
       - name: Build docs
-        run: pdoc --config show_inherited_members=True --html --output-dir tmp-docs pom_elements --force
+        run: pdoc --config show_inherited_members=True --html --output-dir tmp-docs --force
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           ACCESS_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to.
+          CLEAN: true
           FOLDER: tmp-docs/ # The folder the action should deploy.
     # steps:
     #   - uses: actions/checkout@master
