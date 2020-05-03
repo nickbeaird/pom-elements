@@ -8,8 +8,8 @@ jobs:
     steps:
       # This step checks out a copy of your repository.
       - uses: actions/checkout@v2
-        # This step references the directory that contains the action.
-        # - uses: ./.github/actions/publish-docs.sh
+      # This step references the directory that contains the action.
+      # - uses: ./.github/actions/publish-docs.sh
       - uses: actions/setup-python@v1
         # name: Set up Python
         # with:
@@ -22,14 +22,14 @@ jobs:
           mkdir tmp-docs
           mkdir tmp-deploy
       - name: Build docs
-        run: pdoc --config show_inherited_members=True --html --output-dir tmp-docs --force
+        run: pdoc --config show_inherited_members=True --html --output-dir tmp-docs pom_elements --force
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           ACCESS_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to.
           CLEAN: true
-          FOLDER: tmp-docs/ # The folder the action should deploy.
+          FOLDER: tmp-docs/pom_elements/ # The folder the action should deploy.
     # steps:
     #   - uses: actions/checkout@master
     #   - uses: actions/setup-python@v1
