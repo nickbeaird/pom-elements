@@ -1,6 +1,6 @@
 name: Run Checks
 on:
-  pull_request:
+  push:
     # Rebuild docs on any merge into master
     # that affects product code.
     branches:
