@@ -3,11 +3,13 @@ on:
   pull_request:
     # Rebuild docs on any merge into master
     # that affects product code.
+    pull_request:
+    branches:
+      - master
     paths:
       - "pom_elements/**"
       - "!docs/**"
       - "**.toml"
-
 jobs:
   job1_merge_master:
     name: Merge Master Checks
