@@ -9,6 +9,7 @@ on:
       - "pom_elements/**"
       - "!docs/**"
       - "**.toml"
+
 jobs:
   job1_merge_master:
     name: Merge Master Checks
