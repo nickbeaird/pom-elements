@@ -1,0 +1,33 @@
+name: Run Checks
+on:
+  pull_request:
+    # Rebuild docs on any merge into master
+    # that affects product code.
+    paths:
+      - "pom_elements/**"
+      - "!docs/**"
+      - "**.toml"
+
+jobs:
+  job1_merge_master:
+    name: Merge Master Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout branch
+      - uses: actions/setup-python@v1
+        name: Allow Python on Github Actions
+      - uses: dschep/install-poetry-action@v1.3
+        name: Poetry - Install Dependencies
+        run: poetry install
+      - name: Creates tmp-docs directory
+        run: mkdir tmp-docs
+      - name: Build docs
+        run: pdoc --config show_inherited_members=True --html --output-dir tmp-docs pom_elements --force
+      - name: Deploy documentation 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          CLEAN: true
+          FOLDER: tmp-docs/pom_elements/ # The folder the action should deploy.
