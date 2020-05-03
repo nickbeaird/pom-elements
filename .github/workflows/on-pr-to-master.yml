@@ -3,6 +3,8 @@ on:
   pull_request:
     # Rebuild docs on any merge into master
     # that affects product code.
+    branches:
+      - master
     paths:
       - "pom_elements/**"
       - "!docs/**"
