@@ -1,0 +1,894 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.1" />
+<title>pom_elements.base_element API documentation</title>
+<meta name="description" content="" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>pom_elements.base_element</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from abc import ABC, abstractmethod
+from typing import Any, Optional
+
+from pom_elements._harness import Harness
+from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+
+
+class BaseElement(ABC):
+    &#34;&#34;&#34;Base Element is an Abstract Base Class sets all methods for all inherited Element classes.
+
+    This class must be inherited and the `locator` method needs to be defined.
+
+    Args:
+        webdriver (webdriver): A selenium webdriver instance (i.e. webdriver.Chrome(), webdriver.Firefox(), etc.)
+        timeout (float): An integer or float setting the default timeout for all BaseElement methods.
+    &#34;&#34;&#34;
+
+    def __init__(self, webdriver: webdriver = None, timeout: Optional[float] = 0.5):
+        self._default_timeout = timeout
+        if webdriver:
+            self._webdriver = webdriver
+            self.web_element = self.find()
+
+    @property
+    @abstractmethod
+    def locator(self):
+        &#34;&#34;&#34;Return the Selenium locator used for this object.&#34;&#34;&#34;
+        raise NotImplementedError(
+            &#34;Any class that inherits from this needs to have a locator set.&#34;
+        )
+
+    def find(self, timeout: Optional[float] = None) -&gt; WebElement:
+        &#34;&#34;&#34;Returns the defined Selenium WebElement in the provided timeout or raise an error.
+
+        Args:
+            timeout: The length of time that we expect a WebElement to be returned within. Defaults
+            to the _default_timeout if not set.
+
+        Raises:
+            AssertionError: Asserts that an element should be visible within the specified timeout.
+
+        Returns:
+            WebElement: A Selenium Webelement
+        &#34;&#34;&#34;
+        if timeout is None:
+            timeout = self.default_timeout
+
+        try:
+            wait = WebDriverWait(self.webdriver, timeout)
+            elem = wait.until(EC.presence_of_element_located(self.locator))
+
+        except TimeoutException as exc:
+            raise AssertionError(
+                f&#34;Unable to find {str(self.__repr__())} in the {timeout} seconds.&#34;
+            ) from exc
+
+        self.web_element = elem
+        return elem
+
+    def is_visible(self, timeout: Optional[int] = None) -&gt; bool:
+        &#34;&#34;&#34;Return true if the webelement is visible on the page in the time (seconds) provided.
+
+        Args:
+            timeout: The length of time that we expect a WebElement to be returned within. Defaults
+            to the _default_timeout if not set.
+
+        Returns:
+            bool: True if element is visible.
+        &#34;&#34;&#34;
+        if timeout is None:
+            timeout = self.default_timeout
+
+        is_visible = WebDriverWait(self.webdriver, timeout).until(
+            EC.visibility_of(self.web_element)
+        )
+        if is_visible:
+            return True
+        return False
+
+    def is_invisible(self, timeout: Optional[int] = None) -&gt; bool:
+        &#34;&#34;&#34;Return true if the webelement is invisible on the page within the time (seconds) provided.
+
+        Args:
+            timeout: The length of time that we expect the WebElement to return that it
+            is in visible. Defaults to the _default_timeout if not set.
+
+        Returns:
+            bool: True if element is visible.
+        &#34;&#34;&#34;
+        if timeout is None:
+            timeout = self.default_timeout
+
+        is_visible = WebDriverWait(self.webdriver, timeout).until(
+            EC.invisibility_of_element(self.locator)
+        )
+        if is_visible:
+            return True
+        return False
+
+    def can_be_clicked(self, timeout: Optional[int] = None) -&gt; bool:
+        &#34;&#34;&#34;Return true if the webelement can be clicked in the time (seconds) provided.
+
+        Args:
+            timeout: The length of time that we expect a WebElement to be returned within. Defaults to the _default_timeout if not set.
+
+        Returns:
+            bool: True if element can be clicked.
+        &#34;&#34;&#34;
+        if timeout is None:
+            timeout = self.default_timeout
+
+        # The method returns an webelement if true and false otherwise. We ignore the
+        # found Selenium WebElement as we already have this item stored.
+        is_clickable = WebDriverWait(self.webdriver, timeout).until(
+            EC.element_to_be_clickable(self.locator)
+        )
+        if is_clickable is False:
+            return False
+        return True
+
+    @property
+    def webdriver(self) -&gt; webdriver:
+        &#34;&#34;&#34;Get the Element&#39;s Selenium webdriver instance.
+
+        Returns:
+            WebElement: A Selenium Webelement
+        &#34;&#34;&#34;
+        try:
+            return self._webdriver
+        except AttributeError as exc:
+            raise AttributeError(
+                &#34;A webdriver instance needs to be set on the Tag or the PageObject class.&#34;
+            ) from exc
+
+    @webdriver.setter
+    def webdriver(self, wd: webdriver) -&gt; None:
+        &#34;&#34;&#34;Set the Element&#39;s Selenium webdriver instance.
+
+        Args:
+            wd: Selenium webdriver instance.
+        &#34;&#34;&#34;
+        self._webdriver = wd
+
+    @property
+    def default_timeout(self):
+        &#34;&#34;&#34;Get the default timeout.&#34;&#34;&#34;
+        return self._default_timeout
+
+    @default_timeout.setter
+    def default_timeout(self, timeout: Optional[float] = None) -&gt; None:
+        &#34;&#34;&#34;Set the default timeout.
+
+        Args:
+            timeout: The length of time that we expect a WebElement to be returned within. Sets the default timeout for all methods on the instance.
+        &#34;&#34;&#34;
+        if timeout is None:
+            timeout = Harness.global_timeout
+        self._default_timeout = timeout
+
+    def click(self, timeout: Optional[float] = None):
+        &#34;&#34;&#34;Click the web element if it is available to be clicked.&#34;&#34;&#34;
+        if timeout is None:
+            timeout = self.default_timeout
+
+        self.find(timeout=timeout)
+        self.web_element.click()
+
+    def is_displayed(self):
+        &#34;&#34;&#34;Returns true if the Element is displayed else false.&#34;&#34;&#34;
+        is_displayed = self.webdriver.is_displayed()
+        if is_displayed:
+            return True
+        return False
+
+    def get_attribute(self, name):
+        &#34;&#34;&#34;Returns the attribute of the name provided.&#34;&#34;&#34;
+        return self.webdriver.get_attribute(name)
+
+    def get_all_attributes(self) -&gt; dict:
+        &#34;&#34;&#34;Return a dictionary containing all of the attributes of an element.&#34;&#34;&#34;
+        if not self.webdriver.execute_script:
+            raise AttributeError(
+                &#34;This webdriver type does not have this ability at this time.&#34;
+            )
+        return self.webdriver.execute_script(
+            &#34;var items = {}; for (index = 0; index &lt; arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;&#34;,
+            self.web_element,
+        )
+
+    def get_property(self, value: str) -&gt; Any:
+        &#34;&#34;&#34;Get the property of the element.
+
+        Args:
+            property - Name of the property to retrieve.
+
+        Returns:
+            The property of the provided name.
+        &#34;&#34;&#34;
+        return self.webdriver.get_property(value)
+
+    def __get__(self, instance, owner):
+        &#34;&#34;&#34;Update the __get__ method to set the webdriver and refresh the webelement.
+
+        There are several areas that make this element object much more complicated. The
+        class returns the class object as well as finding the Selenium WebElement on the
+        page. More often than not errors arise when the page refreshes, or elements become
+        stale. The user tries to interact with the selenim WebElement only to find out
+        that it is not available. Overriding the __get__ method here allows us to refresh
+        the WebElement every time the object is access.
+
+        A second class of errors arises around allowing the user to set a Selenim WebDriver
+        on the PageObject. The user has the ability to import and instantiate a single
+        Element and set the element to have it&#39;s own WebDriver. However after working to
+        abstract full pages, the user experience becomes numb if you have to add a webdriver
+        to every Tag. To remedy this, we allow the user to set the Webdriver on the
+        PageObject, and then the __get__ method here sets the webdriver to the webdriver
+        found from the accessing instance.
+
+        Allows setting a webdriver on the PageObject and refreshes the instance when accessed.
+        &#34;&#34;&#34;
+        parent_webdriver = getattr(instance, &#34;webdriver&#34;, None)
+
+        if parent_webdriver is not None:
+            self.webdriver = parent_webdriver
+        self.find()
+        return self</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="pom_elements.base_element.BaseElement"><code class="flex name class">
+<span>class <span class="ident">BaseElement</span></span>
+<span>(</span><span>webdriver: <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'> = None, timeout: Union[float, NoneType] = 0.5)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Base Element is an Abstract Base Class sets all methods for all inherited Element classes.</p>
+<p>This class must be inherited and the <code>locator</code> method needs to be defined.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>webdriver</code></strong> :&ensp;<code>webdriver</code></dt>
+<dd>A selenium webdriver instance (i.e. webdriver.Chrome(), webdriver.Firefox(), etc.)</dd>
+<dt><strong><code>timeout</code></strong> :&ensp;<code>float</code></dt>
+<dd>An integer or float setting the default timeout for all BaseElement methods.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class BaseElement(ABC):
+    &#34;&#34;&#34;Base Element is an Abstract Base Class sets all methods for all inherited Element classes.
+
+    This class must be inherited and the `locator` method needs to be defined.
+
+    Args:
+        webdriver (webdriver): A selenium webdriver instance (i.e. webdriver.Chrome(), webdriver.Firefox(), etc.)
+        timeout (float): An integer or float setting the default timeout for all BaseElement methods.
+    &#34;&#34;&#34;
+
+    def __init__(self, webdriver: webdriver = None, timeout: Optional[float] = 0.5):
+        self._default_timeout = timeout
+        if webdriver:
+            self._webdriver = webdriver
+            self.web_element = self.find()
+
+    @property
+    @abstractmethod
+    def locator(self):
+        &#34;&#34;&#34;Return the Selenium locator used for this object.&#34;&#34;&#34;
+        raise NotImplementedError(
+            &#34;Any class that inherits from this needs to have a locator set.&#34;
+        )
+
+    def find(self, timeout: Optional[float] = None) -&gt; WebElement:
+        &#34;&#34;&#34;Returns the defined Selenium WebElement in the provided timeout or raise an error.
+
+        Args:
+            timeout: The length of time that we expect a WebElement to be returned within. Defaults
+            to the _default_timeout if not set.
+
+        Raises:
+            AssertionError: Asserts that an element should be visible within the specified timeout.
+
+        Returns:
+            WebElement: A Selenium Webelement
+        &#34;&#34;&#34;
+        if timeout is None:
+            timeout = self.default_timeout
+
+        try:
+            wait = WebDriverWait(self.webdriver, timeout)
+            elem = wait.until(EC.presence_of_element_located(self.locator))
+
+        except TimeoutException as exc:
+            raise AssertionError(
+                f&#34;Unable to find {str(self.__repr__())} in the {timeout} seconds.&#34;
+            ) from exc
+
+        self.web_element = elem
+        return elem
+
+    def is_visible(self, timeout: Optional[int] = None) -&gt; bool:
+        &#34;&#34;&#34;Return true if the webelement is visible on the page in the time (seconds) provided.
+
+        Args:
+            timeout: The length of time that we expect a WebElement to be returned within. Defaults
+            to the _default_timeout if not set.
+
+        Returns:
+            bool: True if element is visible.
+        &#34;&#34;&#34;
+        if timeout is None:
+            timeout = self.default_timeout
+
+        is_visible = WebDriverWait(self.webdriver, timeout).until(
+            EC.visibility_of(self.web_element)
+        )
+        if is_visible:
+            return True
+        return False
+
+    def is_invisible(self, timeout: Optional[int] = None) -&gt; bool:
+        &#34;&#34;&#34;Return true if the webelement is invisible on the page within the time (seconds) provided.
+
+        Args:
+            timeout: The length of time that we expect the WebElement to return that it
+            is in visible. Defaults to the _default_timeout if not set.
+
+        Returns:
+            bool: True if element is visible.
+        &#34;&#34;&#34;
+        if timeout is None:
+            timeout = self.default_timeout
+
+        is_visible = WebDriverWait(self.webdriver, timeout).until(
+            EC.invisibility_of_element(self.locator)
+        )
+        if is_visible:
+            return True
+        return False
+
+    def can_be_clicked(self, timeout: Optional[int] = None) -&gt; bool:
+        &#34;&#34;&#34;Return true if the webelement can be clicked in the time (seconds) provided.
+
+        Args:
+            timeout: The length of time that we expect a WebElement to be returned within. Defaults to the _default_timeout if not set.
+
+        Returns:
+            bool: True if element can be clicked.
+        &#34;&#34;&#34;
+        if timeout is None:
+            timeout = self.default_timeout
+
+        # The method returns an webelement if true and false otherwise. We ignore the
+        # found Selenium WebElement as we already have this item stored.
+        is_clickable = WebDriverWait(self.webdriver, timeout).until(
+            EC.element_to_be_clickable(self.locator)
+        )
+        if is_clickable is False:
+            return False
+        return True
+
+    @property
+    def webdriver(self) -&gt; webdriver:
+        &#34;&#34;&#34;Get the Element&#39;s Selenium webdriver instance.
+
+        Returns:
+            WebElement: A Selenium Webelement
+        &#34;&#34;&#34;
+        try:
+            return self._webdriver
+        except AttributeError as exc:
+            raise AttributeError(
+                &#34;A webdriver instance needs to be set on the Tag or the PageObject class.&#34;
+            ) from exc
+
+    @webdriver.setter
+    def webdriver(self, wd: webdriver) -&gt; None:
+        &#34;&#34;&#34;Set the Element&#39;s Selenium webdriver instance.
+
+        Args:
+            wd: Selenium webdriver instance.
+        &#34;&#34;&#34;
+        self._webdriver = wd
+
+    @property
+    def default_timeout(self):
+        &#34;&#34;&#34;Get the default timeout.&#34;&#34;&#34;
+        return self._default_timeout
+
+    @default_timeout.setter
+    def default_timeout(self, timeout: Optional[float] = None) -&gt; None:
+        &#34;&#34;&#34;Set the default timeout.
+
+        Args:
+            timeout: The length of time that we expect a WebElement to be returned within. Sets the default timeout for all methods on the instance.
+        &#34;&#34;&#34;
+        if timeout is None:
+            timeout = Harness.global_timeout
+        self._default_timeout = timeout
+
+    def click(self, timeout: Optional[float] = None):
+        &#34;&#34;&#34;Click the web element if it is available to be clicked.&#34;&#34;&#34;
+        if timeout is None:
+            timeout = self.default_timeout
+
+        self.find(timeout=timeout)
+        self.web_element.click()
+
+    def is_displayed(self):
+        &#34;&#34;&#34;Returns true if the Element is displayed else false.&#34;&#34;&#34;
+        is_displayed = self.webdriver.is_displayed()
+        if is_displayed:
+            return True
+        return False
+
+    def get_attribute(self, name):
+        &#34;&#34;&#34;Returns the attribute of the name provided.&#34;&#34;&#34;
+        return self.webdriver.get_attribute(name)
+
+    def get_all_attributes(self) -&gt; dict:
+        &#34;&#34;&#34;Return a dictionary containing all of the attributes of an element.&#34;&#34;&#34;
+        if not self.webdriver.execute_script:
+            raise AttributeError(
+                &#34;This webdriver type does not have this ability at this time.&#34;
+            )
+        return self.webdriver.execute_script(
+            &#34;var items = {}; for (index = 0; index &lt; arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;&#34;,
+            self.web_element,
+        )
+
+    def get_property(self, value: str) -&gt; Any:
+        &#34;&#34;&#34;Get the property of the element.
+
+        Args:
+            property - Name of the property to retrieve.
+
+        Returns:
+            The property of the provided name.
+        &#34;&#34;&#34;
+        return self.webdriver.get_property(value)
+
+    def __get__(self, instance, owner):
+        &#34;&#34;&#34;Update the __get__ method to set the webdriver and refresh the webelement.
+
+        There are several areas that make this element object much more complicated. The
+        class returns the class object as well as finding the Selenium WebElement on the
+        page. More often than not errors arise when the page refreshes, or elements become
+        stale. The user tries to interact with the selenim WebElement only to find out
+        that it is not available. Overriding the __get__ method here allows us to refresh
+        the WebElement every time the object is access.
+
+        A second class of errors arises around allowing the user to set a Selenim WebDriver
+        on the PageObject. The user has the ability to import and instantiate a single
+        Element and set the element to have it&#39;s own WebDriver. However after working to
+        abstract full pages, the user experience becomes numb if you have to add a webdriver
+        to every Tag. To remedy this, we allow the user to set the Webdriver on the
+        PageObject, and then the __get__ method here sets the webdriver to the webdriver
+        found from the accessing instance.
+
+        Allows setting a webdriver on the PageObject and refreshes the instance when accessed.
+        &#34;&#34;&#34;
+        parent_webdriver = getattr(instance, &#34;webdriver&#34;, None)
+
+        if parent_webdriver is not None:
+            self.webdriver = parent_webdriver
+        self.find()
+        return self</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="pom_elements.multi_element.MultiElement" href="multi_element.html#pom_elements.multi_element.MultiElement">MultiElement</a></li>
+<li><a title="pom_elements.xpath_element.XPathElement" href="xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pom_elements.base_element.BaseElement.default_timeout"><code class="name">var <span class="ident">default_timeout</span></code></dt>
+<dd>
+<div class="desc"><p>Get the default timeout.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def default_timeout(self):
+    &#34;&#34;&#34;Get the default timeout.&#34;&#34;&#34;
+    return self._default_timeout</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.base_element.BaseElement.locator"><code class="name">var <span class="ident">locator</span></code></dt>
+<dd>
+<div class="desc"><p>Return the Selenium locator used for this object.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+@abstractmethod
+def locator(self):
+    &#34;&#34;&#34;Return the Selenium locator used for this object.&#34;&#34;&#34;
+    raise NotImplementedError(
+        &#34;Any class that inherits from this needs to have a locator set.&#34;
+    )</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.base_element.BaseElement.webdriver"><code class="name">var <span class="ident">webdriver</span> : <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'></code></dt>
+<dd>
+<div class="desc"><p>Get the Element's Selenium webdriver instance.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>WebElement</code></dt>
+<dd>A Selenium Webelement</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def webdriver(self) -&gt; webdriver:
+    &#34;&#34;&#34;Get the Element&#39;s Selenium webdriver instance.
+
+    Returns:
+        WebElement: A Selenium Webelement
+    &#34;&#34;&#34;
+    try:
+        return self._webdriver
+    except AttributeError as exc:
+        raise AttributeError(
+            &#34;A webdriver instance needs to be set on the Tag or the PageObject class.&#34;
+        ) from exc</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="pom_elements.base_element.BaseElement.can_be_clicked"><code class="name flex">
+<span>def <span class="ident">can_be_clicked</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return true if the webelement can be clicked in the time (seconds) provided.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>timeout</code></strong></dt>
+<dd>The length of time that we expect a WebElement to be returned within. Defaults to the _default_timeout if not set.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>bool</code></dt>
+<dd>True if element can be clicked.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def can_be_clicked(self, timeout: Optional[int] = None) -&gt; bool:
+    &#34;&#34;&#34;Return true if the webelement can be clicked in the time (seconds) provided.
+
+    Args:
+        timeout: The length of time that we expect a WebElement to be returned within. Defaults to the _default_timeout if not set.
+
+    Returns:
+        bool: True if element can be clicked.
+    &#34;&#34;&#34;
+    if timeout is None:
+        timeout = self.default_timeout
+
+    # The method returns an webelement if true and false otherwise. We ignore the
+    # found Selenium WebElement as we already have this item stored.
+    is_clickable = WebDriverWait(self.webdriver, timeout).until(
+        EC.element_to_be_clickable(self.locator)
+    )
+    if is_clickable is False:
+        return False
+    return True</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.base_element.BaseElement.click"><code class="name flex">
+<span>def <span class="ident">click</span></span>(<span>self, timeout: Union[float, NoneType] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Click the web element if it is available to be clicked.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def click(self, timeout: Optional[float] = None):
+    &#34;&#34;&#34;Click the web element if it is available to be clicked.&#34;&#34;&#34;
+    if timeout is None:
+        timeout = self.default_timeout
+
+    self.find(timeout=timeout)
+    self.web_element.click()</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.base_element.BaseElement.find"><code class="name flex">
+<span>def <span class="ident">find</span></span>(<span>self, timeout: Union[float, NoneType] = None) -> selenium.webdriver.remote.webelement.WebElement</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the defined Selenium WebElement in the provided timeout or raise an error.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>timeout</code></strong></dt>
+<dd>The length of time that we expect a WebElement to be returned within. Defaults</dd>
+</dl>
+<p>to the _default_timeout if not set.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>AssertionError</code></dt>
+<dd>Asserts that an element should be visible within the specified timeout.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>WebElement</code></dt>
+<dd>A Selenium Webelement</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find(self, timeout: Optional[float] = None) -&gt; WebElement:
+    &#34;&#34;&#34;Returns the defined Selenium WebElement in the provided timeout or raise an error.
+
+    Args:
+        timeout: The length of time that we expect a WebElement to be returned within. Defaults
+        to the _default_timeout if not set.
+
+    Raises:
+        AssertionError: Asserts that an element should be visible within the specified timeout.
+
+    Returns:
+        WebElement: A Selenium Webelement
+    &#34;&#34;&#34;
+    if timeout is None:
+        timeout = self.default_timeout
+
+    try:
+        wait = WebDriverWait(self.webdriver, timeout)
+        elem = wait.until(EC.presence_of_element_located(self.locator))
+
+    except TimeoutException as exc:
+        raise AssertionError(
+            f&#34;Unable to find {str(self.__repr__())} in the {timeout} seconds.&#34;
+        ) from exc
+
+    self.web_element = elem
+    return elem</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.base_element.BaseElement.get_all_attributes"><code class="name flex">
+<span>def <span class="ident">get_all_attributes</span></span>(<span>self) -> dict</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a dictionary containing all of the attributes of an element.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_all_attributes(self) -&gt; dict:
+    &#34;&#34;&#34;Return a dictionary containing all of the attributes of an element.&#34;&#34;&#34;
+    if not self.webdriver.execute_script:
+        raise AttributeError(
+            &#34;This webdriver type does not have this ability at this time.&#34;
+        )
+    return self.webdriver.execute_script(
+        &#34;var items = {}; for (index = 0; index &lt; arguments[0].attributes.length; ++index) { items[arguments[0].attributes[index].name] = arguments[0].attributes[index].value }; return items;&#34;,
+        self.web_element,
+    )</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.base_element.BaseElement.get_attribute"><code class="name flex">
+<span>def <span class="ident">get_attribute</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the attribute of the name provided.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_attribute(self, name):
+    &#34;&#34;&#34;Returns the attribute of the name provided.&#34;&#34;&#34;
+    return self.webdriver.get_attribute(name)</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.base_element.BaseElement.get_property"><code class="name flex">
+<span>def <span class="ident">get_property</span></span>(<span>self, value: str) -> Any</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the property of the element.</p>
+<h2 id="args">Args</h2>
+<p>property - Name of the property to retrieve.</p>
+<h2 id="returns">Returns</h2>
+<p>The property of the provided name.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_property(self, value: str) -&gt; Any:
+    &#34;&#34;&#34;Get the property of the element.
+
+    Args:
+        property - Name of the property to retrieve.
+
+    Returns:
+        The property of the provided name.
+    &#34;&#34;&#34;
+    return self.webdriver.get_property(value)</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.base_element.BaseElement.is_displayed"><code class="name flex">
+<span>def <span class="ident">is_displayed</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns true if the Element is displayed else false.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_displayed(self):
+    &#34;&#34;&#34;Returns true if the Element is displayed else false.&#34;&#34;&#34;
+    is_displayed = self.webdriver.is_displayed()
+    if is_displayed:
+        return True
+    return False</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.base_element.BaseElement.is_invisible"><code class="name flex">
+<span>def <span class="ident">is_invisible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return true if the webelement is invisible on the page within the time (seconds) provided.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>timeout</code></strong></dt>
+<dd>The length of time that we expect the WebElement to return that it</dd>
+</dl>
+<p>is in visible. Defaults to the _default_timeout if not set.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>bool</code></dt>
+<dd>True if element is visible.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_invisible(self, timeout: Optional[int] = None) -&gt; bool:
+    &#34;&#34;&#34;Return true if the webelement is invisible on the page within the time (seconds) provided.
+
+    Args:
+        timeout: The length of time that we expect the WebElement to return that it
+        is in visible. Defaults to the _default_timeout if not set.
+
+    Returns:
+        bool: True if element is visible.
+    &#34;&#34;&#34;
+    if timeout is None:
+        timeout = self.default_timeout
+
+    is_visible = WebDriverWait(self.webdriver, timeout).until(
+        EC.invisibility_of_element(self.locator)
+    )
+    if is_visible:
+        return True
+    return False</code></pre>
+</details>
+</dd>
+<dt id="pom_elements.base_element.BaseElement.is_visible"><code class="name flex">
+<span>def <span class="ident">is_visible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return true if the webelement is visible on the page in the time (seconds) provided.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>timeout</code></strong></dt>
+<dd>The length of time that we expect a WebElement to be returned within. Defaults</dd>
+</dl>
+<p>to the _default_timeout if not set.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>bool</code></dt>
+<dd>True if element is visible.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_visible(self, timeout: Optional[int] = None) -&gt; bool:
+    &#34;&#34;&#34;Return true if the webelement is visible on the page in the time (seconds) provided.
+
+    Args:
+        timeout: The length of time that we expect a WebElement to be returned within. Defaults
+        to the _default_timeout if not set.
+
+    Returns:
+        bool: True if element is visible.
+    &#34;&#34;&#34;
+    if timeout is None:
+        timeout = self.default_timeout
+
+    is_visible = WebDriverWait(self.webdriver, timeout).until(
+        EC.visibility_of(self.web_element)
+    )
+    if is_visible:
+        return True
+    return False</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="pom_elements" href="index.html">pom_elements</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="pom_elements.base_element.BaseElement" href="#pom_elements.base_element.BaseElement">BaseElement</a></code></h4>
+<ul class="two-column">
+<li><code><a title="pom_elements.base_element.BaseElement.can_be_clicked" href="#pom_elements.base_element.BaseElement.can_be_clicked">can_be_clicked</a></code></li>
+<li><code><a title="pom_elements.base_element.BaseElement.click" href="#pom_elements.base_element.BaseElement.click">click</a></code></li>
+<li><code><a title="pom_elements.base_element.BaseElement.default_timeout" href="#pom_elements.base_element.BaseElement.default_timeout">default_timeout</a></code></li>
+<li><code><a title="pom_elements.base_element.BaseElement.find" href="#pom_elements.base_element.BaseElement.find">find</a></code></li>
+<li><code><a title="pom_elements.base_element.BaseElement.get_all_attributes" href="#pom_elements.base_element.BaseElement.get_all_attributes">get_all_attributes</a></code></li>
+<li><code><a title="pom_elements.base_element.BaseElement.get_attribute" href="#pom_elements.base_element.BaseElement.get_attribute">get_attribute</a></code></li>
+<li><code><a title="pom_elements.base_element.BaseElement.get_property" href="#pom_elements.base_element.BaseElement.get_property">get_property</a></code></li>
+<li><code><a title="pom_elements.base_element.BaseElement.is_displayed" href="#pom_elements.base_element.BaseElement.is_displayed">is_displayed</a></code></li>
+<li><code><a title="pom_elements.base_element.BaseElement.is_invisible" href="#pom_elements.base_element.BaseElement.is_invisible">is_invisible</a></code></li>
+<li><code><a title="pom_elements.base_element.BaseElement.is_visible" href="#pom_elements.base_element.BaseElement.is_visible">is_visible</a></code></li>
+<li><code><a title="pom_elements.base_element.BaseElement.locator" href="#pom_elements.base_element.BaseElement.locator">locator</a></code></li>
+<li><code><a title="pom_elements.base_element.BaseElement.webdriver" href="#pom_elements.base_element.BaseElement.webdriver">webdriver</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.1</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>
