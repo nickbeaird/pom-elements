@@ -152,7 +152,7 @@ class BaseElement(ABC):
 
     @default_timeout.setter
     def default_timeout(self, timeout: Optional[float] = None) -> None:
-        """Set the default timeout.
+        """Set the default timeout for all methods.
 
         Args:
             timeout: The length of time that we expect a WebElement to be returned within. Sets the default timeout for all methods on the instance.
