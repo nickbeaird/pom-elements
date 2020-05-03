@@ -2,7 +2,7 @@ from selenium import webdriver
 
 
 class PageObject:
-    """The PageObject allows for abstracting web pages into full pages or sections.
+    """Class that allows for easily outlining your web pages as classes.
 
     Todo:
         Add type hints for the Selenium library to add Optional[webdriver].

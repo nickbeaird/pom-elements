@@ -3,7 +3,6 @@ on:
   pull_request:
     # Rebuild docs on any merge into master
     # that affects product code.
-    pull_request:
     branches:
       - master
     paths:
