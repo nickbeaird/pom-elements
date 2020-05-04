@@ -1,6 +1,8 @@
 import pytest
 from pom_elements.xpath_element import XPathElement
 
+pytestmark = pytest.mark.integration
+
 
 def test_xpath_elem():
     """Test XPathElement functionality returns the correct xpath as a property."""

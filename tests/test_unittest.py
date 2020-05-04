@@ -6,6 +6,8 @@ from pom_elements.xpath_element import XPathElement
 from selenium import webdriver
 from selenium.webdriver.remote.webelement import WebElement
 
+pytestmark = pytest.mark.integration
+
 
 class ChromeDriver(unittest.TestCase):
     """Setup class for unittest style unit tests."""

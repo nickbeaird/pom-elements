@@ -1,6 +1,8 @@
 import pytest
 from pom_elements.multi_element import MultiElement
 
+pytestmark = pytest.mark.integration
+
 
 def test_multi_element(selenium_chrome):
     """Verify that the MultiElement class can be used."""

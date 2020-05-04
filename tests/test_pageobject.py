@@ -1,6 +1,9 @@
+import pytest
 from pom_elements.page_object import Page, PageObject
 from pom_elements.xpath_element import XPathElement
 from selenium.webdriver.remote.webelement import WebElement
+
+pytestmark = pytest.mark.integration
 
 
 def test_user_can_set_webdriver_on_tag(selenium_chrome):
