@@ -1,0 +1,2298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.1" />
+<title>pom_elements.html.forms API documentation</title>
+<meta name="description" content="" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>pom_elements.html.forms</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from pom_elements import XPathElement
+
+
+class Button(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;button&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;button&#34;
+
+
+class DataList(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;datalist&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;datalist&#34;
+
+
+class Fieldset(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;fieldset&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;fieldset&#34;
+
+
+class Form(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;form&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;form&#34;
+
+
+class Input(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;input&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;input&#34;
+
+
+class Label(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;label&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;label&#34;
+
+
+class Legend(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;legend&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;legend&#34;
+
+
+class Meter(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;meter&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;meter&#34;
+
+
+class OptGroup(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;optgroup&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;optgroup&#34;
+
+
+class Option(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;option&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;option&#34;
+
+
+class Select(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;select&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;select&#34;
+
+
+class TextArea(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;textarea&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;textarea&#34;</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="pom_elements.html.forms.Button"><code class="flex name class">
+<span>class <span class="ident">Button</span></span>
+<span>(</span><span>webdriver: <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'> = None, timeout: int = 5, xpath: str = '', **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Interact with <button> html dom elements.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Button(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;button&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;button&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></li>
+<li><a title="pom_elements.base_element.BaseElement" href="../base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.Button.tag"><code class="name">var <span class="ident">tag</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.tag" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.tag">tag</a></code>
+</p>
+<div class="desc inherited"><p>tag class attribute is the xpath html tag (i.e. div, span, ul).</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.Button.default_timeout"><code class="name">var <span class="ident">default_timeout</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.default_timeout" href="../base_element.html#pom_elements.xpath_element.XPathElement.default_timeout">default_timeout</a></code>
+</p>
+<div class="desc inherited"><p>Get the default timeout.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Button.locator"><code class="name">var <span class="ident">locator</span> : Tuple[selenium.webdriver.common.by.By, str]</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.locator" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.locator">locator</a></code>
+</p>
+<div class="desc inherited"><p>Return the Xpath Locator element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Button.webdriver"><code class="name">var <span class="ident">webdriver</span> : <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.webdriver" href="../base_element.html#pom_elements.xpath_element.XPathElement.webdriver">webdriver</a></code>
+</p>
+<div class="desc inherited"><p>Get the Element's Selenium webdriver instance …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Button.xpath"><code class="name">var <span class="ident">xpath</span> : str</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.xpath" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.xpath">xpath</a></code>
+</p>
+<div class="desc inherited"><p>Get the xpath value as a string.</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="pom_elements.html.forms.Button.can_be_clicked"><code class="name flex">
+<span>def <span class="ident">can_be_clicked</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.can_be_clicked" href="../base_element.html#pom_elements.xpath_element.XPathElement.can_be_clicked">can_be_clicked</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement can be clicked in the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Button.click"><code class="name flex">
+<span>def <span class="ident">click</span></span>(<span>self, timeout: Union[float, NoneType] = None)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.click" href="../base_element.html#pom_elements.xpath_element.XPathElement.click">click</a></code>
+</p>
+<div class="desc inherited"><p>Click the web element if it is available to be clicked.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Button.find"><code class="name flex">
+<span>def <span class="ident">find</span></span>(<span>self, timeout: Union[float, NoneType] = None) -> selenium.webdriver.remote.webelement.WebElement</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.find" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.find">find</a></code>
+</p>
+<div class="desc inherited"><p>Return the Selenium WebElement in the provided timeout or raise an error …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Button.get_all_attributes"><code class="name flex">
+<span>def <span class="ident">get_all_attributes</span></span>(<span>self) -> dict</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_all_attributes" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_all_attributes">get_all_attributes</a></code>
+</p>
+<div class="desc inherited"><p>Return a dictionary containing all of the attributes of an element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Button.get_attribute"><code class="name flex">
+<span>def <span class="ident">get_attribute</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_attribute" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_attribute">get_attribute</a></code>
+</p>
+<div class="desc inherited"><p>Returns the attribute of the name provided.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Button.get_property"><code class="name flex">
+<span>def <span class="ident">get_property</span></span>(<span>self, value: str) -> Any</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_property" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_property">get_property</a></code>
+</p>
+<div class="desc inherited"><p>Get the property of the element …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Button.is_displayed"><code class="name flex">
+<span>def <span class="ident">is_displayed</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_displayed" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_displayed">is_displayed</a></code>
+</p>
+<div class="desc inherited"><p>Returns true if the Element is displayed else false.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Button.is_invisible"><code class="name flex">
+<span>def <span class="ident">is_invisible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_invisible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_invisible">is_invisible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is invisible on the page within the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Button.is_visible"><code class="name flex">
+<span>def <span class="ident">is_visible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_visible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_visible">is_visible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is visible on the page in the time (seconds) provided …</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="pom_elements.html.forms.DataList"><code class="flex name class">
+<span>class <span class="ident">DataList</span></span>
+<span>(</span><span>webdriver: <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'> = None, timeout: int = 5, xpath: str = '', **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Interact with <datalist> html dom elements.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DataList(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;datalist&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;datalist&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></li>
+<li><a title="pom_elements.base_element.BaseElement" href="../base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.DataList.tag"><code class="name">var <span class="ident">tag</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.tag" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.tag">tag</a></code>
+</p>
+<div class="desc inherited"><p>tag class attribute is the xpath html tag (i.e. div, span, ul).</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.DataList.default_timeout"><code class="name">var <span class="ident">default_timeout</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.default_timeout" href="../base_element.html#pom_elements.xpath_element.XPathElement.default_timeout">default_timeout</a></code>
+</p>
+<div class="desc inherited"><p>Get the default timeout.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.DataList.locator"><code class="name">var <span class="ident">locator</span> : Tuple[selenium.webdriver.common.by.By, str]</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.locator" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.locator">locator</a></code>
+</p>
+<div class="desc inherited"><p>Return the Xpath Locator element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.DataList.webdriver"><code class="name">var <span class="ident">webdriver</span> : <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.webdriver" href="../base_element.html#pom_elements.xpath_element.XPathElement.webdriver">webdriver</a></code>
+</p>
+<div class="desc inherited"><p>Get the Element's Selenium webdriver instance …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.DataList.xpath"><code class="name">var <span class="ident">xpath</span> : str</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.xpath" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.xpath">xpath</a></code>
+</p>
+<div class="desc inherited"><p>Get the xpath value as a string.</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="pom_elements.html.forms.DataList.can_be_clicked"><code class="name flex">
+<span>def <span class="ident">can_be_clicked</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.can_be_clicked" href="../base_element.html#pom_elements.xpath_element.XPathElement.can_be_clicked">can_be_clicked</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement can be clicked in the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.DataList.click"><code class="name flex">
+<span>def <span class="ident">click</span></span>(<span>self, timeout: Union[float, NoneType] = None)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.click" href="../base_element.html#pom_elements.xpath_element.XPathElement.click">click</a></code>
+</p>
+<div class="desc inherited"><p>Click the web element if it is available to be clicked.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.DataList.find"><code class="name flex">
+<span>def <span class="ident">find</span></span>(<span>self, timeout: Union[float, NoneType] = None) -> selenium.webdriver.remote.webelement.WebElement</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.find" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.find">find</a></code>
+</p>
+<div class="desc inherited"><p>Return the Selenium WebElement in the provided timeout or raise an error …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.DataList.get_all_attributes"><code class="name flex">
+<span>def <span class="ident">get_all_attributes</span></span>(<span>self) -> dict</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_all_attributes" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_all_attributes">get_all_attributes</a></code>
+</p>
+<div class="desc inherited"><p>Return a dictionary containing all of the attributes of an element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.DataList.get_attribute"><code class="name flex">
+<span>def <span class="ident">get_attribute</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_attribute" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_attribute">get_attribute</a></code>
+</p>
+<div class="desc inherited"><p>Returns the attribute of the name provided.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.DataList.get_property"><code class="name flex">
+<span>def <span class="ident">get_property</span></span>(<span>self, value: str) -> Any</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_property" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_property">get_property</a></code>
+</p>
+<div class="desc inherited"><p>Get the property of the element …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.DataList.is_displayed"><code class="name flex">
+<span>def <span class="ident">is_displayed</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_displayed" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_displayed">is_displayed</a></code>
+</p>
+<div class="desc inherited"><p>Returns true if the Element is displayed else false.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.DataList.is_invisible"><code class="name flex">
+<span>def <span class="ident">is_invisible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_invisible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_invisible">is_invisible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is invisible on the page within the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.DataList.is_visible"><code class="name flex">
+<span>def <span class="ident">is_visible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_visible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_visible">is_visible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is visible on the page in the time (seconds) provided …</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="pom_elements.html.forms.Fieldset"><code class="flex name class">
+<span>class <span class="ident">Fieldset</span></span>
+<span>(</span><span>webdriver: <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'> = None, timeout: int = 5, xpath: str = '', **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Interact with <fieldset> html dom elements.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Fieldset(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;fieldset&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;fieldset&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></li>
+<li><a title="pom_elements.base_element.BaseElement" href="../base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.Fieldset.tag"><code class="name">var <span class="ident">tag</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.tag" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.tag">tag</a></code>
+</p>
+<div class="desc inherited"><p>tag class attribute is the xpath html tag (i.e. div, span, ul).</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.Fieldset.default_timeout"><code class="name">var <span class="ident">default_timeout</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.default_timeout" href="../base_element.html#pom_elements.xpath_element.XPathElement.default_timeout">default_timeout</a></code>
+</p>
+<div class="desc inherited"><p>Get the default timeout.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Fieldset.locator"><code class="name">var <span class="ident">locator</span> : Tuple[selenium.webdriver.common.by.By, str]</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.locator" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.locator">locator</a></code>
+</p>
+<div class="desc inherited"><p>Return the Xpath Locator element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Fieldset.webdriver"><code class="name">var <span class="ident">webdriver</span> : <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.webdriver" href="../base_element.html#pom_elements.xpath_element.XPathElement.webdriver">webdriver</a></code>
+</p>
+<div class="desc inherited"><p>Get the Element's Selenium webdriver instance …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Fieldset.xpath"><code class="name">var <span class="ident">xpath</span> : str</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.xpath" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.xpath">xpath</a></code>
+</p>
+<div class="desc inherited"><p>Get the xpath value as a string.</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="pom_elements.html.forms.Fieldset.can_be_clicked"><code class="name flex">
+<span>def <span class="ident">can_be_clicked</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.can_be_clicked" href="../base_element.html#pom_elements.xpath_element.XPathElement.can_be_clicked">can_be_clicked</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement can be clicked in the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Fieldset.click"><code class="name flex">
+<span>def <span class="ident">click</span></span>(<span>self, timeout: Union[float, NoneType] = None)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.click" href="../base_element.html#pom_elements.xpath_element.XPathElement.click">click</a></code>
+</p>
+<div class="desc inherited"><p>Click the web element if it is available to be clicked.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Fieldset.find"><code class="name flex">
+<span>def <span class="ident">find</span></span>(<span>self, timeout: Union[float, NoneType] = None) -> selenium.webdriver.remote.webelement.WebElement</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.find" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.find">find</a></code>
+</p>
+<div class="desc inherited"><p>Return the Selenium WebElement in the provided timeout or raise an error …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Fieldset.get_all_attributes"><code class="name flex">
+<span>def <span class="ident">get_all_attributes</span></span>(<span>self) -> dict</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_all_attributes" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_all_attributes">get_all_attributes</a></code>
+</p>
+<div class="desc inherited"><p>Return a dictionary containing all of the attributes of an element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Fieldset.get_attribute"><code class="name flex">
+<span>def <span class="ident">get_attribute</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_attribute" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_attribute">get_attribute</a></code>
+</p>
+<div class="desc inherited"><p>Returns the attribute of the name provided.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Fieldset.get_property"><code class="name flex">
+<span>def <span class="ident">get_property</span></span>(<span>self, value: str) -> Any</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_property" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_property">get_property</a></code>
+</p>
+<div class="desc inherited"><p>Get the property of the element …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Fieldset.is_displayed"><code class="name flex">
+<span>def <span class="ident">is_displayed</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_displayed" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_displayed">is_displayed</a></code>
+</p>
+<div class="desc inherited"><p>Returns true if the Element is displayed else false.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Fieldset.is_invisible"><code class="name flex">
+<span>def <span class="ident">is_invisible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_invisible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_invisible">is_invisible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is invisible on the page within the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Fieldset.is_visible"><code class="name flex">
+<span>def <span class="ident">is_visible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_visible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_visible">is_visible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is visible on the page in the time (seconds) provided …</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="pom_elements.html.forms.Form"><code class="flex name class">
+<span>class <span class="ident">Form</span></span>
+<span>(</span><span>webdriver: <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'> = None, timeout: int = 5, xpath: str = '', **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Interact with <form> html dom elements.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Form(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;form&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;form&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></li>
+<li><a title="pom_elements.base_element.BaseElement" href="../base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.Form.tag"><code class="name">var <span class="ident">tag</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.tag" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.tag">tag</a></code>
+</p>
+<div class="desc inherited"><p>tag class attribute is the xpath html tag (i.e. div, span, ul).</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.Form.default_timeout"><code class="name">var <span class="ident">default_timeout</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.default_timeout" href="../base_element.html#pom_elements.xpath_element.XPathElement.default_timeout">default_timeout</a></code>
+</p>
+<div class="desc inherited"><p>Get the default timeout.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Form.locator"><code class="name">var <span class="ident">locator</span> : Tuple[selenium.webdriver.common.by.By, str]</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.locator" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.locator">locator</a></code>
+</p>
+<div class="desc inherited"><p>Return the Xpath Locator element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Form.webdriver"><code class="name">var <span class="ident">webdriver</span> : <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.webdriver" href="../base_element.html#pom_elements.xpath_element.XPathElement.webdriver">webdriver</a></code>
+</p>
+<div class="desc inherited"><p>Get the Element's Selenium webdriver instance …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Form.xpath"><code class="name">var <span class="ident">xpath</span> : str</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.xpath" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.xpath">xpath</a></code>
+</p>
+<div class="desc inherited"><p>Get the xpath value as a string.</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="pom_elements.html.forms.Form.can_be_clicked"><code class="name flex">
+<span>def <span class="ident">can_be_clicked</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.can_be_clicked" href="../base_element.html#pom_elements.xpath_element.XPathElement.can_be_clicked">can_be_clicked</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement can be clicked in the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Form.click"><code class="name flex">
+<span>def <span class="ident">click</span></span>(<span>self, timeout: Union[float, NoneType] = None)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.click" href="../base_element.html#pom_elements.xpath_element.XPathElement.click">click</a></code>
+</p>
+<div class="desc inherited"><p>Click the web element if it is available to be clicked.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Form.find"><code class="name flex">
+<span>def <span class="ident">find</span></span>(<span>self, timeout: Union[float, NoneType] = None) -> selenium.webdriver.remote.webelement.WebElement</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.find" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.find">find</a></code>
+</p>
+<div class="desc inherited"><p>Return the Selenium WebElement in the provided timeout or raise an error …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Form.get_all_attributes"><code class="name flex">
+<span>def <span class="ident">get_all_attributes</span></span>(<span>self) -> dict</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_all_attributes" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_all_attributes">get_all_attributes</a></code>
+</p>
+<div class="desc inherited"><p>Return a dictionary containing all of the attributes of an element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Form.get_attribute"><code class="name flex">
+<span>def <span class="ident">get_attribute</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_attribute" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_attribute">get_attribute</a></code>
+</p>
+<div class="desc inherited"><p>Returns the attribute of the name provided.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Form.get_property"><code class="name flex">
+<span>def <span class="ident">get_property</span></span>(<span>self, value: str) -> Any</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_property" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_property">get_property</a></code>
+</p>
+<div class="desc inherited"><p>Get the property of the element …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Form.is_displayed"><code class="name flex">
+<span>def <span class="ident">is_displayed</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_displayed" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_displayed">is_displayed</a></code>
+</p>
+<div class="desc inherited"><p>Returns true if the Element is displayed else false.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Form.is_invisible"><code class="name flex">
+<span>def <span class="ident">is_invisible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_invisible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_invisible">is_invisible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is invisible on the page within the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Form.is_visible"><code class="name flex">
+<span>def <span class="ident">is_visible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_visible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_visible">is_visible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is visible on the page in the time (seconds) provided …</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="pom_elements.html.forms.Input"><code class="flex name class">
+<span>class <span class="ident">Input</span></span>
+<span>(</span><span>webdriver: <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'> = None, timeout: int = 5, xpath: str = '', **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Interact with <input> html dom elements.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Input(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;input&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;input&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></li>
+<li><a title="pom_elements.base_element.BaseElement" href="../base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.Input.tag"><code class="name">var <span class="ident">tag</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.tag" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.tag">tag</a></code>
+</p>
+<div class="desc inherited"><p>tag class attribute is the xpath html tag (i.e. div, span, ul).</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.Input.default_timeout"><code class="name">var <span class="ident">default_timeout</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.default_timeout" href="../base_element.html#pom_elements.xpath_element.XPathElement.default_timeout">default_timeout</a></code>
+</p>
+<div class="desc inherited"><p>Get the default timeout.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Input.locator"><code class="name">var <span class="ident">locator</span> : Tuple[selenium.webdriver.common.by.By, str]</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.locator" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.locator">locator</a></code>
+</p>
+<div class="desc inherited"><p>Return the Xpath Locator element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Input.webdriver"><code class="name">var <span class="ident">webdriver</span> : <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.webdriver" href="../base_element.html#pom_elements.xpath_element.XPathElement.webdriver">webdriver</a></code>
+</p>
+<div class="desc inherited"><p>Get the Element's Selenium webdriver instance …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Input.xpath"><code class="name">var <span class="ident">xpath</span> : str</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.xpath" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.xpath">xpath</a></code>
+</p>
+<div class="desc inherited"><p>Get the xpath value as a string.</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="pom_elements.html.forms.Input.can_be_clicked"><code class="name flex">
+<span>def <span class="ident">can_be_clicked</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.can_be_clicked" href="../base_element.html#pom_elements.xpath_element.XPathElement.can_be_clicked">can_be_clicked</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement can be clicked in the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Input.click"><code class="name flex">
+<span>def <span class="ident">click</span></span>(<span>self, timeout: Union[float, NoneType] = None)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.click" href="../base_element.html#pom_elements.xpath_element.XPathElement.click">click</a></code>
+</p>
+<div class="desc inherited"><p>Click the web element if it is available to be clicked.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Input.find"><code class="name flex">
+<span>def <span class="ident">find</span></span>(<span>self, timeout: Union[float, NoneType] = None) -> selenium.webdriver.remote.webelement.WebElement</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.find" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.find">find</a></code>
+</p>
+<div class="desc inherited"><p>Return the Selenium WebElement in the provided timeout or raise an error …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Input.get_all_attributes"><code class="name flex">
+<span>def <span class="ident">get_all_attributes</span></span>(<span>self) -> dict</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_all_attributes" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_all_attributes">get_all_attributes</a></code>
+</p>
+<div class="desc inherited"><p>Return a dictionary containing all of the attributes of an element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Input.get_attribute"><code class="name flex">
+<span>def <span class="ident">get_attribute</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_attribute" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_attribute">get_attribute</a></code>
+</p>
+<div class="desc inherited"><p>Returns the attribute of the name provided.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Input.get_property"><code class="name flex">
+<span>def <span class="ident">get_property</span></span>(<span>self, value: str) -> Any</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_property" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_property">get_property</a></code>
+</p>
+<div class="desc inherited"><p>Get the property of the element …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Input.is_displayed"><code class="name flex">
+<span>def <span class="ident">is_displayed</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_displayed" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_displayed">is_displayed</a></code>
+</p>
+<div class="desc inherited"><p>Returns true if the Element is displayed else false.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Input.is_invisible"><code class="name flex">
+<span>def <span class="ident">is_invisible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_invisible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_invisible">is_invisible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is invisible on the page within the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Input.is_visible"><code class="name flex">
+<span>def <span class="ident">is_visible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_visible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_visible">is_visible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is visible on the page in the time (seconds) provided …</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="pom_elements.html.forms.Label"><code class="flex name class">
+<span>class <span class="ident">Label</span></span>
+<span>(</span><span>webdriver: <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'> = None, timeout: int = 5, xpath: str = '', **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Interact with <label> html dom elements.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Label(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;label&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;label&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></li>
+<li><a title="pom_elements.base_element.BaseElement" href="../base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.Label.tag"><code class="name">var <span class="ident">tag</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.tag" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.tag">tag</a></code>
+</p>
+<div class="desc inherited"><p>tag class attribute is the xpath html tag (i.e. div, span, ul).</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.Label.default_timeout"><code class="name">var <span class="ident">default_timeout</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.default_timeout" href="../base_element.html#pom_elements.xpath_element.XPathElement.default_timeout">default_timeout</a></code>
+</p>
+<div class="desc inherited"><p>Get the default timeout.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Label.locator"><code class="name">var <span class="ident">locator</span> : Tuple[selenium.webdriver.common.by.By, str]</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.locator" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.locator">locator</a></code>
+</p>
+<div class="desc inherited"><p>Return the Xpath Locator element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Label.webdriver"><code class="name">var <span class="ident">webdriver</span> : <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.webdriver" href="../base_element.html#pom_elements.xpath_element.XPathElement.webdriver">webdriver</a></code>
+</p>
+<div class="desc inherited"><p>Get the Element's Selenium webdriver instance …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Label.xpath"><code class="name">var <span class="ident">xpath</span> : str</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.xpath" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.xpath">xpath</a></code>
+</p>
+<div class="desc inherited"><p>Get the xpath value as a string.</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="pom_elements.html.forms.Label.can_be_clicked"><code class="name flex">
+<span>def <span class="ident">can_be_clicked</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.can_be_clicked" href="../base_element.html#pom_elements.xpath_element.XPathElement.can_be_clicked">can_be_clicked</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement can be clicked in the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Label.click"><code class="name flex">
+<span>def <span class="ident">click</span></span>(<span>self, timeout: Union[float, NoneType] = None)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.click" href="../base_element.html#pom_elements.xpath_element.XPathElement.click">click</a></code>
+</p>
+<div class="desc inherited"><p>Click the web element if it is available to be clicked.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Label.find"><code class="name flex">
+<span>def <span class="ident">find</span></span>(<span>self, timeout: Union[float, NoneType] = None) -> selenium.webdriver.remote.webelement.WebElement</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.find" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.find">find</a></code>
+</p>
+<div class="desc inherited"><p>Return the Selenium WebElement in the provided timeout or raise an error …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Label.get_all_attributes"><code class="name flex">
+<span>def <span class="ident">get_all_attributes</span></span>(<span>self) -> dict</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_all_attributes" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_all_attributes">get_all_attributes</a></code>
+</p>
+<div class="desc inherited"><p>Return a dictionary containing all of the attributes of an element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Label.get_attribute"><code class="name flex">
+<span>def <span class="ident">get_attribute</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_attribute" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_attribute">get_attribute</a></code>
+</p>
+<div class="desc inherited"><p>Returns the attribute of the name provided.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Label.get_property"><code class="name flex">
+<span>def <span class="ident">get_property</span></span>(<span>self, value: str) -> Any</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_property" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_property">get_property</a></code>
+</p>
+<div class="desc inherited"><p>Get the property of the element …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Label.is_displayed"><code class="name flex">
+<span>def <span class="ident">is_displayed</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_displayed" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_displayed">is_displayed</a></code>
+</p>
+<div class="desc inherited"><p>Returns true if the Element is displayed else false.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Label.is_invisible"><code class="name flex">
+<span>def <span class="ident">is_invisible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_invisible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_invisible">is_invisible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is invisible on the page within the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Label.is_visible"><code class="name flex">
+<span>def <span class="ident">is_visible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_visible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_visible">is_visible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is visible on the page in the time (seconds) provided …</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="pom_elements.html.forms.Legend"><code class="flex name class">
+<span>class <span class="ident">Legend</span></span>
+<span>(</span><span>webdriver: <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'> = None, timeout: int = 5, xpath: str = '', **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Interact with <legend> html dom elements.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Legend(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;legend&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;legend&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></li>
+<li><a title="pom_elements.base_element.BaseElement" href="../base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.Legend.tag"><code class="name">var <span class="ident">tag</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.tag" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.tag">tag</a></code>
+</p>
+<div class="desc inherited"><p>tag class attribute is the xpath html tag (i.e. div, span, ul).</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.Legend.default_timeout"><code class="name">var <span class="ident">default_timeout</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.default_timeout" href="../base_element.html#pom_elements.xpath_element.XPathElement.default_timeout">default_timeout</a></code>
+</p>
+<div class="desc inherited"><p>Get the default timeout.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Legend.locator"><code class="name">var <span class="ident">locator</span> : Tuple[selenium.webdriver.common.by.By, str]</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.locator" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.locator">locator</a></code>
+</p>
+<div class="desc inherited"><p>Return the Xpath Locator element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Legend.webdriver"><code class="name">var <span class="ident">webdriver</span> : <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.webdriver" href="../base_element.html#pom_elements.xpath_element.XPathElement.webdriver">webdriver</a></code>
+</p>
+<div class="desc inherited"><p>Get the Element's Selenium webdriver instance …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Legend.xpath"><code class="name">var <span class="ident">xpath</span> : str</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.xpath" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.xpath">xpath</a></code>
+</p>
+<div class="desc inherited"><p>Get the xpath value as a string.</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="pom_elements.html.forms.Legend.can_be_clicked"><code class="name flex">
+<span>def <span class="ident">can_be_clicked</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.can_be_clicked" href="../base_element.html#pom_elements.xpath_element.XPathElement.can_be_clicked">can_be_clicked</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement can be clicked in the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Legend.click"><code class="name flex">
+<span>def <span class="ident">click</span></span>(<span>self, timeout: Union[float, NoneType] = None)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.click" href="../base_element.html#pom_elements.xpath_element.XPathElement.click">click</a></code>
+</p>
+<div class="desc inherited"><p>Click the web element if it is available to be clicked.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Legend.find"><code class="name flex">
+<span>def <span class="ident">find</span></span>(<span>self, timeout: Union[float, NoneType] = None) -> selenium.webdriver.remote.webelement.WebElement</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.find" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.find">find</a></code>
+</p>
+<div class="desc inherited"><p>Return the Selenium WebElement in the provided timeout or raise an error …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Legend.get_all_attributes"><code class="name flex">
+<span>def <span class="ident">get_all_attributes</span></span>(<span>self) -> dict</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_all_attributes" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_all_attributes">get_all_attributes</a></code>
+</p>
+<div class="desc inherited"><p>Return a dictionary containing all of the attributes of an element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Legend.get_attribute"><code class="name flex">
+<span>def <span class="ident">get_attribute</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_attribute" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_attribute">get_attribute</a></code>
+</p>
+<div class="desc inherited"><p>Returns the attribute of the name provided.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Legend.get_property"><code class="name flex">
+<span>def <span class="ident">get_property</span></span>(<span>self, value: str) -> Any</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_property" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_property">get_property</a></code>
+</p>
+<div class="desc inherited"><p>Get the property of the element …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Legend.is_displayed"><code class="name flex">
+<span>def <span class="ident">is_displayed</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_displayed" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_displayed">is_displayed</a></code>
+</p>
+<div class="desc inherited"><p>Returns true if the Element is displayed else false.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Legend.is_invisible"><code class="name flex">
+<span>def <span class="ident">is_invisible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_invisible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_invisible">is_invisible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is invisible on the page within the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Legend.is_visible"><code class="name flex">
+<span>def <span class="ident">is_visible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_visible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_visible">is_visible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is visible on the page in the time (seconds) provided …</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="pom_elements.html.forms.Meter"><code class="flex name class">
+<span>class <span class="ident">Meter</span></span>
+<span>(</span><span>webdriver: <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'> = None, timeout: int = 5, xpath: str = '', **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Interact with <meter> html dom elements.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Meter(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;meter&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;meter&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></li>
+<li><a title="pom_elements.base_element.BaseElement" href="../base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.Meter.tag"><code class="name">var <span class="ident">tag</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.tag" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.tag">tag</a></code>
+</p>
+<div class="desc inherited"><p>tag class attribute is the xpath html tag (i.e. div, span, ul).</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.Meter.default_timeout"><code class="name">var <span class="ident">default_timeout</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.default_timeout" href="../base_element.html#pom_elements.xpath_element.XPathElement.default_timeout">default_timeout</a></code>
+</p>
+<div class="desc inherited"><p>Get the default timeout.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Meter.locator"><code class="name">var <span class="ident">locator</span> : Tuple[selenium.webdriver.common.by.By, str]</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.locator" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.locator">locator</a></code>
+</p>
+<div class="desc inherited"><p>Return the Xpath Locator element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Meter.webdriver"><code class="name">var <span class="ident">webdriver</span> : <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.webdriver" href="../base_element.html#pom_elements.xpath_element.XPathElement.webdriver">webdriver</a></code>
+</p>
+<div class="desc inherited"><p>Get the Element's Selenium webdriver instance …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Meter.xpath"><code class="name">var <span class="ident">xpath</span> : str</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.xpath" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.xpath">xpath</a></code>
+</p>
+<div class="desc inherited"><p>Get the xpath value as a string.</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="pom_elements.html.forms.Meter.can_be_clicked"><code class="name flex">
+<span>def <span class="ident">can_be_clicked</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.can_be_clicked" href="../base_element.html#pom_elements.xpath_element.XPathElement.can_be_clicked">can_be_clicked</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement can be clicked in the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Meter.click"><code class="name flex">
+<span>def <span class="ident">click</span></span>(<span>self, timeout: Union[float, NoneType] = None)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.click" href="../base_element.html#pom_elements.xpath_element.XPathElement.click">click</a></code>
+</p>
+<div class="desc inherited"><p>Click the web element if it is available to be clicked.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Meter.find"><code class="name flex">
+<span>def <span class="ident">find</span></span>(<span>self, timeout: Union[float, NoneType] = None) -> selenium.webdriver.remote.webelement.WebElement</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.find" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.find">find</a></code>
+</p>
+<div class="desc inherited"><p>Return the Selenium WebElement in the provided timeout or raise an error …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Meter.get_all_attributes"><code class="name flex">
+<span>def <span class="ident">get_all_attributes</span></span>(<span>self) -> dict</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_all_attributes" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_all_attributes">get_all_attributes</a></code>
+</p>
+<div class="desc inherited"><p>Return a dictionary containing all of the attributes of an element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Meter.get_attribute"><code class="name flex">
+<span>def <span class="ident">get_attribute</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_attribute" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_attribute">get_attribute</a></code>
+</p>
+<div class="desc inherited"><p>Returns the attribute of the name provided.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Meter.get_property"><code class="name flex">
+<span>def <span class="ident">get_property</span></span>(<span>self, value: str) -> Any</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_property" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_property">get_property</a></code>
+</p>
+<div class="desc inherited"><p>Get the property of the element …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Meter.is_displayed"><code class="name flex">
+<span>def <span class="ident">is_displayed</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_displayed" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_displayed">is_displayed</a></code>
+</p>
+<div class="desc inherited"><p>Returns true if the Element is displayed else false.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Meter.is_invisible"><code class="name flex">
+<span>def <span class="ident">is_invisible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_invisible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_invisible">is_invisible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is invisible on the page within the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Meter.is_visible"><code class="name flex">
+<span>def <span class="ident">is_visible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_visible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_visible">is_visible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is visible on the page in the time (seconds) provided …</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="pom_elements.html.forms.OptGroup"><code class="flex name class">
+<span>class <span class="ident">OptGroup</span></span>
+<span>(</span><span>webdriver: <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'> = None, timeout: int = 5, xpath: str = '', **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Interact with <optgroup> html dom elements.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class OptGroup(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;optgroup&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;optgroup&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></li>
+<li><a title="pom_elements.base_element.BaseElement" href="../base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.OptGroup.tag"><code class="name">var <span class="ident">tag</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.tag" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.tag">tag</a></code>
+</p>
+<div class="desc inherited"><p>tag class attribute is the xpath html tag (i.e. div, span, ul).</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.OptGroup.default_timeout"><code class="name">var <span class="ident">default_timeout</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.default_timeout" href="../base_element.html#pom_elements.xpath_element.XPathElement.default_timeout">default_timeout</a></code>
+</p>
+<div class="desc inherited"><p>Get the default timeout.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.OptGroup.locator"><code class="name">var <span class="ident">locator</span> : Tuple[selenium.webdriver.common.by.By, str]</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.locator" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.locator">locator</a></code>
+</p>
+<div class="desc inherited"><p>Return the Xpath Locator element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.OptGroup.webdriver"><code class="name">var <span class="ident">webdriver</span> : <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.webdriver" href="../base_element.html#pom_elements.xpath_element.XPathElement.webdriver">webdriver</a></code>
+</p>
+<div class="desc inherited"><p>Get the Element's Selenium webdriver instance …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.OptGroup.xpath"><code class="name">var <span class="ident">xpath</span> : str</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.xpath" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.xpath">xpath</a></code>
+</p>
+<div class="desc inherited"><p>Get the xpath value as a string.</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="pom_elements.html.forms.OptGroup.can_be_clicked"><code class="name flex">
+<span>def <span class="ident">can_be_clicked</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.can_be_clicked" href="../base_element.html#pom_elements.xpath_element.XPathElement.can_be_clicked">can_be_clicked</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement can be clicked in the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.OptGroup.click"><code class="name flex">
+<span>def <span class="ident">click</span></span>(<span>self, timeout: Union[float, NoneType] = None)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.click" href="../base_element.html#pom_elements.xpath_element.XPathElement.click">click</a></code>
+</p>
+<div class="desc inherited"><p>Click the web element if it is available to be clicked.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.OptGroup.find"><code class="name flex">
+<span>def <span class="ident">find</span></span>(<span>self, timeout: Union[float, NoneType] = None) -> selenium.webdriver.remote.webelement.WebElement</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.find" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.find">find</a></code>
+</p>
+<div class="desc inherited"><p>Return the Selenium WebElement in the provided timeout or raise an error …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.OptGroup.get_all_attributes"><code class="name flex">
+<span>def <span class="ident">get_all_attributes</span></span>(<span>self) -> dict</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_all_attributes" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_all_attributes">get_all_attributes</a></code>
+</p>
+<div class="desc inherited"><p>Return a dictionary containing all of the attributes of an element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.OptGroup.get_attribute"><code class="name flex">
+<span>def <span class="ident">get_attribute</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_attribute" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_attribute">get_attribute</a></code>
+</p>
+<div class="desc inherited"><p>Returns the attribute of the name provided.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.OptGroup.get_property"><code class="name flex">
+<span>def <span class="ident">get_property</span></span>(<span>self, value: str) -> Any</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_property" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_property">get_property</a></code>
+</p>
+<div class="desc inherited"><p>Get the property of the element …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.OptGroup.is_displayed"><code class="name flex">
+<span>def <span class="ident">is_displayed</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_displayed" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_displayed">is_displayed</a></code>
+</p>
+<div class="desc inherited"><p>Returns true if the Element is displayed else false.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.OptGroup.is_invisible"><code class="name flex">
+<span>def <span class="ident">is_invisible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_invisible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_invisible">is_invisible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is invisible on the page within the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.OptGroup.is_visible"><code class="name flex">
+<span>def <span class="ident">is_visible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_visible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_visible">is_visible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is visible on the page in the time (seconds) provided …</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="pom_elements.html.forms.Option"><code class="flex name class">
+<span>class <span class="ident">Option</span></span>
+<span>(</span><span>webdriver: <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'> = None, timeout: int = 5, xpath: str = '', **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Interact with <option> html dom elements.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Option(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;option&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;option&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></li>
+<li><a title="pom_elements.base_element.BaseElement" href="../base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.Option.tag"><code class="name">var <span class="ident">tag</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.tag" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.tag">tag</a></code>
+</p>
+<div class="desc inherited"><p>tag class attribute is the xpath html tag (i.e. div, span, ul).</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.Option.default_timeout"><code class="name">var <span class="ident">default_timeout</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.default_timeout" href="../base_element.html#pom_elements.xpath_element.XPathElement.default_timeout">default_timeout</a></code>
+</p>
+<div class="desc inherited"><p>Get the default timeout.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Option.locator"><code class="name">var <span class="ident">locator</span> : Tuple[selenium.webdriver.common.by.By, str]</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.locator" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.locator">locator</a></code>
+</p>
+<div class="desc inherited"><p>Return the Xpath Locator element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Option.webdriver"><code class="name">var <span class="ident">webdriver</span> : <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.webdriver" href="../base_element.html#pom_elements.xpath_element.XPathElement.webdriver">webdriver</a></code>
+</p>
+<div class="desc inherited"><p>Get the Element's Selenium webdriver instance …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Option.xpath"><code class="name">var <span class="ident">xpath</span> : str</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.xpath" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.xpath">xpath</a></code>
+</p>
+<div class="desc inherited"><p>Get the xpath value as a string.</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="pom_elements.html.forms.Option.can_be_clicked"><code class="name flex">
+<span>def <span class="ident">can_be_clicked</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.can_be_clicked" href="../base_element.html#pom_elements.xpath_element.XPathElement.can_be_clicked">can_be_clicked</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement can be clicked in the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Option.click"><code class="name flex">
+<span>def <span class="ident">click</span></span>(<span>self, timeout: Union[float, NoneType] = None)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.click" href="../base_element.html#pom_elements.xpath_element.XPathElement.click">click</a></code>
+</p>
+<div class="desc inherited"><p>Click the web element if it is available to be clicked.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Option.find"><code class="name flex">
+<span>def <span class="ident">find</span></span>(<span>self, timeout: Union[float, NoneType] = None) -> selenium.webdriver.remote.webelement.WebElement</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.find" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.find">find</a></code>
+</p>
+<div class="desc inherited"><p>Return the Selenium WebElement in the provided timeout or raise an error …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Option.get_all_attributes"><code class="name flex">
+<span>def <span class="ident">get_all_attributes</span></span>(<span>self) -> dict</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_all_attributes" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_all_attributes">get_all_attributes</a></code>
+</p>
+<div class="desc inherited"><p>Return a dictionary containing all of the attributes of an element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Option.get_attribute"><code class="name flex">
+<span>def <span class="ident">get_attribute</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_attribute" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_attribute">get_attribute</a></code>
+</p>
+<div class="desc inherited"><p>Returns the attribute of the name provided.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Option.get_property"><code class="name flex">
+<span>def <span class="ident">get_property</span></span>(<span>self, value: str) -> Any</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_property" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_property">get_property</a></code>
+</p>
+<div class="desc inherited"><p>Get the property of the element …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Option.is_displayed"><code class="name flex">
+<span>def <span class="ident">is_displayed</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_displayed" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_displayed">is_displayed</a></code>
+</p>
+<div class="desc inherited"><p>Returns true if the Element is displayed else false.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Option.is_invisible"><code class="name flex">
+<span>def <span class="ident">is_invisible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_invisible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_invisible">is_invisible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is invisible on the page within the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Option.is_visible"><code class="name flex">
+<span>def <span class="ident">is_visible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_visible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_visible">is_visible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is visible on the page in the time (seconds) provided …</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="pom_elements.html.forms.Select"><code class="flex name class">
+<span>class <span class="ident">Select</span></span>
+<span>(</span><span>webdriver: <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'> = None, timeout: int = 5, xpath: str = '', **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Interact with <select> html dom elements.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Select(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;select&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;select&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></li>
+<li><a title="pom_elements.base_element.BaseElement" href="../base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.Select.tag"><code class="name">var <span class="ident">tag</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.tag" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.tag">tag</a></code>
+</p>
+<div class="desc inherited"><p>tag class attribute is the xpath html tag (i.e. div, span, ul).</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.Select.default_timeout"><code class="name">var <span class="ident">default_timeout</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.default_timeout" href="../base_element.html#pom_elements.xpath_element.XPathElement.default_timeout">default_timeout</a></code>
+</p>
+<div class="desc inherited"><p>Get the default timeout.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Select.locator"><code class="name">var <span class="ident">locator</span> : Tuple[selenium.webdriver.common.by.By, str]</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.locator" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.locator">locator</a></code>
+</p>
+<div class="desc inherited"><p>Return the Xpath Locator element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Select.webdriver"><code class="name">var <span class="ident">webdriver</span> : <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.webdriver" href="../base_element.html#pom_elements.xpath_element.XPathElement.webdriver">webdriver</a></code>
+</p>
+<div class="desc inherited"><p>Get the Element's Selenium webdriver instance …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Select.xpath"><code class="name">var <span class="ident">xpath</span> : str</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.xpath" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.xpath">xpath</a></code>
+</p>
+<div class="desc inherited"><p>Get the xpath value as a string.</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="pom_elements.html.forms.Select.can_be_clicked"><code class="name flex">
+<span>def <span class="ident">can_be_clicked</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.can_be_clicked" href="../base_element.html#pom_elements.xpath_element.XPathElement.can_be_clicked">can_be_clicked</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement can be clicked in the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Select.click"><code class="name flex">
+<span>def <span class="ident">click</span></span>(<span>self, timeout: Union[float, NoneType] = None)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.click" href="../base_element.html#pom_elements.xpath_element.XPathElement.click">click</a></code>
+</p>
+<div class="desc inherited"><p>Click the web element if it is available to be clicked.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Select.find"><code class="name flex">
+<span>def <span class="ident">find</span></span>(<span>self, timeout: Union[float, NoneType] = None) -> selenium.webdriver.remote.webelement.WebElement</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.find" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.find">find</a></code>
+</p>
+<div class="desc inherited"><p>Return the Selenium WebElement in the provided timeout or raise an error …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Select.get_all_attributes"><code class="name flex">
+<span>def <span class="ident">get_all_attributes</span></span>(<span>self) -> dict</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_all_attributes" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_all_attributes">get_all_attributes</a></code>
+</p>
+<div class="desc inherited"><p>Return a dictionary containing all of the attributes of an element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Select.get_attribute"><code class="name flex">
+<span>def <span class="ident">get_attribute</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_attribute" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_attribute">get_attribute</a></code>
+</p>
+<div class="desc inherited"><p>Returns the attribute of the name provided.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Select.get_property"><code class="name flex">
+<span>def <span class="ident">get_property</span></span>(<span>self, value: str) -> Any</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_property" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_property">get_property</a></code>
+</p>
+<div class="desc inherited"><p>Get the property of the element …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Select.is_displayed"><code class="name flex">
+<span>def <span class="ident">is_displayed</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_displayed" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_displayed">is_displayed</a></code>
+</p>
+<div class="desc inherited"><p>Returns true if the Element is displayed else false.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Select.is_invisible"><code class="name flex">
+<span>def <span class="ident">is_invisible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_invisible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_invisible">is_invisible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is invisible on the page within the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.Select.is_visible"><code class="name flex">
+<span>def <span class="ident">is_visible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_visible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_visible">is_visible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is visible on the page in the time (seconds) provided …</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="pom_elements.html.forms.TextArea"><code class="flex name class">
+<span>class <span class="ident">TextArea</span></span>
+<span>(</span><span>webdriver: <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'> = None, timeout: int = 5, xpath: str = '', **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Interact with <textarea> html dom elements.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TextArea(XPathElement):
+    &#34;&#34;&#34;Interact with &lt;textarea&gt; html dom elements.&#34;&#34;&#34;
+
+    tag = &#34;textarea&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></li>
+<li><a title="pom_elements.base_element.BaseElement" href="../base_element.html#pom_elements.base_element.BaseElement">BaseElement</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.TextArea.tag"><code class="name">var <span class="ident">tag</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.tag" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.tag">tag</a></code>
+</p>
+<div class="desc inherited"><p>tag class attribute is the xpath html tag (i.e. div, span, ul).</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pom_elements.html.forms.TextArea.default_timeout"><code class="name">var <span class="ident">default_timeout</span></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.default_timeout" href="../base_element.html#pom_elements.xpath_element.XPathElement.default_timeout">default_timeout</a></code>
+</p>
+<div class="desc inherited"><p>Get the default timeout.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.TextArea.locator"><code class="name">var <span class="ident">locator</span> : Tuple[selenium.webdriver.common.by.By, str]</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.locator" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.locator">locator</a></code>
+</p>
+<div class="desc inherited"><p>Return the Xpath Locator element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.TextArea.webdriver"><code class="name">var <span class="ident">webdriver</span> : <module 'selenium.webdriver' from '/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/selenium/webdriver/__init__.py'></code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.webdriver" href="../base_element.html#pom_elements.xpath_element.XPathElement.webdriver">webdriver</a></code>
+</p>
+<div class="desc inherited"><p>Get the Element's Selenium webdriver instance …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.TextArea.xpath"><code class="name">var <span class="ident">xpath</span> : str</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.xpath" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.xpath">xpath</a></code>
+</p>
+<div class="desc inherited"><p>Get the xpath value as a string.</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="pom_elements.html.forms.TextArea.can_be_clicked"><code class="name flex">
+<span>def <span class="ident">can_be_clicked</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.can_be_clicked" href="../base_element.html#pom_elements.xpath_element.XPathElement.can_be_clicked">can_be_clicked</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement can be clicked in the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.TextArea.click"><code class="name flex">
+<span>def <span class="ident">click</span></span>(<span>self, timeout: Union[float, NoneType] = None)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.click" href="../base_element.html#pom_elements.xpath_element.XPathElement.click">click</a></code>
+</p>
+<div class="desc inherited"><p>Click the web element if it is available to be clicked.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.TextArea.find"><code class="name flex">
+<span>def <span class="ident">find</span></span>(<span>self, timeout: Union[float, NoneType] = None) -> selenium.webdriver.remote.webelement.WebElement</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.find" href="../xpath_element.html#pom_elements.xpath_element.XPathElement.find">find</a></code>
+</p>
+<div class="desc inherited"><p>Return the Selenium WebElement in the provided timeout or raise an error …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.TextArea.get_all_attributes"><code class="name flex">
+<span>def <span class="ident">get_all_attributes</span></span>(<span>self) -> dict</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_all_attributes" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_all_attributes">get_all_attributes</a></code>
+</p>
+<div class="desc inherited"><p>Return a dictionary containing all of the attributes of an element.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.TextArea.get_attribute"><code class="name flex">
+<span>def <span class="ident">get_attribute</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_attribute" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_attribute">get_attribute</a></code>
+</p>
+<div class="desc inherited"><p>Returns the attribute of the name provided.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.TextArea.get_property"><code class="name flex">
+<span>def <span class="ident">get_property</span></span>(<span>self, value: str) -> Any</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.get_property" href="../base_element.html#pom_elements.xpath_element.XPathElement.get_property">get_property</a></code>
+</p>
+<div class="desc inherited"><p>Get the property of the element …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.TextArea.is_displayed"><code class="name flex">
+<span>def <span class="ident">is_displayed</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_displayed" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_displayed">is_displayed</a></code>
+</p>
+<div class="desc inherited"><p>Returns true if the Element is displayed else false.</p></div>
+</dd>
+<dt id="pom_elements.html.forms.TextArea.is_invisible"><code class="name flex">
+<span>def <span class="ident">is_invisible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_invisible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_invisible">is_invisible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is invisible on the page within the time (seconds) provided …</p></div>
+</dd>
+<dt id="pom_elements.html.forms.TextArea.is_visible"><code class="name flex">
+<span>def <span class="ident">is_visible</span></span>(<span>self, timeout: Union[int, NoneType] = None) -> bool</span>
+</code></dt>
+<dd>
+<p class="inheritance">
+<em>Inherited from:</em>
+<code><a title="pom_elements.xpath_element.XPathElement" href="../xpath_element.html#pom_elements.xpath_element.XPathElement">XPathElement</a></code>.<code><a title="pom_elements.xpath_element.XPathElement.is_visible" href="../base_element.html#pom_elements.xpath_element.XPathElement.is_visible">is_visible</a></code>
+</p>
+<div class="desc inherited"><p>Return true if the webelement is visible on the page in the time (seconds) provided …</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="pom_elements.html" href="index.html">pom_elements.html</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="pom_elements.html.forms.Button" href="#pom_elements.html.forms.Button">Button</a></code></h4>
+<ul class="two-column">
+<li><code><a title="pom_elements.html.forms.Button.can_be_clicked" href="../base_element.html#pom_elements.html.forms.Button.can_be_clicked">can_be_clicked</a></code></li>
+<li><code><a title="pom_elements.html.forms.Button.click" href="../base_element.html#pom_elements.html.forms.Button.click">click</a></code></li>
+<li><code><a title="pom_elements.html.forms.Button.default_timeout" href="../base_element.html#pom_elements.html.forms.Button.default_timeout">default_timeout</a></code></li>
+<li><code><a title="pom_elements.html.forms.Button.find" href="../xpath_element.html#pom_elements.html.forms.Button.find">find</a></code></li>
+<li><code><a title="pom_elements.html.forms.Button.get_all_attributes" href="../base_element.html#pom_elements.html.forms.Button.get_all_attributes">get_all_attributes</a></code></li>
+<li><code><a title="pom_elements.html.forms.Button.get_attribute" href="../base_element.html#pom_elements.html.forms.Button.get_attribute">get_attribute</a></code></li>
+<li><code><a title="pom_elements.html.forms.Button.get_property" href="../base_element.html#pom_elements.html.forms.Button.get_property">get_property</a></code></li>
+<li><code><a title="pom_elements.html.forms.Button.is_displayed" href="../base_element.html#pom_elements.html.forms.Button.is_displayed">is_displayed</a></code></li>
+<li><code><a title="pom_elements.html.forms.Button.is_invisible" href="../base_element.html#pom_elements.html.forms.Button.is_invisible">is_invisible</a></code></li>
+<li><code><a title="pom_elements.html.forms.Button.is_visible" href="../base_element.html#pom_elements.html.forms.Button.is_visible">is_visible</a></code></li>
+<li><code><a title="pom_elements.html.forms.Button.locator" href="../xpath_element.html#pom_elements.html.forms.Button.locator">locator</a></code></li>
+<li><code><a title="pom_elements.html.forms.Button.tag" href="#pom_elements.html.forms.Button.tag">tag</a></code></li>
+<li><code><a title="pom_elements.html.forms.Button.webdriver" href="../base_element.html#pom_elements.html.forms.Button.webdriver">webdriver</a></code></li>
+<li><code><a title="pom_elements.html.forms.Button.xpath" href="../xpath_element.html#pom_elements.html.forms.Button.xpath">xpath</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pom_elements.html.forms.DataList" href="#pom_elements.html.forms.DataList">DataList</a></code></h4>
+<ul class="two-column">
+<li><code><a title="pom_elements.html.forms.DataList.can_be_clicked" href="../base_element.html#pom_elements.html.forms.DataList.can_be_clicked">can_be_clicked</a></code></li>
+<li><code><a title="pom_elements.html.forms.DataList.click" href="../base_element.html#pom_elements.html.forms.DataList.click">click</a></code></li>
+<li><code><a title="pom_elements.html.forms.DataList.default_timeout" href="../base_element.html#pom_elements.html.forms.DataList.default_timeout">default_timeout</a></code></li>
+<li><code><a title="pom_elements.html.forms.DataList.find" href="../xpath_element.html#pom_elements.html.forms.DataList.find">find</a></code></li>
+<li><code><a title="pom_elements.html.forms.DataList.get_all_attributes" href="../base_element.html#pom_elements.html.forms.DataList.get_all_attributes">get_all_attributes</a></code></li>
+<li><code><a title="pom_elements.html.forms.DataList.get_attribute" href="../base_element.html#pom_elements.html.forms.DataList.get_attribute">get_attribute</a></code></li>
+<li><code><a title="pom_elements.html.forms.DataList.get_property" href="../base_element.html#pom_elements.html.forms.DataList.get_property">get_property</a></code></li>
+<li><code><a title="pom_elements.html.forms.DataList.is_displayed" href="../base_element.html#pom_elements.html.forms.DataList.is_displayed">is_displayed</a></code></li>
+<li><code><a title="pom_elements.html.forms.DataList.is_invisible" href="../base_element.html#pom_elements.html.forms.DataList.is_invisible">is_invisible</a></code></li>
+<li><code><a title="pom_elements.html.forms.DataList.is_visible" href="../base_element.html#pom_elements.html.forms.DataList.is_visible">is_visible</a></code></li>
+<li><code><a title="pom_elements.html.forms.DataList.locator" href="../xpath_element.html#pom_elements.html.forms.DataList.locator">locator</a></code></li>
+<li><code><a title="pom_elements.html.forms.DataList.tag" href="#pom_elements.html.forms.DataList.tag">tag</a></code></li>
+<li><code><a title="pom_elements.html.forms.DataList.webdriver" href="../base_element.html#pom_elements.html.forms.DataList.webdriver">webdriver</a></code></li>
+<li><code><a title="pom_elements.html.forms.DataList.xpath" href="../xpath_element.html#pom_elements.html.forms.DataList.xpath">xpath</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pom_elements.html.forms.Fieldset" href="#pom_elements.html.forms.Fieldset">Fieldset</a></code></h4>
+<ul class="two-column">
+<li><code><a title="pom_elements.html.forms.Fieldset.can_be_clicked" href="../base_element.html#pom_elements.html.forms.Fieldset.can_be_clicked">can_be_clicked</a></code></li>
+<li><code><a title="pom_elements.html.forms.Fieldset.click" href="../base_element.html#pom_elements.html.forms.Fieldset.click">click</a></code></li>
+<li><code><a title="pom_elements.html.forms.Fieldset.default_timeout" href="../base_element.html#pom_elements.html.forms.Fieldset.default_timeout">default_timeout</a></code></li>
+<li><code><a title="pom_elements.html.forms.Fieldset.find" href="../xpath_element.html#pom_elements.html.forms.Fieldset.find">find</a></code></li>
+<li><code><a title="pom_elements.html.forms.Fieldset.get_all_attributes" href="../base_element.html#pom_elements.html.forms.Fieldset.get_all_attributes">get_all_attributes</a></code></li>
+<li><code><a title="pom_elements.html.forms.Fieldset.get_attribute" href="../base_element.html#pom_elements.html.forms.Fieldset.get_attribute">get_attribute</a></code></li>
+<li><code><a title="pom_elements.html.forms.Fieldset.get_property" href="../base_element.html#pom_elements.html.forms.Fieldset.get_property">get_property</a></code></li>
+<li><code><a title="pom_elements.html.forms.Fieldset.is_displayed" href="../base_element.html#pom_elements.html.forms.Fieldset.is_displayed">is_displayed</a></code></li>
+<li><code><a title="pom_elements.html.forms.Fieldset.is_invisible" href="../base_element.html#pom_elements.html.forms.Fieldset.is_invisible">is_invisible</a></code></li>
+<li><code><a title="pom_elements.html.forms.Fieldset.is_visible" href="../base_element.html#pom_elements.html.forms.Fieldset.is_visible">is_visible</a></code></li>
+<li><code><a title="pom_elements.html.forms.Fieldset.locator" href="../xpath_element.html#pom_elements.html.forms.Fieldset.locator">locator</a></code></li>
+<li><code><a title="pom_elements.html.forms.Fieldset.tag" href="#pom_elements.html.forms.Fieldset.tag">tag</a></code></li>
+<li><code><a title="pom_elements.html.forms.Fieldset.webdriver" href="../base_element.html#pom_elements.html.forms.Fieldset.webdriver">webdriver</a></code></li>
+<li><code><a title="pom_elements.html.forms.Fieldset.xpath" href="../xpath_element.html#pom_elements.html.forms.Fieldset.xpath">xpath</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pom_elements.html.forms.Form" href="#pom_elements.html.forms.Form">Form</a></code></h4>
+<ul class="two-column">
+<li><code><a title="pom_elements.html.forms.Form.can_be_clicked" href="../base_element.html#pom_elements.html.forms.Form.can_be_clicked">can_be_clicked</a></code></li>
+<li><code><a title="pom_elements.html.forms.Form.click" href="../base_element.html#pom_elements.html.forms.Form.click">click</a></code></li>
+<li><code><a title="pom_elements.html.forms.Form.default_timeout" href="../base_element.html#pom_elements.html.forms.Form.default_timeout">default_timeout</a></code></li>
+<li><code><a title="pom_elements.html.forms.Form.find" href="../xpath_element.html#pom_elements.html.forms.Form.find">find</a></code></li>
+<li><code><a title="pom_elements.html.forms.Form.get_all_attributes" href="../base_element.html#pom_elements.html.forms.Form.get_all_attributes">get_all_attributes</a></code></li>
+<li><code><a title="pom_elements.html.forms.Form.get_attribute" href="../base_element.html#pom_elements.html.forms.Form.get_attribute">get_attribute</a></code></li>
+<li><code><a title="pom_elements.html.forms.Form.get_property" href="../base_element.html#pom_elements.html.forms.Form.get_property">get_property</a></code></li>
+<li><code><a title="pom_elements.html.forms.Form.is_displayed" href="../base_element.html#pom_elements.html.forms.Form.is_displayed">is_displayed</a></code></li>
+<li><code><a title="pom_elements.html.forms.Form.is_invisible" href="../base_element.html#pom_elements.html.forms.Form.is_invisible">is_invisible</a></code></li>
+<li><code><a title="pom_elements.html.forms.Form.is_visible" href="../base_element.html#pom_elements.html.forms.Form.is_visible">is_visible</a></code></li>
+<li><code><a title="pom_elements.html.forms.Form.locator" href="../xpath_element.html#pom_elements.html.forms.Form.locator">locator</a></code></li>
+<li><code><a title="pom_elements.html.forms.Form.tag" href="#pom_elements.html.forms.Form.tag">tag</a></code></li>
+<li><code><a title="pom_elements.html.forms.Form.webdriver" href="../base_element.html#pom_elements.html.forms.Form.webdriver">webdriver</a></code></li>
+<li><code><a title="pom_elements.html.forms.Form.xpath" href="../xpath_element.html#pom_elements.html.forms.Form.xpath">xpath</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pom_elements.html.forms.Input" href="#pom_elements.html.forms.Input">Input</a></code></h4>
+<ul class="two-column">
+<li><code><a title="pom_elements.html.forms.Input.can_be_clicked" href="../base_element.html#pom_elements.html.forms.Input.can_be_clicked">can_be_clicked</a></code></li>
+<li><code><a title="pom_elements.html.forms.Input.click" href="../base_element.html#pom_elements.html.forms.Input.click">click</a></code></li>
+<li><code><a title="pom_elements.html.forms.Input.default_timeout" href="../base_element.html#pom_elements.html.forms.Input.default_timeout">default_timeout</a></code></li>
+<li><code><a title="pom_elements.html.forms.Input.find" href="../xpath_element.html#pom_elements.html.forms.Input.find">find</a></code></li>
+<li><code><a title="pom_elements.html.forms.Input.get_all_attributes" href="../base_element.html#pom_elements.html.forms.Input.get_all_attributes">get_all_attributes</a></code></li>
+<li><code><a title="pom_elements.html.forms.Input.get_attribute" href="../base_element.html#pom_elements.html.forms.Input.get_attribute">get_attribute</a></code></li>
+<li><code><a title="pom_elements.html.forms.Input.get_property" href="../base_element.html#pom_elements.html.forms.Input.get_property">get_property</a></code></li>
+<li><code><a title="pom_elements.html.forms.Input.is_displayed" href="../base_element.html#pom_elements.html.forms.Input.is_displayed">is_displayed</a></code></li>
+<li><code><a title="pom_elements.html.forms.Input.is_invisible" href="../base_element.html#pom_elements.html.forms.Input.is_invisible">is_invisible</a></code></li>
+<li><code><a title="pom_elements.html.forms.Input.is_visible" href="../base_element.html#pom_elements.html.forms.Input.is_visible">is_visible</a></code></li>
+<li><code><a title="pom_elements.html.forms.Input.locator" href="../xpath_element.html#pom_elements.html.forms.Input.locator">locator</a></code></li>
+<li><code><a title="pom_elements.html.forms.Input.tag" href="#pom_elements.html.forms.Input.tag">tag</a></code></li>
+<li><code><a title="pom_elements.html.forms.Input.webdriver" href="../base_element.html#pom_elements.html.forms.Input.webdriver">webdriver</a></code></li>
+<li><code><a title="pom_elements.html.forms.Input.xpath" href="../xpath_element.html#pom_elements.html.forms.Input.xpath">xpath</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pom_elements.html.forms.Label" href="#pom_elements.html.forms.Label">Label</a></code></h4>
+<ul class="two-column">
+<li><code><a title="pom_elements.html.forms.Label.can_be_clicked" href="../base_element.html#pom_elements.html.forms.Label.can_be_clicked">can_be_clicked</a></code></li>
+<li><code><a title="pom_elements.html.forms.Label.click" href="../base_element.html#pom_elements.html.forms.Label.click">click</a></code></li>
+<li><code><a title="pom_elements.html.forms.Label.default_timeout" href="../base_element.html#pom_elements.html.forms.Label.default_timeout">default_timeout</a></code></li>
+<li><code><a title="pom_elements.html.forms.Label.find" href="../xpath_element.html#pom_elements.html.forms.Label.find">find</a></code></li>
+<li><code><a title="pom_elements.html.forms.Label.get_all_attributes" href="../base_element.html#pom_elements.html.forms.Label.get_all_attributes">get_all_attributes</a></code></li>
+<li><code><a title="pom_elements.html.forms.Label.get_attribute" href="../base_element.html#pom_elements.html.forms.Label.get_attribute">get_attribute</a></code></li>
+<li><code><a title="pom_elements.html.forms.Label.get_property" href="../base_element.html#pom_elements.html.forms.Label.get_property">get_property</a></code></li>
+<li><code><a title="pom_elements.html.forms.Label.is_displayed" href="../base_element.html#pom_elements.html.forms.Label.is_displayed">is_displayed</a></code></li>
+<li><code><a title="pom_elements.html.forms.Label.is_invisible" href="../base_element.html#pom_elements.html.forms.Label.is_invisible">is_invisible</a></code></li>
+<li><code><a title="pom_elements.html.forms.Label.is_visible" href="../base_element.html#pom_elements.html.forms.Label.is_visible">is_visible</a></code></li>
+<li><code><a title="pom_elements.html.forms.Label.locator" href="../xpath_element.html#pom_elements.html.forms.Label.locator">locator</a></code></li>
+<li><code><a title="pom_elements.html.forms.Label.tag" href="#pom_elements.html.forms.Label.tag">tag</a></code></li>
+<li><code><a title="pom_elements.html.forms.Label.webdriver" href="../base_element.html#pom_elements.html.forms.Label.webdriver">webdriver</a></code></li>
+<li><code><a title="pom_elements.html.forms.Label.xpath" href="../xpath_element.html#pom_elements.html.forms.Label.xpath">xpath</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pom_elements.html.forms.Legend" href="#pom_elements.html.forms.Legend">Legend</a></code></h4>
+<ul class="two-column">
+<li><code><a title="pom_elements.html.forms.Legend.can_be_clicked" href="../base_element.html#pom_elements.html.forms.Legend.can_be_clicked">can_be_clicked</a></code></li>
+<li><code><a title="pom_elements.html.forms.Legend.click" href="../base_element.html#pom_elements.html.forms.Legend.click">click</a></code></li>
+<li><code><a title="pom_elements.html.forms.Legend.default_timeout" href="../base_element.html#pom_elements.html.forms.Legend.default_timeout">default_timeout</a></code></li>
+<li><code><a title="pom_elements.html.forms.Legend.find" href="../xpath_element.html#pom_elements.html.forms.Legend.find">find</a></code></li>
+<li><code><a title="pom_elements.html.forms.Legend.get_all_attributes" href="../base_element.html#pom_elements.html.forms.Legend.get_all_attributes">get_all_attributes</a></code></li>
+<li><code><a title="pom_elements.html.forms.Legend.get_attribute" href="../base_element.html#pom_elements.html.forms.Legend.get_attribute">get_attribute</a></code></li>
+<li><code><a title="pom_elements.html.forms.Legend.get_property" href="../base_element.html#pom_elements.html.forms.Legend.get_property">get_property</a></code></li>
+<li><code><a title="pom_elements.html.forms.Legend.is_displayed" href="../base_element.html#pom_elements.html.forms.Legend.is_displayed">is_displayed</a></code></li>
+<li><code><a title="pom_elements.html.forms.Legend.is_invisible" href="../base_element.html#pom_elements.html.forms.Legend.is_invisible">is_invisible</a></code></li>
+<li><code><a title="pom_elements.html.forms.Legend.is_visible" href="../base_element.html#pom_elements.html.forms.Legend.is_visible">is_visible</a></code></li>
+<li><code><a title="pom_elements.html.forms.Legend.locator" href="../xpath_element.html#pom_elements.html.forms.Legend.locator">locator</a></code></li>
+<li><code><a title="pom_elements.html.forms.Legend.tag" href="#pom_elements.html.forms.Legend.tag">tag</a></code></li>
+<li><code><a title="pom_elements.html.forms.Legend.webdriver" href="../base_element.html#pom_elements.html.forms.Legend.webdriver">webdriver</a></code></li>
+<li><code><a title="pom_elements.html.forms.Legend.xpath" href="../xpath_element.html#pom_elements.html.forms.Legend.xpath">xpath</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pom_elements.html.forms.Meter" href="#pom_elements.html.forms.Meter">Meter</a></code></h4>
+<ul class="two-column">
+<li><code><a title="pom_elements.html.forms.Meter.can_be_clicked" href="../base_element.html#pom_elements.html.forms.Meter.can_be_clicked">can_be_clicked</a></code></li>
+<li><code><a title="pom_elements.html.forms.Meter.click" href="../base_element.html#pom_elements.html.forms.Meter.click">click</a></code></li>
+<li><code><a title="pom_elements.html.forms.Meter.default_timeout" href="../base_element.html#pom_elements.html.forms.Meter.default_timeout">default_timeout</a></code></li>
+<li><code><a title="pom_elements.html.forms.Meter.find" href="../xpath_element.html#pom_elements.html.forms.Meter.find">find</a></code></li>
+<li><code><a title="pom_elements.html.forms.Meter.get_all_attributes" href="../base_element.html#pom_elements.html.forms.Meter.get_all_attributes">get_all_attributes</a></code></li>
+<li><code><a title="pom_elements.html.forms.Meter.get_attribute" href="../base_element.html#pom_elements.html.forms.Meter.get_attribute">get_attribute</a></code></li>
+<li><code><a title="pom_elements.html.forms.Meter.get_property" href="../base_element.html#pom_elements.html.forms.Meter.get_property">get_property</a></code></li>
+<li><code><a title="pom_elements.html.forms.Meter.is_displayed" href="../base_element.html#pom_elements.html.forms.Meter.is_displayed">is_displayed</a></code></li>
+<li><code><a title="pom_elements.html.forms.Meter.is_invisible" href="../base_element.html#pom_elements.html.forms.Meter.is_invisible">is_invisible</a></code></li>
+<li><code><a title="pom_elements.html.forms.Meter.is_visible" href="../base_element.html#pom_elements.html.forms.Meter.is_visible">is_visible</a></code></li>
+<li><code><a title="pom_elements.html.forms.Meter.locator" href="../xpath_element.html#pom_elements.html.forms.Meter.locator">locator</a></code></li>
+<li><code><a title="pom_elements.html.forms.Meter.tag" href="#pom_elements.html.forms.Meter.tag">tag</a></code></li>
+<li><code><a title="pom_elements.html.forms.Meter.webdriver" href="../base_element.html#pom_elements.html.forms.Meter.webdriver">webdriver</a></code></li>
+<li><code><a title="pom_elements.html.forms.Meter.xpath" href="../xpath_element.html#pom_elements.html.forms.Meter.xpath">xpath</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pom_elements.html.forms.OptGroup" href="#pom_elements.html.forms.OptGroup">OptGroup</a></code></h4>
+<ul class="two-column">
+<li><code><a title="pom_elements.html.forms.OptGroup.can_be_clicked" href="../base_element.html#pom_elements.html.forms.OptGroup.can_be_clicked">can_be_clicked</a></code></li>
+<li><code><a title="pom_elements.html.forms.OptGroup.click" href="../base_element.html#pom_elements.html.forms.OptGroup.click">click</a></code></li>
+<li><code><a title="pom_elements.html.forms.OptGroup.default_timeout" href="../base_element.html#pom_elements.html.forms.OptGroup.default_timeout">default_timeout</a></code></li>
+<li><code><a title="pom_elements.html.forms.OptGroup.find" href="../xpath_element.html#pom_elements.html.forms.OptGroup.find">find</a></code></li>
+<li><code><a title="pom_elements.html.forms.OptGroup.get_all_attributes" href="../base_element.html#pom_elements.html.forms.OptGroup.get_all_attributes">get_all_attributes</a></code></li>
+<li><code><a title="pom_elements.html.forms.OptGroup.get_attribute" href="../base_element.html#pom_elements.html.forms.OptGroup.get_attribute">get_attribute</a></code></li>
+<li><code><a title="pom_elements.html.forms.OptGroup.get_property" href="../base_element.html#pom_elements.html.forms.OptGroup.get_property">get_property</a></code></li>
+<li><code><a title="pom_elements.html.forms.OptGroup.is_displayed" href="../base_element.html#pom_elements.html.forms.OptGroup.is_displayed">is_displayed</a></code></li>
+<li><code><a title="pom_elements.html.forms.OptGroup.is_invisible" href="../base_element.html#pom_elements.html.forms.OptGroup.is_invisible">is_invisible</a></code></li>
+<li><code><a title="pom_elements.html.forms.OptGroup.is_visible" href="../base_element.html#pom_elements.html.forms.OptGroup.is_visible">is_visible</a></code></li>
+<li><code><a title="pom_elements.html.forms.OptGroup.locator" href="../xpath_element.html#pom_elements.html.forms.OptGroup.locator">locator</a></code></li>
+<li><code><a title="pom_elements.html.forms.OptGroup.tag" href="#pom_elements.html.forms.OptGroup.tag">tag</a></code></li>
+<li><code><a title="pom_elements.html.forms.OptGroup.webdriver" href="../base_element.html#pom_elements.html.forms.OptGroup.webdriver">webdriver</a></code></li>
+<li><code><a title="pom_elements.html.forms.OptGroup.xpath" href="../xpath_element.html#pom_elements.html.forms.OptGroup.xpath">xpath</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pom_elements.html.forms.Option" href="#pom_elements.html.forms.Option">Option</a></code></h4>
+<ul class="two-column">
+<li><code><a title="pom_elements.html.forms.Option.can_be_clicked" href="../base_element.html#pom_elements.html.forms.Option.can_be_clicked">can_be_clicked</a></code></li>
+<li><code><a title="pom_elements.html.forms.Option.click" href="../base_element.html#pom_elements.html.forms.Option.click">click</a></code></li>
+<li><code><a title="pom_elements.html.forms.Option.default_timeout" href="../base_element.html#pom_elements.html.forms.Option.default_timeout">default_timeout</a></code></li>
+<li><code><a title="pom_elements.html.forms.Option.find" href="../xpath_element.html#pom_elements.html.forms.Option.find">find</a></code></li>
+<li><code><a title="pom_elements.html.forms.Option.get_all_attributes" href="../base_element.html#pom_elements.html.forms.Option.get_all_attributes">get_all_attributes</a></code></li>
+<li><code><a title="pom_elements.html.forms.Option.get_attribute" href="../base_element.html#pom_elements.html.forms.Option.get_attribute">get_attribute</a></code></li>
+<li><code><a title="pom_elements.html.forms.Option.get_property" href="../base_element.html#pom_elements.html.forms.Option.get_property">get_property</a></code></li>
+<li><code><a title="pom_elements.html.forms.Option.is_displayed" href="../base_element.html#pom_elements.html.forms.Option.is_displayed">is_displayed</a></code></li>
+<li><code><a title="pom_elements.html.forms.Option.is_invisible" href="../base_element.html#pom_elements.html.forms.Option.is_invisible">is_invisible</a></code></li>
+<li><code><a title="pom_elements.html.forms.Option.is_visible" href="../base_element.html#pom_elements.html.forms.Option.is_visible">is_visible</a></code></li>
+<li><code><a title="pom_elements.html.forms.Option.locator" href="../xpath_element.html#pom_elements.html.forms.Option.locator">locator</a></code></li>
+<li><code><a title="pom_elements.html.forms.Option.tag" href="#pom_elements.html.forms.Option.tag">tag</a></code></li>
+<li><code><a title="pom_elements.html.forms.Option.webdriver" href="../base_element.html#pom_elements.html.forms.Option.webdriver">webdriver</a></code></li>
+<li><code><a title="pom_elements.html.forms.Option.xpath" href="../xpath_element.html#pom_elements.html.forms.Option.xpath">xpath</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pom_elements.html.forms.Select" href="#pom_elements.html.forms.Select">Select</a></code></h4>
+<ul class="two-column">
+<li><code><a title="pom_elements.html.forms.Select.can_be_clicked" href="../base_element.html#pom_elements.html.forms.Select.can_be_clicked">can_be_clicked</a></code></li>
+<li><code><a title="pom_elements.html.forms.Select.click" href="../base_element.html#pom_elements.html.forms.Select.click">click</a></code></li>
+<li><code><a title="pom_elements.html.forms.Select.default_timeout" href="../base_element.html#pom_elements.html.forms.Select.default_timeout">default_timeout</a></code></li>
+<li><code><a title="pom_elements.html.forms.Select.find" href="../xpath_element.html#pom_elements.html.forms.Select.find">find</a></code></li>
+<li><code><a title="pom_elements.html.forms.Select.get_all_attributes" href="../base_element.html#pom_elements.html.forms.Select.get_all_attributes">get_all_attributes</a></code></li>
+<li><code><a title="pom_elements.html.forms.Select.get_attribute" href="../base_element.html#pom_elements.html.forms.Select.get_attribute">get_attribute</a></code></li>
+<li><code><a title="pom_elements.html.forms.Select.get_property" href="../base_element.html#pom_elements.html.forms.Select.get_property">get_property</a></code></li>
+<li><code><a title="pom_elements.html.forms.Select.is_displayed" href="../base_element.html#pom_elements.html.forms.Select.is_displayed">is_displayed</a></code></li>
+<li><code><a title="pom_elements.html.forms.Select.is_invisible" href="../base_element.html#pom_elements.html.forms.Select.is_invisible">is_invisible</a></code></li>
+<li><code><a title="pom_elements.html.forms.Select.is_visible" href="../base_element.html#pom_elements.html.forms.Select.is_visible">is_visible</a></code></li>
+<li><code><a title="pom_elements.html.forms.Select.locator" href="../xpath_element.html#pom_elements.html.forms.Select.locator">locator</a></code></li>
+<li><code><a title="pom_elements.html.forms.Select.tag" href="#pom_elements.html.forms.Select.tag">tag</a></code></li>
+<li><code><a title="pom_elements.html.forms.Select.webdriver" href="../base_element.html#pom_elements.html.forms.Select.webdriver">webdriver</a></code></li>
+<li><code><a title="pom_elements.html.forms.Select.xpath" href="../xpath_element.html#pom_elements.html.forms.Select.xpath">xpath</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pom_elements.html.forms.TextArea" href="#pom_elements.html.forms.TextArea">TextArea</a></code></h4>
+<ul class="two-column">
+<li><code><a title="pom_elements.html.forms.TextArea.can_be_clicked" href="../base_element.html#pom_elements.html.forms.TextArea.can_be_clicked">can_be_clicked</a></code></li>
+<li><code><a title="pom_elements.html.forms.TextArea.click" href="../base_element.html#pom_elements.html.forms.TextArea.click">click</a></code></li>
+<li><code><a title="pom_elements.html.forms.TextArea.default_timeout" href="../base_element.html#pom_elements.html.forms.TextArea.default_timeout">default_timeout</a></code></li>
+<li><code><a title="pom_elements.html.forms.TextArea.find" href="../xpath_element.html#pom_elements.html.forms.TextArea.find">find</a></code></li>
+<li><code><a title="pom_elements.html.forms.TextArea.get_all_attributes" href="../base_element.html#pom_elements.html.forms.TextArea.get_all_attributes">get_all_attributes</a></code></li>
+<li><code><a title="pom_elements.html.forms.TextArea.get_attribute" href="../base_element.html#pom_elements.html.forms.TextArea.get_attribute">get_attribute</a></code></li>
+<li><code><a title="pom_elements.html.forms.TextArea.get_property" href="../base_element.html#pom_elements.html.forms.TextArea.get_property">get_property</a></code></li>
+<li><code><a title="pom_elements.html.forms.TextArea.is_displayed" href="../base_element.html#pom_elements.html.forms.TextArea.is_displayed">is_displayed</a></code></li>
+<li><code><a title="pom_elements.html.forms.TextArea.is_invisible" href="../base_element.html#pom_elements.html.forms.TextArea.is_invisible">is_invisible</a></code></li>
+<li><code><a title="pom_elements.html.forms.TextArea.is_visible" href="../base_element.html#pom_elements.html.forms.TextArea.is_visible">is_visible</a></code></li>
+<li><code><a title="pom_elements.html.forms.TextArea.locator" href="../xpath_element.html#pom_elements.html.forms.TextArea.locator">locator</a></code></li>
+<li><code><a title="pom_elements.html.forms.TextArea.tag" href="#pom_elements.html.forms.TextArea.tag">tag</a></code></li>
+<li><code><a title="pom_elements.html.forms.TextArea.webdriver" href="../base_element.html#pom_elements.html.forms.TextArea.webdriver">webdriver</a></code></li>
+<li><code><a title="pom_elements.html.forms.TextArea.xpath" href="../xpath_element.html#pom_elements.html.forms.TextArea.xpath">xpath</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.1</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>
