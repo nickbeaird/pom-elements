@@ -77,6 +77,22 @@ Putting it all togher allows organizing entire pages with PageObjects and PageEl
 
     >>> mypage.footer.click()
 
+## Example - HTML Elements
+
+The `pom_elements.html` module is both a way to interact with all html dom elements, as
+well a proof of concept for how one could organize classes for their own projects. Not
+every html element has a direct html Element class, but common selectors do have classes
+available in this library.
+
+A common use case is to select attributes that live in a specific html div.
+
+    >>> from pom_elements.html import Div
+    >>> elem = Div(html_id="bar", text="Text that resides in a <div> element.")
+    >>> elem.xath
+    '//div[id="bar"][contains(text(), "Text that resides in a <div> element.")]'
+    >>> elem.is_visible()
+    True
+
 ## Features
 
 - Organize your tests to reflect how your web page is desinged (Page Objects).
