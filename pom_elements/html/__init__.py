@@ -5,6 +5,20 @@ experience writing tests for DOM elements. Refer to the Mozilla HTML Elements re
 documentation. https://developer.mozilla.org/en-US/docs/Web/HTML/Element
 """
 from .content import H1, H2, H3, H4, H5, H6
+from .forms import (
+    Button,
+    DataList,
+    Fieldset,
+    Form,
+    Input,
+    Label,
+    Legend,
+    Meter,
+    OptGroup,
+    Option,
+    Select,
+    TextArea,
+)
 from .inline_text import (
     Cite,
     Code,
@@ -67,4 +81,16 @@ __all__ = [
     "TableHead",
     "TableHeader",
     "TableRow",
+    "Button",
+    "DataList",
+    "Fieldset",
+    "Form",
+    "Input",
+    "Label",
+    "Legend",
+    "Meter",
+    "OptGroup",
+    "Option",
+    "Select",
+    "TextArea",
 ]
