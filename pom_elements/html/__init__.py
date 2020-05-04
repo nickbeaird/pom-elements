@@ -16,6 +16,17 @@ from .inline_text import (
     Superscript,
 )
 from .media_and_embedded import Area, Iframe, Img, Picture, Source, Video
+from .table_content import (
+    Caption,
+    Col,
+    ColGroup,
+    Table,
+    TableData,
+    TableFooter,
+    TableHead,
+    TableHeader,
+    TableRow,
+)
 from .text import DD, DT, OL, UL, Div, P, Quote
 
 __all__ = [
@@ -47,4 +58,13 @@ __all__ = [
     "Iframe",
     "Picture",
     "Source",
+    "Caption",
+    "Col",
+    "ColGroup",
+    "Table",
+    "TableData",
+    "TableFooter",
+    "TableHead",
+    "TableHeader",
+    "TableRow",
 ]
