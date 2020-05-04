@@ -9,6 +9,7 @@ on:
       - "pom_elements/**"
       - "!docs/**"
       - "**.toml"
+      - "**.md"
 
 jobs:
   job1_merge_master:
