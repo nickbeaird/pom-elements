@@ -35,3 +35,9 @@ class H6(XPathElement):
     """Interact with <h6> tags."""
 
     tag = "h6"
+
+
+class Link(XPathElement):
+    """Interact with <a> tags."""
+
+    tag = "a"
