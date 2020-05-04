@@ -4,7 +4,17 @@
 experience writing tests for DOM elements. Refer to the Mozilla HTML Elements reference
 documentation. https://developer.mozilla.org/en-US/docs/Web/HTML/Element
 """
-from .content import H1, H2, H3, H4, H5, H6, Link
+from .content import H1, H2, H3, H4, H5, H6
+from .inline_text import (
+    Cite,
+    Code,
+    Highlight,
+    InlineQuote,
+    Link,
+    Span,
+    Subscript,
+    Superscript,
+)
 from .text import DD, DT, OL, UL, Div, P, Quote
 
 __all__ = [
@@ -22,4 +32,12 @@ __all__ = [
     "DD",
     "OL",
     "UL",
+    "Link",
+    "Cite",
+    "Code",
+    "Highlight",
+    "InlineQuote",
+    "Span",
+    "Subscript",
+    "Superscript",
 ]
