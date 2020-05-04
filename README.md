@@ -1,5 +1,6 @@
 ![Run Checks](https://github.com/nickbeaird/pom-elements/workflows/Run%20Checks/badge.svg?branch=master)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![CodeFactor](https://www.codefactor.io/repository/github/nickbeaird/pom-elements/badge?s=32178acb85e5cbeb67ab7378f6796de066ec16dd)](https://www.codefactor.io/repository/github/nickbeaird/pom-elements)
 
 # pom-elements
 
