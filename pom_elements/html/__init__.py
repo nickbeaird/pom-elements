@@ -15,6 +15,7 @@ from .inline_text import (
     Subscript,
     Superscript,
 )
+from .media_and_embedded import Area, Iframe, Img, Picture, Source, Video
 from .text import DD, DT, OL, UL, Div, P, Quote
 
 __all__ = [
@@ -40,4 +41,10 @@ __all__ = [
     "Span",
     "Subscript",
     "Superscript",
+    "Area",
+    "Img",
+    "Video",
+    "Iframe",
+    "Picture",
+    "Source",
 ]
