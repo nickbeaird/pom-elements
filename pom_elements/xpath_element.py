@@ -90,6 +90,7 @@ class XPathElement(BaseElement):
         else:
             generated_xpath = f"//{self.tag}"
 
+        # Parse self.user_input and calculate xpath based on values provided.
         for key in self.user_input.keys():
             if key.startswith("html_"):
                 arg_strip_html = key[5:]
