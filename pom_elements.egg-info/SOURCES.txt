@@ -1,7 +1,6 @@
 README.md
 setup.py
 pom_elements/__init__.py
-pom_elements/__version__.py
 pom_elements/_harness.py
 pom_elements/base_element.py
 pom_elements/multi_element.py
@@ -10,7 +9,6 @@ pom_elements/xpath_element.py
 pom_elements.egg-info/PKG-INFO
 pom_elements.egg-info/SOURCES.txt
 pom_elements.egg-info/dependency_links.txt
-pom_elements.egg-info/requires.txt
 pom_elements.egg-info/top_level.txt
 pom_elements/html/__init__.py
 pom_elements/html/content.py
@@ -19,3 +17,17 @@ pom_elements/html/inline_text.py
 pom_elements/html/media_and_embedded.py
 pom_elements/html/table_content.py
 pom_elements/html/text.py
+tests/__init__.py
+tests/test_browsers.py
+tests/test_driver_element.py
+tests/test_html_content.py
+tests/test_html_forms.py
+tests/test_html_inline_text.py
+tests/test_html_media_and_embedded.py
+tests/test_html_tables.py
+tests/test_html_text.py
+tests/test_multi_element.py
+tests/test_pageobject.py
+tests/test_project_stats.py
+tests/test_unittest.py
+tests/test_xpath_element.py

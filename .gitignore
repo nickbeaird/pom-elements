@@ -6,3 +6,5 @@ __pycache__/
 .tox
 coverage.md
 geckodriver.log
+build
+dist

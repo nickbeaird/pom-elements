@@ -1,5 +1,4 @@
-`pom-elements` allows for easily creating dynamic Page Objects and for simplifying the
-element locators on your page.
+The Python package `pom-elements` for a Page Object Model that extends to Page Elements.
 
 ## Examples - Elements
 
