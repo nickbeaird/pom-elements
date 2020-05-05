@@ -20,6 +20,7 @@ pre-commit = "^2.2.0"
 pytest-cov = "^2.8.1"
 pytest-selenium = "^1.17.0"
 tox = "^3.14.5"
+ipdb = "^0.13.2"
 
 [tool.poetry.extras]
 test = ["pytest"]

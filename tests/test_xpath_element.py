@@ -1,7 +1,13 @@
+from pathlib import Path
+
 import pytest
 from pom_elements.xpath_element import XPathElement
 
-pytestmark = pytest.mark.integration
+
+def get_filename(filename: str) -> str:
+    """Returns the path of the filename provided in the test directory."""
+    path = Path.cwd() / "tests" / filename
+    return "file://" + str(path)
 
 
 def test_xpath_elem():
@@ -33,3 +39,37 @@ def test_xpath_val_cannot_be_int():
     """Verfiy that a user cannot set any xpath values taht are not of type str."""
     with pytest.raises(ValueError):
         XPathElement(xpath=1)
+
+
+def test_xpath_text():
+    """Verify that a user can select a specific type of text."""
+    elem = XPathElement(text="This is a test")
+    assert elem.xpath == '//*[contains(text(), "This is a test")]'
+
+
+@pytest.mark.integration
+def test_xpath_text_selection(selenium_chrome):
+    """Verify that a webdriver instance can select a tag that has a specific text value."""
+    file_location = get_filename("test_xpath.html")
+    selenium_chrome.get(file_location)
+    elem = XPathElement(webdriver=selenium_chrome, xpath="//h1", text="Selenium Test")
+    elem.is_visible()
+
+
+def test_xpath_attr_contains():
+    """Verify that a user can select a limited section of values of attributes.
+
+    This is often useful when wanting to select an attribute that has many data values,
+    or many class attributes compiled together.
+    """
+    elem = XPathElement(class_contains="red")
+    assert elem.xpath == '//*[contains(@class, "red")]'
+
+
+@pytest.mark.integration
+def test_class_contains(selenium_chrome):
+    """Verify that selenium can find an element that contains one attribute if there are many."""
+    file_location = get_filename("test_xpath.html")
+    selenium_chrome.get(file_location)
+    elem = XPathElement(webdriver=selenium_chrome, xpath="//p", class_contains="red")
+    elem.is_visible()
