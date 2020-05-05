@@ -36,3 +36,11 @@ atest:
 verify-commit-hooks:
 	# Run all pre-commit hooks on all files
 	@poetry run pre-commit run --all-files
+
+wheel:
+	# Create a wheel.
+	python setup.py sdist bdist_wheel
+
+upload-to-pypi:
+	# Upload an updated version to pypi.
+	twine upload dist/*

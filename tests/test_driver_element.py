@@ -2,6 +2,8 @@ import pytest
 from pom_elements.xpath_element import XPathElement
 from selenium.webdriver.remote.webelement import WebElement
 
+pytestmark = pytest.mark.integration
+
 
 def test_get_web_element(selenium_chrome):
     """Test that the Tag class can return an element on instantiation."""

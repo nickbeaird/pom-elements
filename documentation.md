@@ -1,5 +1,4 @@
-`pom-elements` allows for easily creating dynamic Page Objects and for simplifying the
-element locators on your page.
+[GITHUB](https://github.com/nickbeaird/pom-elements/)
 
 ## Examples - Elements
 

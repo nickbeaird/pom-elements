@@ -1,6 +1,9 @@
-# import pytest
+import pytest
 from pom_elements.page_object import PageObject
 from selenium import webdriver
+
+# Set marker
+pytestmark = pytest.mark.integration
 
 
 # @pytest.mark.skip(
