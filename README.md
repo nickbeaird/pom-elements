@@ -16,7 +16,7 @@ The Python package `pom-elements` for a Page Object Model that extends to Page E
 
 ## Usage
 
-Organize your ui-tests in Classes that represent you page designs. Also organize all of the selectors for your tests with Page Elements. s
+Organize your ui-tests in Classes that represent you page designs. Also organize all of the selectors for your tests with Page Elements.
 
 ## Features
 
